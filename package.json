@@ -1,0 +1,23 @@
+{
+  "name": "spotifyviz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startserver": "./node_modules/.bin/node-dev server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "errorhandler": "1.5.0",
+    "express": "4.16.3",
+    "morgan": "1.9.0",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "node-dev": "^3.1.3"
+  }
+}
