@@ -70,4 +70,24 @@ body {
 .track-features {
   margin-left: 350px;
   position: fixed;
+  max-width: 800px;
+  min-width: 300px;
+  width: 100%;
+}
+
+.graph-bar {
+  background: rgb(229,238,77);
+  background: linear-gradient(90deg, rgba(229,238,77,1) 0%, rgba(59,169,193,1) 98%);
+  border-radius: 5px;
+  height: 30px;
+  display: inline-block;
+}
+
+.attribute {
+  width: 140px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 15px;
+  vertical-align: top;
+  text-align: right;
 }
