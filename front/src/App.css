@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -25,4 +25,30 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.track-wrapper {
+  border-bottom: 1px solid #d2d2d2;
+    padding: 8px;
+    color: #797979;
+    font-family: avenir;
+    cursor: pointer;
+}
+
+
+.track-wrapper:hover {
+  background: #33b9ff;
+  color: white;
+}
+
+.track-artists {
+  font-size: 12px;
+}
+.track-name {
+  font-size: 16px;
+}
+
+.searchResults {
+  max-width: 800px;
+  margin: 0 auto;
 }
