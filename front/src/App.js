@@ -2,12 +2,56 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Search from './components/search.js'
+import TrackContent from './components/trackContent.js'
+import TrackFeatures from './components/trackFeatures.js'
+import RelatedTracks from './components/relatedTracks.js'
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.setActiveTrack = this.setActiveTrack.bind(this);
+    this.setAppMode = this.setAppMode.bind(this);
+  }
+
+
+
   state = {
-    activeArtist: '',
-    access_token: ''
+    activeTrackId: '',
+    access_token: '',
+    appMode: '',
+    activeTrack: {}
+  }
+
+  async setActiveTrack(trackId) {
+    console.log(trackId)
+    this.setState({activeTrackId: trackId}, async function() {
+      if (!(this.state.appMode === 'trackFeatures')) {
+        this.setState({appMode: 'trackFeatures'})
+        console.log(this.state)
+      }
+
+      const url = `https://api.spotify.com/v1/tracks/${this.state.activeTrackId}`
+      console.log(url)
+
+      const resp = await fetch(url,{
+        headers: new Headers({
+          'Authorization': 'Bearer ' + this.state.access_token, 
+        })
+      })
+      const trackData = await resp.json()
+
+      if (trackData) {
+        this.setState({ activeTrack: trackData}, ()=> {
+          console.log(this.state)
+        })
+      }
+    })
+
+  }
+
+  setAppMode = (mode) => {
+    this.setState({appMode: mode})
   }
 
   async componentWillMount() {
@@ -32,10 +76,19 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Search token={this.state.access_token}/>
+        
+        <Search token={this.state.access_token}
+                setActiveTrack={this.setActiveTrack}
+                mode={this.state.appMode}
+                setAppMode={this.setAppMode}/>
+
+        {(this.state.appMode !== 'search') 
+          ? <div className="side-bar"> 
+              <TrackContent track={this.state.activeTrack}/> 
+            </div>
+          : ""}
+        
+        
       </div>
     );
   }
@@ -96,5 +149,8 @@ class App extends Component {
     
 //   }
 // }
+
+// {(this.state.appMode === 'trackFeatures') ? <TrackFeatures/> : ""}
+// {(this.state.appMode === 'relatedTracks') ? <RelatedTracks/> : ""}
 
 export default App;

@@ -1,0 +1,48 @@
+import React, { Component } from 'react';
+
+class TrackContent extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    listArtists() {
+        if (!this.props.track.artists) {
+            return
+        }
+        let artists = this.props.track.artists.map((artist, index) => {
+            console.log(index);
+            if (index > 0) {
+                console.log('should render dot before', artist.name)
+                return (
+                    <span> • {artist.name} </span>
+                )
+            } else {
+                return (
+                    <span> {artist.name} </span>
+                )
+            }
+        })
+        return (
+            <span className="track-artists">{artists}</span>
+        )
+    }
+
+    render() {
+        console.log('TRACK DATA:', this.props.track)
+        if (Object.keys(this.props.track).length === 0 && this.props.track.constructor === Object) {
+            return ('')
+        }
+        return ( 
+            <div>
+                <h3>{this.props.track.name}</h3>
+                {this.listArtists()}
+                <span>{this.props.track.album.name}</span>
+                <img src={this.props.track.album.images[1].url} height='300' width='300'/>
+                
+            </div>
+        )
+    }
+}
+
+export default TrackContent;

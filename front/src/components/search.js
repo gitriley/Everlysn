@@ -5,17 +5,24 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.submitQuery = this.submitQuery.bind(this);
+        this.selectTrack = this.selectTrack.bind(this);
     }
     
     state = {
         searchTerms: '',
         searchResults: []
     }
+    
     async submitQuery(e) {
-        console.log(this.props.token)
+        console.log(this.props)
+        console.log(this.props.mode === 'search')
+        if (!(this.props.mode === 'search')) {
+            console.log('change app mode to search')
+            this.props.setAppMode('search')
+        }
         const response = await fetch(`https://api.spotify.com/v1/search?q=${this.state.searchTerms}&type=track`, {
             headers: new Headers({
-            'Authorization': 'Bearer ' + this.props.token, 
+                'Authorization': 'Bearer ' + this.props.token, 
             })
         });
         const data = await response.json()
@@ -33,10 +40,11 @@ class Search extends Component {
                         <span> {artist.name} </span>
                     )
                 }
-                
             })
             return (
-                <div key={item.id} className="track-wrapper">
+                <div key={item.id} className="track-wrapper"
+                    id={item.id}
+                    onClick={this.selectTrack}>
                     <span>{item.name}</span>
                     <span className="track-artists">{artists}</span>
                 </div>
@@ -45,14 +53,21 @@ class Search extends Component {
         this.setState({searchResults: tracks})
     }
 
+    selectTrack = (e) => {
+        e.preventDefault();
+        console.log('selected track: ', e.currentTarget.getAttribute('id'))
+        this.props.setActiveTrack(e.currentTarget.getAttribute('id'))
+    }    
+
     handleChange = (e) => {
+        e.preventDefault();
         console.log(e.target.value)
         this.setState({searchTerms: e.target.value});
     }
 
     render() {
-        console.log(this.props)
         const searchTerms = this.state.searchTerms;
+        console.log(this.props)
         return (
             <div>
                 <input 
@@ -61,9 +76,11 @@ class Search extends Component {
                     onChange={this.handleChange}/>
                 <button 
                 onClick={this.submitQuery}>Search</button>
-                <div className="searchResults">
-                    {this.state.searchResults}
-                </div>
+                {(this.props.mode === "search") ?
+                    <div className="searchResults">
+                        {this.state.searchResults}
+                    </div>
+                    : ""}
             </div>
         )
     }

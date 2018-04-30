@@ -2,6 +2,10 @@
   text-align: center;
 } */
 
+body {
+  font-family: avenir;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -51,4 +55,14 @@
 .searchResults {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.side-bar {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 320px; /* Set the width of the sidebar */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
 }
