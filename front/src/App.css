@@ -66,3 +66,8 @@ body {
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
 }
+
+.track-features {
+  margin-left: 350px;
+  position: fixed;
+}

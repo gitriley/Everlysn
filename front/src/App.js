@@ -81,12 +81,19 @@ class App extends Component {
                 setActiveTrack={this.setActiveTrack}
                 mode={this.state.appMode}
                 setAppMode={this.setAppMode}/>
+                
+        {(this.state.appMode === 'trackFeatures') 
+          ? <TrackFeatures token={this.state.access_token}
+                           trackId = {this.state.activeTrackId} /> 
+          : ""}
 
         {(this.state.appMode !== 'search') 
           ? <div className="side-bar"> 
               <TrackContent track={this.state.activeTrack}/> 
             </div>
           : ""}
+          
+          
         
         
       </div>
