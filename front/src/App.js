@@ -12,6 +12,7 @@ class App extends Component {
     super(props);
     this.setActiveTrack = this.setActiveTrack.bind(this);
     this.setAppMode = this.setAppMode.bind(this);
+    this.enterFeatureSelectionMode = this.enterFeatureSelectionMode.bind(this)
   }
 
 
@@ -20,7 +21,8 @@ class App extends Component {
     activeTrackId: '',
     access_token: '',
     appMode: '',
-    activeTrack: {}
+    activeTrack: {},
+    featureSelectionMode: false
   }
 
   async setActiveTrack(trackId) {
@@ -68,6 +70,10 @@ class App extends Component {
     console.log(this.state.access_token)
   }
 
+  enterFeatureSelectionMode() {
+    this.setState({featureSelectionMode: true})
+  }
+
   render() {
     console.log(this.state)
     return (
@@ -81,15 +87,17 @@ class App extends Component {
                 setActiveTrack={this.setActiveTrack}
                 mode={this.state.appMode}
                 setAppMode={this.setAppMode}/>
-                
+
         {(this.state.appMode === 'trackFeatures') 
           ? <TrackFeatures token={this.state.access_token}
-                           trackId = {this.state.activeTrackId} /> 
+                           trackId = {this.state.activeTrackId} 
+                           featureSelectionMode = {this.state.featureSelectionMode}/> 
           : ""}
 
         {(this.state.appMode !== 'search') 
           ? <div className="side-bar"> 
-              <TrackContent track={this.state.activeTrack}/> 
+              <TrackContent track={this.state.activeTrack}
+                            enterFeatureSelectionMode = {this.enterFeatureSelectionMode}/> 
             </div>
           : ""}
           

@@ -60,44 +60,54 @@ class TrackFeatures extends Component {
         }
         return ( 
             <div className="track-features">
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> acousticness: </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div className="graph-bar" style={{width: (this.state.features['acousticness']*100) + '%'}}> </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> energy: </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div className="graph-bar" style={{width: this.state.features['energy']*100 + '%'}}> </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> danceability: </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div className="graph-bar" style={{width: this.state.features['danceability']*100 + '%'}}> </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> instrumentalness: </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div className="graph-bar" style={{width: this.state.features['instrumentalness']*100 + '%'}}> </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> liveness: </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div className="graph-bar" style={{width: this.state.features['liveness']*100 + '%'}}> </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> speechiness: </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div className="graph-bar" style={{width: this.state.features['speechiness']*100 + '%'}}> </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> valence: </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div className="graph-bar" style={{width: this.state.features['valence']*100 + '%'}}> </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> tempo: </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div> {this.state.features['tempo']} </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> major/minor </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div> {this.state.features['mode']} </div>
                 </div>
-                <div className="featureRow">
+                <div className="feature-row">
                     <span className="attribute"> key </span>
+                    {this.props.featureSelectionMode ? <input type='checkbox'/> : ''}
                     <div> {this.state.features['key']} </div>
                 </div>
             </div>

@@ -4,6 +4,11 @@ class TrackContent extends Component {
 
     constructor(props) {
         super(props);
+        this.enterFeatureSelectionMode = this.enterFeatureSelectionMode.bind(this);
+    }
+
+    state = {
+        featureSelectionMode: false
     }
 
     listArtists() {
@@ -27,6 +32,10 @@ class TrackContent extends Component {
             <span className="track-artists">{artists}</span>
         )
     }
+    
+    enterFeatureSelectionMode() {
+        this.props.enterFeatureSelectionMode(true)
+    }
 
     render() {
         console.log('TRACK DATA:', this.props.track)
@@ -39,7 +48,7 @@ class TrackContent extends Component {
                 {this.listArtists()}
                 <span>{this.props.track.album.name}</span>
                 <img src={this.props.track.album.images[1].url} height='300' width='300'/>
-                
+                <button onClick={this.enterFeatureSelectionMode}>Find Similar Tracks</button>
             </div>
         )
     }

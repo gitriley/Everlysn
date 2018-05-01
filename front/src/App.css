@@ -85,9 +85,15 @@ body {
 
 .attribute {
   width: 140px;
+  min-width: 140px;
   display: inline-block;
   margin-top: 5px;
   margin-right: 15px;
   vertical-align: top;
   text-align: right;
+}
+
+.feature-row {
+  display: flex;
+  padding: 10px 0px;
 }
