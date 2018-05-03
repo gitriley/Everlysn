@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import FetchToken from './lib/fetchToken.js'
-import FetchTrack from './lib/fetchTrack.js'
-import FetchTrackFeatures from './lib/fetchTrackFeatures.js'
-import FetchRelatedTracks from './lib/fetchRelatedTracks.js'
+// import FetchToken from './lib/fetchToken.js'
+// import FetchTrack from './lib/fetchTrack.js'
+// import FetchTrackFeatures from './lib/fetchTrackFeatures.js'
+// import FetchRelatedTracks from './lib/fetchRelatedTracks.js'
+import * as Spotify from './lib/fetchFromSpotify.js'
 import Search from './components/search.js'
 import TrackContent from './components/trackContent.js'
 import TrackFeatures from './components/trackFeatures.js'
@@ -48,15 +49,14 @@ class App extends Component {
   }
 
   async setActiveTrack(trackId) {
-    console.log(trackId)
     this.setState({activeTrackId: trackId}, async function() {
       if (!(this.state.appMode === 'trackFeatures')) {
         this.setState({appMode: 'trackFeatures'})
       }
 
       this.setState({ 
-        activeTrack:  await FetchTrack(this.state.activeTrackId, this.state.access_token),
-        trackFeatures: await FetchTrackFeatures(this.state.activeTrackId, this.state.access_token)
+        activeTrack:  await Spotify.fetchTrack(this.state.activeTrackId, this.state.access_token),
+        trackFeatures: await Spotify.fetchTrackFeatures(this.state.activeTrackId, this.state.access_token)
       })
       
       
@@ -69,7 +69,7 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    this.setState({access_token: await FetchToken()})
+    this.setState({access_token: await Spotify.fetchToken()})
   }
 
   enterFeatureSelectionMode() {
@@ -101,8 +101,9 @@ class App extends Component {
   async onFindSimilarTracks() {
     const queryString = this.buildRecommendationQueryString()
     this.setState({
-      relatedTracks: await FetchRelatedTracks(queryString, this.state.access_token)
-    }) 
+      relatedTracks: await Spotify.fetchRelatedTracks(queryString, this.state.access_token),  
+    }, this.setAppMode('relatedTracks')) 
+    console.log(this.state.relatedTracks)
   }
 
   toggleQueryFeatures(feature) {
@@ -143,6 +144,10 @@ class App extends Component {
               <TrackContent track={this.state.activeTrack}
                             enterFeatureSelectionMode = {this.enterFeatureSelectionMode}/> 
             </div>
+          : ""}
+
+        {(this.state.appMode === 'relatedTracks') 
+          ? <RelatedTracks relatedTracks={this.state.relatedTracks}/> 
           : ""}
           
       </div>
