@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import FetchToken from './lib/fetchToken.js'
+import FetchTrack from './lib/fetchTrack.js'
+import FetchTrackFeatures from './lib/fetchTrackFeatures.js'
+import FetchRelatedTracks from './lib/fetchRelatedTracks.js'
 import Search from './components/search.js'
 import TrackContent from './components/trackContent.js'
 import TrackFeatures from './components/trackFeatures.js'
@@ -13,6 +17,8 @@ class App extends Component {
     this.setActiveTrack = this.setActiveTrack.bind(this);
     this.setAppMode = this.setAppMode.bind(this);
     this.enterFeatureSelectionMode = this.enterFeatureSelectionMode.bind(this)
+    this.toggleQueryFeatures = this.toggleQueryFeatures.bind(this)
+    this.onFindSimilarTracks = this.onFindSimilarTracks.bind(this)
   }
 
 
@@ -22,7 +28,23 @@ class App extends Component {
     access_token: '',
     appMode: '',
     activeTrack: {},
-    featureSelectionMode: false
+    featureSelectionMode: false,
+    queryFeatures: {
+      acousticness: false,
+      danceability: false,
+      energy: false,
+      instrumentalness: false,
+      key: false,
+      liveness: false,
+      loudness: false,
+      mode: false,
+      speechiness: false,
+      tempo: false,
+      time_signature: false,
+      valence: false
+    },
+    trackFeatures: {},
+    relatedTracks: {}
   }
 
   async setActiveTrack(trackId) {
@@ -30,48 +52,65 @@ class App extends Component {
     this.setState({activeTrackId: trackId}, async function() {
       if (!(this.state.appMode === 'trackFeatures')) {
         this.setState({appMode: 'trackFeatures'})
-        console.log(this.state)
       }
 
-      const url = `https://api.spotify.com/v1/tracks/${this.state.activeTrackId}`
-      console.log(url)
-
-      const resp = await fetch(url,{
-        headers: new Headers({
-          'Authorization': 'Bearer ' + this.state.access_token, 
-        })
+      this.setState({ 
+        activeTrack:  await FetchTrack(this.state.activeTrackId, this.state.access_token),
+        trackFeatures: await FetchTrackFeatures(this.state.activeTrackId, this.state.access_token)
       })
-      const trackData = await resp.json()
-
-      if (trackData) {
-        this.setState({ activeTrack: trackData}, ()=> {
-          console.log(this.state)
-        })
-      }
+      
+      
     })
-
   }
+
 
   setAppMode = (mode) => {
     this.setState({appMode: mode})
   }
 
   async componentWillMount() {
-    //https://api.spotify.com/v1/albums/1TUjTdwVe9DLxegWVijHJe 4KdtEKjY3Gi0mKiSdy96ML
-   // https://open.spotify.com/track/1f5PNhkNgUpvDEeZfcIlO1
-    const resp = await fetch('http://localhost:3005/token')
-    console.log(resp)
-    const tokenObj = await resp.json()
-    const access_token = tokenObj.token
-    console.log(access_token)
-    if (access_token) {
-      this.setState({access_token})
-    }
-    console.log(this.state.access_token)
+    this.setState({access_token: await FetchToken()})
   }
 
   enterFeatureSelectionMode() {
     this.setState({featureSelectionMode: true})
+  }
+
+  buildRecommendationQueryString() {
+    const artists = this.state.activeTrack.artists
+    const artist1String = `&seed_artists=${artists[0].id}` 
+    const artist2String = artists[1] ? `&seed_artists=${artists[1].id}` : ''
+    const artist3String = artists[2] ? `&seed_artists=${artists[2].id}` : ''
+    const artistsString = `${artist1String}${artist2String}${artist3String}`
+    const trackString = `seed_tracks=${this.state.activeTrackId}`
+    
+    const featuresToSearchBy = Object.keys(this.state.queryFeatures).filter((feature) => {
+      return this.state.queryFeatures[feature] === true
+    })
+    let featuresStrings = featuresToSearchBy.map((feature) => {
+      if (this.state.queryFeatures[feature] === true) {
+        return `&${feature}=${this.state.trackFeatures[feature]}`;
+      }
+    })
+    const featuresString = featuresStrings.join("")
+    const queryString = `${trackString}${artistsString}${featuresString}`
+    console.log(queryString);
+    return queryString;
+  }
+
+  async onFindSimilarTracks() {
+    const queryString = this.buildRecommendationQueryString()
+    this.setState({
+      relatedTracks: await FetchRelatedTracks(queryString, this.state.access_token)
+    }) 
+  }
+
+  toggleQueryFeatures(feature) {
+    const newVal = !this.state.queryFeatures[feature]
+    let queryFeatures = Object.assign({}, this.state.queryFeatures);    //creating copy of object
+    queryFeatures[feature] = newVal;  
+    this.setState({queryFeatures}, () => {
+    });
   }
 
   render() {
@@ -82,6 +121,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+
+        <button onClick={this.onFindSimilarTracks}>Find Similar Tracks</button>
         
         <Search token={this.state.access_token}
                 setActiveTrack={this.setActiveTrack}
@@ -91,7 +132,10 @@ class App extends Component {
         {(this.state.appMode === 'trackFeatures') 
           ? <TrackFeatures token={this.state.access_token}
                            trackId = {this.state.activeTrackId} 
-                           featureSelectionMode = {this.state.featureSelectionMode}/> 
+                           queryFeatures = {this.state.queryFeatures}
+                           toggleQueryFeatures = {this.toggleQueryFeatures}
+                           featureSelectionMode = {this.state.featureSelectionMode}
+                           features = {this.state.trackFeatures}/> 
           : ""}
 
         {(this.state.appMode !== 'search') 
@@ -101,71 +145,10 @@ class App extends Component {
             </div>
           : ""}
           
-          
-        
-        
       </div>
     );
   }
 }
 
-
-// class Data extends Component {
-//   state = {
-//     artists: []
-//   }
-//   render() {
-//     return this.state.artists
-//   }
-//   async componentDidMount() {
-//     //https://api.spotify.com/v1/albums/1TUjTdwVe9DLxegWVijHJe 4KdtEKjY3Gi0mKiSdy96ML
-//    // https://open.spotify.com/track/1f5PNhkNgUpvDEeZfcIlO1
-//     const resp = await fetch('http://localhost:3005/token')
-//     const tokenObj = await resp.json()
-//     const access_token = tokenObj.token
-//     if (access_token) {
-//       // https://api.spotify.com/v1/recommendations?seed_tracks=7497sdinamfWt5FFPEjVcZ"
-//       // const response = await fetch('https://api.spotify.com/v1/audio-features/1f5PNhkNgUpvDEeZfcIlO1', {
-//       //   headers: new Headers({
-//       //     'Authorization': 'Bearer ' + access_token, 
-//       //   })
-//       // });
-//       const response = await fetch('https://api.spotify.com/v1/recommendations?seed_tracks=7497sdinamfWt5FFPEjVcZ', {
-//         headers: new Headers({
-//           'Authorization': 'Bearer ' + access_token, 
-//         })
-//       });
-//       console.log(response);
-//       const data = await response.json()
-//       console.log(data)
-//       let trackIds = data.tracks.map((track) => {
-//         return track.id;
-//       });
-//       console.log(trackIds)
-
-//       // let artists = data.artists.map((artist) => {
-//       //   return (
-//       //       <p key={artist.id}>{artist.name}</p>
-//       //   )
-//       // })
-//       const tFs = await fetch('https://api.spotify.com/v1/audio-features/?ids=' + trackIds, {
-//         headers: new Headers({
-//           'Authorization': 'Bearer ' + access_token, 
-//         })
-//       });
-//       const trackFeatures = await tFs.json()
-//       console.log(trackFeatures)
-//       // this.setState({data})
-//       // this.setState({artists})
-  
-//       // console.log(this.state.data)
-//       // console.log(this.state.artists)
-//     }
-    
-//   }
-// }
-
-// {(this.state.appMode === 'trackFeatures') ? <TrackFeatures/> : ""}
-// {(this.state.appMode === 'relatedTracks') ? <RelatedTracks/> : ""}
-
 export default App;
+
