@@ -41,9 +41,6 @@ class RelatedTracks extends Component {
     }
 
     render() {
-        console.log(this.props.relatedTracks)
-        console.log(this.props.relatedTracks.length)
-        console.log(this.props.relatedTracks.length > 18)
         if (this.props.relatedTracks.length > 18) {
             const list = this.buildList()
             return (

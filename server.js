@@ -21,6 +21,7 @@ const encodedPayload = new Buffer(payload).toString("base64");
 
 
 let access_token = null;
+let timeOfTokenCreation;
 let message = null;
 
 const opts = {
@@ -49,10 +50,22 @@ app.use(function(req, res, next) {
 
 app.get('/token', (mainreq, mainres) => {
     console.log('hit tokens endpoint')
-    if (access_token) {
+    const currentTime = Date.now()
+
+    const tokenAgeInMinutes = Math.floor((Date.now() - timeOfTokenCreation)/60000)
+
+    /* 
+        these spotify tokens expire every hour, so we need to refresh them.
+        To be safe, we won't send a token to the client 
+        if the token is more than 45 minutes old 
+    */
+    if (access_token && tokenAgeInMinutes < 45) {
         console.log('access token exists', message)
+        console.log('token age: ', tokenAgeInMinutes)
         mainres.status(200).send(message)
     } else {
+        console.log('requesting new token...token age: ', tokenAgeInMinutes)
+        timeOfTokenCreation = Date.now()
         request(opts, function (err, res, body) {
             console.log('error: ', err);
             console.log('status: ', res.statusCode);
