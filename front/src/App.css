@@ -67,7 +67,7 @@ body {
   padding-top: 20px;
 }
 
-.track-features {
+.track-features, .related-tracks {
   margin-left: 350px;
   position: fixed;
   max-width: 800px;
@@ -76,11 +76,14 @@ body {
 }
 
 .graph-bar {
-  background: rgb(229,238,77);
-  background: linear-gradient(90deg, rgba(229,238,77,1) 0%, rgba(59,169,193,1) 98%);
-  border-radius: 5px;
-  height: 30px;
+  background: rgb(180,123,91);
+  background: linear-gradient(90deg, rgba(180,123,91,1) 0%, rgba(69,192,209,1) 100%);
+  border-radius:20px;
+  height: 18px;
   display: inline-block;
+  position: absolute;
+  margin-left: 180px;
+  transition: width 0.5s;
 }
 
 .attribute {
@@ -96,4 +99,44 @@ body {
 .feature-row {
   display: flex;
   padding: 10px 0px;
+}
+
+.rel-track_name {
+  margin: 0; 
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rel-track_name:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.rel-track_artist {
+  margin: 0;
+  font-size: 12px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rel-track_text {
+  width: 160px;
+  min-width: 160px;
+  margin-right: 15px;
+}
+
+.related-tracks .graph-bar {
+  margin-top: 10px;
+}
+
+.track-features .graph-bar {
+  margin-top: 6px;
+}
+
+.musical-key {
+  margin-top: 9px;
 }

@@ -1,6 +1,7 @@
 export async function fetchToken() {
     const resp = await fetch('http://localhost:3005/token')
     const tokenObj = await resp.json()
+    console.log(tokenObj)
     return tokenObj.token
 }
 
@@ -13,7 +14,13 @@ export async function fetchTrack(trackId, token) {
         })
     })
     const trackData = await resp.json()
-    return trackData;
+    if (trackData.error) {
+        return Error('error')
+    } else {
+        return trackData
+    }
+    
+
 }
 
 export async function fetchTrackFeatures(trackId, token) {

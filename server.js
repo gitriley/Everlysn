@@ -73,7 +73,9 @@ app.get('/token', (mainreq, mainres) => {
             console.log('access_token: ', body['access_token'])
             access_token = body['access_token']
             message = {
-                token: access_token
+                token: access_token,
+                expires_in: body['expires_in'],
+                token_age_minutes: tokenAgeInMinutes
             }
             message = JSON.stringify(message);
 

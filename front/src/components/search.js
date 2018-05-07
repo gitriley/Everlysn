@@ -55,19 +55,16 @@ class Search extends Component {
 
     selectTrack = (e) => {
         e.preventDefault();
-        console.log('selected track: ', e.currentTarget.getAttribute('id'))
         this.props.setActiveTrack(e.currentTarget.getAttribute('id'))
     }    
 
     handleChange = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
         this.setState({searchTerms: e.target.value});
     }
 
     render() {
         const searchTerms = this.state.searchTerms;
-        console.log(this.props)
         return (
             <div>
                 <input 

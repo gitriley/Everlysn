@@ -138,16 +138,16 @@ class App extends Component {
                            featureSelectionMode = {this.state.featureSelectionMode}
                            features = {this.state.trackFeatures}/> 
           : ""}
+        {(this.state.appMode === 'relatedTracks') 
+          ? <RelatedTracks  relatedTracks={this.state.relatedTracks}
+                            setActiveTrack={this.setActiveTrack}/> 
+          : ""}
 
         {(this.state.appMode !== 'search') 
           ? <div className="side-bar"> 
               <TrackContent track={this.state.activeTrack}
                             enterFeatureSelectionMode = {this.enterFeatureSelectionMode}/> 
             </div>
-          : ""}
-
-        {(this.state.appMode === 'relatedTracks') 
-          ? <RelatedTracks relatedTracks={this.state.relatedTracks}/> 
           : ""}
           
       </div>
