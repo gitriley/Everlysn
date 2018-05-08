@@ -14,6 +14,7 @@ class Search extends Component {
     }
     
     async submitQuery(e) {
+        e.preventDefault();
         console.log(this.props)
         console.log(this.props.mode === 'search')
         if (!(this.props.mode === 'search')) {
@@ -67,12 +68,25 @@ class Search extends Component {
         const searchTerms = this.state.searchTerms;
         return (
             <div>
-                <input 
-                    type="text"
-                    value={searchTerms} 
-                    onChange={this.handleChange}/>
-                <button 
-                onClick={this.submitQuery}>Search</button>
+                <div className='search-wrapper'>
+                    <div>
+                        <p className='search-prompt'>
+                            Search for songs by albums name, song name, or artists
+                        </p>
+                        <form onSubmit={this.submitQuery} className='search-form'>
+                            <input 
+                                className='search-input'
+                                type='text'
+                                value={searchTerms} 
+                                onChange={this.handleChange}/>
+                            <button 
+                                className='search-button'
+                                type='submit'>
+                                Search
+                            </button>
+                        </form>
+                    </div>
+                </div>
                 {(this.props.mode === "search") ?
                     <div className="searchResults">
                         {this.state.searchResults}

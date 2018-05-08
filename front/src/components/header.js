@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 
-class TrackContent extends Component {
+class Header extends Component {
 
     constructor(props) {
         super(props);
-        this.enterFeatureSelectionMode = this.enterFeatureSelectionMode.bind(this);
     }
 
-    state = {
-        featureSelectionMode: false
-    }
 
     listArtists() {
         if (!this.props.track.artists) {
@@ -24,7 +20,7 @@ class TrackContent extends Component {
                 )
             } else {
                 return (
-                    <span> {artist.name} </span>
+                    <span className='header-artist'> {artist.name} </span>
                 )
             }
         })
@@ -32,23 +28,21 @@ class TrackContent extends Component {
             <span className="track-artists">{artists}</span>
         )
     }
-    
-    enterFeatureSelectionMode() {
-        this.props.enterFeatureSelectionMode(true)
-    }
 
     render() {
-        console.log('TRACK DATA:', this.props.track)
         if (Object.keys(this.props.track).length === 0 && this.props.track.constructor === Object) {
             return ('')
         }
         return ( 
-            <div>
-                <img src={this.props.track.album.images[1].url} height='300' width='300'/>
+            <div className='header'>
+                <div>
+                    <h3 className='header-track'>{this.props.track.name}</h3>
+                    {this.listArtists()}    
+                </div>            
                 <button onClick={this.enterFeatureSelectionMode}>Find Similar Tracks</button>
             </div>
         )
     }
 }
 
-export default TrackContent;
+export default Header;

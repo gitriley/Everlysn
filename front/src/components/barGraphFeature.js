@@ -30,7 +30,6 @@ class BarGraphFeature extends Component {
     }
 
     render() {
-        console.log(this.props.val)
         return (
             <div    
                 className="graph-bar" 

@@ -10,9 +10,11 @@ import Search from './components/search.js'
 import TrackContent from './components/trackContent.js'
 import TrackFeatures from './components/trackFeatures.js'
 import RelatedTracks from './components/relatedTracks.js'
+import Header from './components/header.js'
 
 class App extends Component {
 
+  // app modes: trackFeatures, relatedTracks, search
   constructor(props) {
     super(props);
     this.setActiveTrack = this.setActiveTrack.bind(this);
@@ -118,17 +120,18 @@ class App extends Component {
     console.log(this.state)
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-
-        <button onClick={this.onFindSimilarTracks}>Find Similar Tracks</button>
+        
         
         <Search token={this.state.access_token}
                 setActiveTrack={this.setActiveTrack}
                 mode={this.state.appMode}
                 setAppMode={this.setAppMode}/>
+        <button onClick={this.onFindSimilarTracks}>Find Similar Tracks</button>
+
+        {(this.state.appMode !== 'search') 
+          ? <Header track={this.state.activeTrack}
+                    mode={this.state.appMode}/> 
+          : ""}
 
         {(this.state.appMode === 'trackFeatures') 
           ? <TrackFeatures token={this.state.access_token}
