@@ -101,6 +101,7 @@ class App extends Component {
   }
 
   async onFindSimilarTracks() {
+    console.log('find sim tracks')
     const queryString = this.buildRecommendationQueryString()
     this.setState({
       relatedTracks: await Spotify.fetchRelatedTracks(queryString, this.state.access_token),  
@@ -126,7 +127,7 @@ class App extends Component {
                 setActiveTrack={this.setActiveTrack}
                 mode={this.state.appMode}
                 setAppMode={this.setAppMode}/>
-        <button onClick={this.onFindSimilarTracks}>Find Similar Tracks</button>
+        <button onClick={this.onFindSimilarTracks}>Find Similar Tracks now</button>
 
         {(this.state.appMode !== 'search') 
           ? <Header track={this.state.activeTrack}

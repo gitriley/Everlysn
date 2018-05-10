@@ -67,7 +67,7 @@ class Search extends Component {
     render() {
         const searchTerms = this.state.searchTerms;
         return (
-            <div>
+            <div className='search'>
                 <div className='search-wrapper'>
                     <div>
                         <p className='search-prompt'>

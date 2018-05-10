@@ -36,10 +36,9 @@ class Header extends Component {
         return ( 
             <div className='header'>
                 <div>
-                    <h3 className='header-track'>{this.props.track.name}</h3>
+                    <p className='header__track-title'>{this.props.track.name}</p>
                     {this.listArtists()}    
                 </div>            
-                <button onClick={this.enterFeatureSelectionMode}>Find Similar Tracks</button>
             </div>
         )
     }

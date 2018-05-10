@@ -6,6 +6,12 @@ body {
   font-family: avenir;
 }
 
+.App {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -29,6 +35,10 @@ body {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.search {
+  grid-column: span 2;
 }
 
 .search-input {
@@ -72,7 +82,9 @@ body {
 }
 
 .header {
-  padding-left: 350px;
+  grid-column-start: 2;
+  padding-left: 42px;
+  padding: 16px 0px 10px 40px;
 }
 
 .header-artist {
@@ -80,11 +92,10 @@ body {
   color: #888888;
 }
 
-.header-track {
+.header__track-title {
   margin: 0;
   font-size: 34px;
   color: #484747;
-
 }
 
 .track-wrapper {
@@ -114,21 +125,16 @@ body {
 }
 
 .side-bar {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 320px; /* Set the width of the sidebar */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  position: absolute;
-  padding-top: 270px;
+  grid-row-start: 3;
+  grid-column-start: 1;
 }
 
 .track-features, .related-tracks {
-  margin-left: 350px;
   max-width: 800px;
   min-width: 300px;
   width: 100%;
+  grid-row-start: 3;
+  grid-column-start: 2;
 }
 
 .graph-bar {
