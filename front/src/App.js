@@ -105,7 +105,8 @@ class App extends Component {
     const queryString = this.buildRecommendationQueryString()
     this.setState({
       relatedTracks: await Spotify.fetchRelatedTracks(queryString, this.state.access_token),  
-    }, this.setAppMode('relatedTracks')) 
+    }, this.setAppMode('relatedTracks'))
+    this.setState({featureSelectionMode: false}) 
     console.log(this.state.relatedTracks)
   }
 
@@ -127,11 +128,13 @@ class App extends Component {
                 setActiveTrack={this.setActiveTrack}
                 mode={this.state.appMode}
                 setAppMode={this.setAppMode}/>
-        <button onClick={this.onFindSimilarTracks}>Find Similar Tracks now</button>
 
         {(this.state.appMode !== 'search') 
           ? <Header track={this.state.activeTrack}
-                    mode={this.state.appMode}/> 
+                    mode={this.state.appMode}
+                    featureSelectionMode = {this.state.featureSelectionMode}
+                    enterFeatureSelectionMode = {this.enterFeatureSelectionMode}
+                    findSimilarTracks = {this.onFindSimilarTracks}/> 
           : ""}
 
         {(this.state.appMode === 'trackFeatures') 
@@ -161,3 +164,6 @@ class App extends Component {
 
 export default App;
 
+
+
+// <button onClick={this.onFindSimilarTracks}>Find Similar Tracks now</button>

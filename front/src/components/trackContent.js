@@ -45,7 +45,6 @@ class TrackContent extends Component {
         return ( 
             <div>
                 <img src={this.props.track.album.images[1].url} height='300' width='300'/>
-                <button onClick={this.enterFeatureSelectionMode}>Find Similar Tracks</button>
             </div>
         )
     }

@@ -92,6 +92,10 @@ body {
   color: #888888;
 }
 
+.header__text {
+  display: inline-block;
+}
+
 .header__track-title {
   margin: 0;
   font-size: 34px;
@@ -104,6 +108,24 @@ body {
     color: #797979;
     font-family: avenir;
     cursor: pointer;
+}
+
+.rel-track__btn {
+  width: 220px;
+  height: 36px;
+  background: white;
+  color: #4c4c4c;
+  border: 1px solid #4c4c4c;
+  margin-top: 6px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-size: 16px;
+  vertical-align: text-bottom;
+  display: inline-block;
+}
+.rel-track__btn:focus {
+  outline:0;
 }
 
 
