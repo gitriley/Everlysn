@@ -11,6 +11,7 @@ import TrackContent from './components/trackContent.js'
 import TrackFeatures from './components/trackFeatures.js'
 import RelatedTracks from './components/relatedTracks.js'
 import Header from './components/header.js'
+import FeatureDescription from './components/featureDescription.js'
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
     this.enterFeatureSelectionMode = this.enterFeatureSelectionMode.bind(this)
     this.toggleQueryFeatures = this.toggleQueryFeatures.bind(this)
     this.onFindSimilarTracks = this.onFindSimilarTracks.bind(this)
+    this.setActiveFeature = this.setActiveFeature.bind(this)
   }
 
 
@@ -29,7 +31,7 @@ class App extends Component {
   state = {
     activeTrackId: '',
     access_token: '',
-    appMode: '',
+    appMode: 'search',
     activeTrack: {},
     featureSelectionMode: false,
     queryFeatures: {
@@ -47,7 +49,8 @@ class App extends Component {
       valence: false
     },
     trackFeatures: {},
-    relatedTracks: {}
+    relatedTracks: {}, 
+    activeFeature: 'danceability'
   }
 
   async setActiveTrack(trackId) {
@@ -118,6 +121,10 @@ class App extends Component {
     });
   }
 
+  setActiveFeature(feature) {
+    this.setState({activeFeature: feature})
+  }
+
   render() {
     console.log(this.state)
     return (
@@ -135,7 +142,7 @@ class App extends Component {
                     featureSelectionMode = {this.state.featureSelectionMode}
                     enterFeatureSelectionMode = {this.enterFeatureSelectionMode}
                     findSimilarTracks = {this.onFindSimilarTracks}/> 
-          : ""}
+          : ''}
 
         {(this.state.appMode === 'trackFeatures') 
           ? <TrackFeatures token={this.state.access_token}
@@ -144,18 +151,26 @@ class App extends Component {
                            toggleQueryFeatures = {this.toggleQueryFeatures}
                            featureSelectionMode = {this.state.featureSelectionMode}
                            features = {this.state.trackFeatures}/> 
-          : ""}
+          : ''}
         {(this.state.appMode === 'relatedTracks') 
           ? <RelatedTracks  relatedTracks={this.state.relatedTracks}
-                            setActiveTrack={this.setActiveTrack}/> 
-          : ""}
+                            setActiveTrack={this.setActiveTrack}
+                            activeFeature = {this.state.activeFeature}
+                            setActiveFeature={this.setActiveFeature}/> 
+          : ''}
 
         {(this.state.appMode !== 'search') 
-          ? <div className="side-bar"> 
+          ? <div className='side-bar'> 
               <TrackContent track={this.state.activeTrack}
                             enterFeatureSelectionMode = {this.enterFeatureSelectionMode}/> 
             </div>
-          : ""}
+          : ''}
+        {(this.state.appMode !== 'search') 
+          ? <div className='feature-description'> 
+              <FeatureDescription 
+                  activeFeature = {this.state.activeFeature}/> 
+            </div>
+          : ''}
           
       </div>
     );

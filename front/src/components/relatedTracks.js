@@ -8,6 +8,7 @@ class RelatedTracks extends Component {
         super(props)
         this.representation = this.representation.bind(this)
         this.selectTrack = this.selectTrack.bind(this);
+        this.setActiveFeature = this.setActiveFeature.bind(this)
     }
     state = {
         trackFeatures : [
@@ -32,19 +33,19 @@ class RelatedTracks extends Component {
     }
 
     representation(track) {
-        const value = track.features[this.state.activeFeature]
-
-        switch(this.state.activeFeature) {
+        const value = track.features[this.props.activeFeature]
+        console.log('value', this.props.activeFeature)
+        switch(this.props.activeFeature) {
         case 'key':
         case 'mode':
         case 'time_signature':
             return <TextFeature className="graph-bar" 
                                 val={value}
-                                feature={this.state.activeFeature}/>
+                                feature={this.props.activeFeature}/>
         default:
             return <BarGraphFeature className="graph-bar" 
                                     val={value}
-                                    feature={this.state.activeFeature}/>
+                                    feature={this.props.activeFeature}/>
         }
     }
 
@@ -68,14 +69,19 @@ class RelatedTracks extends Component {
         this.props.setActiveTrack(e.currentTarget.getAttribute('id'))
     } 
 
+    setActiveFeature = (e) => {
+        e.preventDefault();
+        this.props.setActiveFeature(e.target.value)
+    }
+
     render() {
         if (this.props.relatedTracks.length > 18) {
             //const list = this.buildList()
             return (
                 <div className='related-tracks'>
                     <span>view recommendations by feature:</span>
-                    <select onChange={event => this.setState({ activeFeature: event.target.value })}
-          value={this.state.activeFeature}>
+                    <select onChange={this.setActiveFeature}
+          value={this.props.activeFeature}>
                         <option value='acousticness'>acousticness</option>
                         <option value='danceability'>danceability</option>
                         <option value='energy'>energy</option>

@@ -44,7 +44,7 @@ class TrackContent extends Component {
         }
         return ( 
             <div>
-                <img src={this.props.track.album.images[1].url} height='300' width='300'/>
+                <img className='track__img' src={this.props.track.album.images[1].url}/>
             </div>
         )
     }
