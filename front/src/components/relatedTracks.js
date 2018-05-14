@@ -79,22 +79,6 @@ class RelatedTracks extends Component {
             //const list = this.buildList()
             return (
                 <div className='related-tracks'>
-                    <span>view recommendations by feature:</span>
-                    <select onChange={this.setActiveFeature}
-          value={this.props.activeFeature}>
-                        <option value='acousticness'>acousticness</option>
-                        <option value='danceability'>danceability</option>
-                        <option value='energy'>energy</option>
-                        <option value='instrumentalness'>instrumentalness</option>
-                        <option value='liveness'>liveness</option>
-                        <option value='loudness'>loudness</option>
-                        <option value='speechiness'>speechiness</option>
-                        <option value='tempo'>tempo</option>
-                        <option value='valence'>valence</option>
-                        <option value='key'>key</option>
-                        <option value='mode'>mode</option>
-                        <option value='time_signature'>time_signature</option>
-                    </select>
                     <div>{this.RelatedTrackList()}</div>
                 </div>
             )

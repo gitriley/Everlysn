@@ -126,7 +126,8 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state.activeTrackId)
+    const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + this.state.activeTrackId + '&theme=white'
     return (
       <div className="App">
         
@@ -137,11 +138,26 @@ class App extends Component {
                 setAppMode={this.setAppMode}/>
 
         {(this.state.appMode !== 'search') 
-          ? <Header track={this.state.activeTrack}
-                    mode={this.state.appMode}
-                    featureSelectionMode = {this.state.featureSelectionMode}
-                    enterFeatureSelectionMode = {this.enterFeatureSelectionMode}
-                    findSimilarTracks = {this.onFindSimilarTracks}/> 
+          ? <div className='top'>
+              <TrackContent track={this.state.activeTrack}
+                      enterFeatureSelectionMode = {this.enterFeatureSelectionMode}/>
+              <Header track={this.state.activeTrack}
+              mode={this.state.appMode}
+              featureSelectionMode = {this.state.featureSelectionMode}
+              enterFeatureSelectionMode = {this.enterFeatureSelectionMode}
+              findSimilarTracks = {this.onFindSimilarTracks}/>  
+            </div>
+          : ''}
+
+        {(this.state.appMode === 'relatedTracks') 
+          ? <div className='feature-description'> 
+              <FeatureDescription 
+                track={this.state.activeTrack}
+                activeFeature = {this.state.activeFeature}
+                mode={this.state.appMode}
+                setActiveFeature={this.setActiveFeature}/>
+      
+            </div>
           : ''}
 
         {(this.state.appMode === 'trackFeatures') 
@@ -152,6 +168,8 @@ class App extends Component {
                            featureSelectionMode = {this.state.featureSelectionMode}
                            features = {this.state.trackFeatures}/> 
           : ''}
+
+        
         {(this.state.appMode === 'relatedTracks') 
           ? <RelatedTracks  relatedTracks={this.state.relatedTracks}
                             setActiveTrack={this.setActiveTrack}
@@ -159,18 +177,10 @@ class App extends Component {
                             setActiveFeature={this.setActiveFeature}/> 
           : ''}
 
-        {(this.state.appMode !== 'search') 
-          ? <div className='side-bar'> 
-              <TrackContent track={this.state.activeTrack}
-                            enterFeatureSelectionMode = {this.enterFeatureSelectionMode}/> 
-            </div>
-          : ''}
-        {(this.state.appMode !== 'search') 
-          ? <div className='feature-description'> 
-              <FeatureDescription 
-                  activeFeature = {this.state.activeFeature}/> 
-            </div>
-          : ''}
+        <div className='footer'>
+          <iframe src={iframeURL} width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+        
           
       </div>
     );
@@ -182,3 +192,14 @@ export default App;
 
 
 // <button onClick={this.onFindSimilarTracks}>Find Similar Tracks now</button>
+
+
+// {(this.state.appMode !== 'search') 
+//           ? <div className='side-bar'> 
+//               <FeatureDescription 
+//                 activeFeature = {this.state.activeFeature}
+//                 mode={this.state.appMode}
+//                 setActiveFeature={this.setActiveFeature}/>
+      
+//             </div>
+//           : ''}
