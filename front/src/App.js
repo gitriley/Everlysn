@@ -139,44 +139,42 @@ class App extends Component {
 
         {(this.state.appMode !== 'search') 
           ? <div className='top'>
-              <TrackContent track={this.state.activeTrack}
-                      enterFeatureSelectionMode = {this.enterFeatureSelectionMode}/>
-              <Header track={this.state.activeTrack}
-              mode={this.state.appMode}
-              featureSelectionMode = {this.state.featureSelectionMode}
-              enterFeatureSelectionMode = {this.enterFeatureSelectionMode}
-              findSimilarTracks = {this.onFindSimilarTracks}/>  
+              <Header track={this.state.activeTrack}/>  
+              <TrackContent track={this.state.activeTrack}/>
             </div>
           : ''}
 
-        {(this.state.appMode === 'relatedTracks') 
-          ? <div className='feature-description'> 
+        {(this.state.appMode !== 'search')
+        ? <div className='feature-main_wrapper'> 
+            <div className='feature-description'> 
               <FeatureDescription 
                 track={this.state.activeTrack}
                 activeFeature = {this.state.activeFeature}
                 mode={this.state.appMode}
-                setActiveFeature={this.setActiveFeature}/>
-      
+                setActiveFeature={this.setActiveFeature}
+                enterFeatureSelectionMode = {this.enterFeatureSelectionMode}
+                featureSelectionMode = {this.state.featureSelectionMode}
+                findSimilarTracks = {this.onFindSimilarTracks}/>
             </div>
-          : ''}
 
-        {(this.state.appMode === 'trackFeatures') 
-          ? <TrackFeatures token={this.state.access_token}
-                           trackId = {this.state.activeTrackId} 
-                           queryFeatures = {this.state.queryFeatures}
-                           toggleQueryFeatures = {this.toggleQueryFeatures}
-                           featureSelectionMode = {this.state.featureSelectionMode}
-                           features = {this.state.trackFeatures}/> 
-          : ''}
+            {(this.state.appMode === 'trackFeatures') 
+              ? <TrackFeatures token={this.state.access_token}
+                              trackId = {this.state.activeTrackId} 
+                              queryFeatures = {this.state.queryFeatures}
+                              toggleQueryFeatures = {this.toggleQueryFeatures}
+                              features = {this.state.trackFeatures}
+                              featureSelectionMode = {this.state.featureSelectionMode}/> 
+              : ''}
 
-        
-        {(this.state.appMode === 'relatedTracks') 
-          ? <RelatedTracks  relatedTracks={this.state.relatedTracks}
-                            setActiveTrack={this.setActiveTrack}
-                            activeFeature = {this.state.activeFeature}
-                            setActiveFeature={this.setActiveFeature}/> 
-          : ''}
-
+            
+            {(this.state.appMode === 'relatedTracks') 
+              ? <RelatedTracks  relatedTracks={this.state.relatedTracks}
+                                setActiveTrack={this.setActiveTrack}
+                                activeFeature = {this.state.activeFeature}
+                                setActiveFeature={this.setActiveFeature}/> 
+              : ''}
+        </div>
+        : ''}
         <div className='footer'>
           <iframe src={iframeURL} width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>

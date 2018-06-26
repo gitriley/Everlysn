@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BarGraphFeature from './barGraphFeature.js'
 
 class TrackFeatures extends Component {
 
@@ -52,6 +53,7 @@ class TrackFeatures extends Component {
         }
         return ( 
             <div className="track-features">
+                <div className='track-features_wrapper'>
                 <div className="track-feature-row">
                     <span className="attribute"> acousticness: </span>
                     <div>
@@ -62,7 +64,10 @@ class TrackFeatures extends Component {
                                 onChange={() => this.toggle('acousticness')}/> 
                     : ''}
                     </div>
-                    <div className="graph-bar" style={{width: (this.props.features['acousticness']*100) + '%'}}> </div>
+                    <BarGraphFeature className="graph-bar" 
+                                    val={this.props.features['acousticness']}
+                                    feature='acousticness'/>
+                    <span className='numerical'>{this.props.features['acousticness']}</span>
                 </div>
                 <div className="track-feature-row">
                     <span className="attribute"> energy: </span>
@@ -74,7 +79,10 @@ class TrackFeatures extends Component {
                                     onChange={() => this.toggle('energy')}/> 
                         : ''}
                     </div>
-                    <div className="graph-bar" style={{width: this.props.features['energy']*100 + '%'}}> </div>
+                    <BarGraphFeature className="graph-bar" 
+                                    val={this.props.features['energy']}
+                                    feature='energy'/>
+                    <span className='numerical'>{this.props.features['energy']}</span>
                 </div>
                 <div className="track-feature-row">
                     <span className="attribute"> danceability: </span>
@@ -86,7 +94,10 @@ class TrackFeatures extends Component {
                                     onChange={() => this.toggle('danceability')}/> 
                         : ''}
                     </div>
-                    <div className="graph-bar" style={{width: this.props.features['danceability']*100 + '%'}}> </div>
+                    <BarGraphFeature className="graph-bar" 
+                                    val={this.props.features['danceability']}
+                                    feature='danceability'/>
+                    <span className='numerical'>{this.props.features['danceability']}</span>
                 </div>
                 <div className="track-feature-row">
                     <span className="attribute"> instrumentalness: </span>
@@ -98,8 +109,12 @@ class TrackFeatures extends Component {
                                     onChange={() => this.toggle('instrumentalness')}/> 
                         : ''}
                     </div>
-                    <div className="graph-bar" style={{width: this.props.features['instrumentalness']*100 + '%'}}> </div>
+                    <BarGraphFeature className="graph-bar" 
+                                    val={this.props.features['instrumentalness']}
+                                    feature='instrumentalness'/>
+                    <span className='numerical'>{this.props.features['instrumentalness']}</span>
                 </div>
+
                 <div className="track-feature-row">
                     <span className="attribute"> liveness: </span>
                     <div>
@@ -110,8 +125,12 @@ class TrackFeatures extends Component {
                                     onChange={() => this.toggle('liveness')}/> 
                         : ''}
                     </div>
-                    <div className="graph-bar" style={{width: this.props.features['liveness']*100 + '%'}}> </div>
+                    <BarGraphFeature className="graph-bar" 
+                                    val={this.props.features['liveness']}
+                                    feature='liveness'/>
+                    <span className='numerical'>{this.props.features['liveness']}</span>
                 </div>
+
                 <div className="track-feature-row">
                     <span className="attribute"> speechiness: </span>
                     <div>
@@ -122,8 +141,12 @@ class TrackFeatures extends Component {
                                     onChange={() => this.toggle('speechiness')}/> 
                         : ''}
                     </div>
-                    <div className="graph-bar" style={{width: this.props.features['speechiness']*100 + '%'}}> </div>
+                    <BarGraphFeature className="graph-bar" 
+                                    val={this.props.features['speechiness']}
+                                    feature='speechiness'/>
+                    <span className='numerical'>{this.props.features['speechiness']}</span>
                 </div>
+
                 <div className="track-feature-row">
                     <span className="attribute"> valence: </span>
                     <div>
@@ -134,7 +157,10 @@ class TrackFeatures extends Component {
                                     onChange={() => this.toggle('valence')}/> 
                         : ''}
                     </div>
-                    <div className="graph-bar" style={{width: this.props.features['valence']*100 + '%'}}> </div>
+                    <BarGraphFeature className="graph-bar" 
+                                    val={this.props.features['valence']}
+                                    feature='valence'/>
+                    <span className='numerical'>{this.props.features['valence']}</span>
                 </div>
 
                 <div className="track-feature-row">
@@ -147,7 +173,10 @@ class TrackFeatures extends Component {
                                     onChange={() => this.toggle('tempo')}/>  
                         : ''}
                     </div>
-                    <div> {this.props.features['tempo']} </div>
+                    <BarGraphFeature className="graph-bar" 
+                                    val={this.props.features['tempo']}
+                                    feature='tempo'/>
+                    <span className='numerical'>{this.props.features['tempo']}</span>
                 </div>
 
                 <div className="track-feature-row">
@@ -174,6 +203,7 @@ class TrackFeatures extends Component {
                         : ''}
                     </div>
                     <div> {this.props.features['key']} </div>
+                </div>
                 </div>
             </div>
         )

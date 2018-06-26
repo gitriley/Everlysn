@@ -4,7 +4,6 @@ class TrackContent extends Component {
 
     constructor(props) {
         super(props);
-        this.enterFeatureSelectionMode = this.enterFeatureSelectionMode.bind(this);
     }
 
     state = {
@@ -33,9 +32,6 @@ class TrackContent extends Component {
         )
     }
     
-    enterFeatureSelectionMode() {
-        this.props.enterFeatureSelectionMode(true)
-    }
 
     render() {
         console.log('TRACK DATA:', this.props.track)
@@ -43,7 +39,7 @@ class TrackContent extends Component {
             return ('')
         }
         return ( 
-            <div>
+            <div className='track__img__wrapper'>
                 <img className='track__img' src={this.props.track.album.images[1].url}/>
             </div>
         )

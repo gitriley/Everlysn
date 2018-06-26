@@ -4,7 +4,6 @@ class Header extends Component {
 
     constructor(props) {
         super(props);
-        this.onButtonClick = this.onButtonClick.bind(this);
     }
 
 
@@ -30,20 +29,9 @@ class Header extends Component {
         )
     }
 
-    enterFeatureSelectionMode() {
-        this.props.enterFeatureSelectionMode(true)
-    }
-
-    submitQuery() {
-        this.props.findSimilarTracks()
-    }
-
-    onButtonClick() {
-        this.props.featureSelectionMode ? this.submitQuery() : this.enterFeatureSelectionMode()  
-    }
+    
 
     render() {
-        let featureSelectionMode = this.props.featureSelectionMode
         if (Object.keys(this.props.track).length === 0 && this.props.track.constructor === Object) {
             return ('')
         }
@@ -52,11 +40,7 @@ class Header extends Component {
                 <div className='header__text'>
                     <p className='header__track-title'>{this.props.track.name}</p>
                     {this.listArtists()}    
-                </div>
-                <button className='rel-track__btn'
-                        onClick={this.onButtonClick}>
-                        {featureSelectionMode ? 'Submit Query' : 'Find Similar Tracks'}
-                        </button>            
+                </div>           
             </div>
         )
     }
