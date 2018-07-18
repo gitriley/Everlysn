@@ -212,6 +212,10 @@ body {
   vertical-align: bottom;
 }
 
+.track-feature_info-wrapper {
+  position: relative;
+}
+
 .numerical {
   opacity: 0;
 }
