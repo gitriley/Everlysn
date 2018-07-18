@@ -46,7 +46,7 @@ class FeatureDescription extends Component {
         if ((this.props.mode === 'trackFeatures') && (this.props.featureSelectionMode)) {
             return (
             <div className='feature__wrapper'> 
-                <p>choose features to customize your search</p>
+                <p className='feature__header-info-text'>Choose features to customize your search:</p>
                 <button className='rel-track__btn'
                         onClick={this.onButtonClick}>
                         {featureSelectionMode ? 'Submit Query' : 'Find Similar Tracks'}
@@ -55,7 +55,7 @@ class FeatureDescription extends Component {
         } else if ((this.props.mode === 'trackFeatures') && (!this.props.featureSelectionMode)) {
             return (
             <div className='feature__wrapper'> 
-                <p>features for this track</p>
+                <p className='feature__header-info-text'>Features for this track:</p>
                 <button className='rel-track__btn'
                         onClick={this.onButtonClick}>
                         {featureSelectionMode ? 'Submit Query' : 'Find Similar Tracks'}
@@ -65,13 +65,13 @@ class FeatureDescription extends Component {
             return (
             <div className='feature__wrapper'> 
                 <div className='feature__header-text'>
-                    <p>tracks similar to:</p>
-                    <p>{this.props.track.name}</p>
+                    <p className='feature__header-info-text'>Tracks similar to</p>
+                    <p className='feature__header-info-track'>{this.props.track.name}:</p>
                 </div>
                 <div className='feature__select'>
-                    <span>view recommendations by feature:</span>
-                    <div class='feature__select-inner'>
-                        <select onChange={this.setActiveFeature}
+                    <span className='feature__select-text'>view recommendations by feature:</span>
+                    <div className='feature__select-inner'>
+                        <select className='feature__select-dropdown' onChange={this.setActiveFeature}
                         value={this.props.activeFeature}>
                             <option value='acousticness'>acousticness</option>
                             <option value='danceability'>danceability</option>
@@ -87,7 +87,8 @@ class FeatureDescription extends Component {
                             <option value='time_signature'>time_signature</option>
                         </select>
                         <span   onMouseEnter={this.showFeatureDescription}
-                                onMouseLeave={this.showFeatureDescription}>
+                                onMouseLeave={this.showFeatureDescription}
+                                >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                 <circle cy="24" cx="24" r="24" fill="#36c"/>
                                 <g fill="#fff">

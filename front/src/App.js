@@ -139,8 +139,8 @@ class App extends Component {
 
         {(this.state.appMode !== 'search') 
           ? <div className='top'>
-              <Header track={this.state.activeTrack}/>  
               <TrackContent track={this.state.activeTrack}/>
+              <Header track={this.state.activeTrack}/> 
             </div>
           : ''}
 

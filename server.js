@@ -68,7 +68,7 @@ app.get('/token', (mainreq, mainres) => {
         timeOfTokenCreation = Date.now()
         request(opts, function (err, res, body) {
             console.log('error: ', err);
-            console.log('status: ', res.statusCode);
+            //console.log('status: ', res.statusCode);
             console.log('body: ', body);
             console.log('access_token: ', body['access_token'])
             access_token = body['access_token']
