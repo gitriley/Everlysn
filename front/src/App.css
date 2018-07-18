@@ -199,13 +199,17 @@ body {
 .track-feature-row {
   display: grid;
   padding: 4px 0px;
-  grid-template-columns: 180px auto 1fr auto;
+  grid-template-columns: 15px 165px auto 1fr auto;
   grid-template-rows: auto 1fr auto;
   border-bottom: 1px solid #d6d6d6;
   margin: 0px 25px;
 }
 .track-feature-row:hover .numerical {
   opacity: 1;
+}
+
+.track-feature-row .svg__info {
+  vertical-align: bottom;
 }
 
 .numerical {
@@ -387,6 +391,7 @@ body {
 
 .svg__info {
   width: 15px;
+  fill: #888686;
 }
 .feature__select-inner {
   display: flex;
