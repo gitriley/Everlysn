@@ -54,8 +54,11 @@ class TrackFeatures extends Component {
         // } else {
         //     this.setState({displayDescr: 'none'});
         // }
-
-        this.setState({activeFeatureDescr: feature})
+        if (!this.state.activeFeatureDescr) {
+            this.setState({activeFeatureDescr: feature})
+        } else {
+            this.setState({activeFeatureDescr: null})
+        }
         
     }
 
@@ -81,8 +84,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['acousticness']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('acousticness')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('acousticness')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -116,8 +118,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['energy']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('energy')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('energy')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -151,8 +152,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['danceability']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('danceability')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('danceability')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -186,8 +186,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['instrumentalness']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('instrumentalness')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('instrumentalness')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -221,8 +220,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['liveness']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('liveness')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('liveness')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -256,8 +254,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['speechiness']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('speechiness')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('speechiness')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -291,8 +288,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['valence']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('valence')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('valence')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -326,8 +322,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['tempo']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('tempo')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('tempo')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -361,8 +356,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['mode']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('mode')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('mode')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">
@@ -393,8 +387,7 @@ class TrackFeatures extends Component {
                                     <p className='feature-description__text'>{descriptions['key']}</p>
                                 </div> : <div></div>}
 
-                            <div onMouseEnter={() => this.showFeatureDescription('key')}
-                                onMouseLeave={() => this.showFeatureDescription(null)}>
+                            <div onClick={() => this.showFeatureDescription('key')}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                     <circle cy="24" cx="24" r="24"/>
                                     <g fill="#fff">

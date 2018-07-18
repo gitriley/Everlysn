@@ -216,6 +216,19 @@ body {
   position: relative;
 }
 
+.track-feature_info-wrapper > .feature-description__wrapper {
+  align-self: flex-end;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 7px;
+  position: absolute;
+  width: 300px;
+  left: 0px;
+  top: 25px;
+  background: white;
+  z-index: 500;
+}
+
 .numerical {
   opacity: 0;
 }
