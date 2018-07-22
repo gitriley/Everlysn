@@ -86,9 +86,7 @@ class FeatureDescription extends Component {
                             <option value='mode'>mode</option>
                             <option value='time_signature'>time_signature</option>
                         </select>
-                        <span   onMouseEnter={this.showFeatureDescription}
-                                onMouseLeave={this.showFeatureDescription}
-                                >
+                        <span   onClick={this.showFeatureDescription}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
                                 <circle cy="24" cx="24" r="24" fill="#36c"/>
                                 <g fill="#fff">

@@ -56,7 +56,11 @@ class App extends Component {
   }
 
   async setActiveTrack(trackId) {
-    this.setState({activeTrackId: trackId}, async function() {
+    this.setState({
+      activeTrackId: trackId,
+      activeTrack: {},
+      trackFeatures: {}
+      }, async function() {
       if (!(this.state.appMode === 'trackFeatures')) {
         this.setState({appMode: 'trackFeatures'})
       }

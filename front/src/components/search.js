@@ -10,7 +10,8 @@ class Search extends Component {
     
     state = {
         searchTerms: '',
-        searchResults: []
+        searchResults: [],
+        searchResultsPresent: false
     }
     
     async submitQuery(e) {
@@ -51,7 +52,10 @@ class Search extends Component {
                 </div>
             )
         })
-        this.setState({searchResults: tracks})
+        this.setState({
+            searchResults: tracks,
+            searchResultsPresent: true
+        })
     }
 
     selectTrack = (e) => {
@@ -66,9 +70,10 @@ class Search extends Component {
 
     render() {
         const searchTerms = this.state.searchTerms;
+        const searchResultsPresent = this.state.searchResultsPresent;
         return (
             <div className='search'>
-                <div className='search-wrapper'>
+                <div className={'search-wrapper ' +  (!searchResultsPresent && 'full')}>
                     <div>
                         <p className='search-prompt'>
                             Search for songs by albums name, song name, or artists

@@ -9,7 +9,7 @@ body {
 .App {
   /* display: grid;
   grid-template-rows: auto 205px auto auto; */
-  padding-bottom: 90px;
+  /* padding-bottom: 90px; */
 }
 
 .App-logo {
@@ -56,6 +56,12 @@ body {
   justify-content: center;
   background: #f7f6f6;
   border-bottom: 1px solid #dedede;
+  height: 50px;
+  transition: .8s;
+}
+
+.search-wrapper.full {
+  height: 100vh;
 }
 
 .search-form {
@@ -205,7 +211,7 @@ body {
 .feature-row {
   display: grid;
   padding: 4px 0px;
-  grid-template-columns: auto 180px 1fr 40px;
+  grid-template-columns: auto 180px 1fr 50px;
   grid-template-rows: auto 1fr auto;
   border-bottom: 1px solid #d6d6d6;
   margin: 0px 25px;
@@ -219,9 +225,9 @@ body {
   border-bottom: 1px solid #d6d6d6;
   margin: 0px 25px;
 }
-.track-feature-row:hover .numerical {
+/* .track-feature-row:hover .numerical {
   opacity: 1;
-}
+} */
 
 .track-feature-row .svg__info {
   vertical-align: bottom;
@@ -245,7 +251,9 @@ body {
 }
 
 .numerical {
-  opacity: 0;
+  font-size: 14px;
+  align-self: center;
+  color: #888888;
 }
 
 
@@ -265,6 +273,12 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.rel-track_val {
+  font-size: 14px;
+  align-self: center;
+  color: #888888;
 }
 
 .rel-track_name:hover {
