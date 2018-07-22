@@ -24,12 +24,14 @@ class App extends Component {
     this.toggleQueryFeatures = this.toggleQueryFeatures.bind(this)
     this.onFindSimilarTracks = this.onFindSimilarTracks.bind(this)
     this.setActiveFeature = this.setActiveFeature.bind(this)
+    this.loadTrackInPlayer = this.loadTrackInPlayer.bind(this)
   }
 
 
 
   state = {
     activeTrackId: '',
+    currentlyPlayingTrackId: '',
     access_token: '',
     appMode: 'search',
     activeTrack: {},
@@ -125,9 +127,22 @@ class App extends Component {
     this.setState({activeFeature: feature})
   }
 
+  loadTrackInPlayer(id) {
+    this.setState({currentlyPlayingTrackId: id});
+    console.log(document.getElementsByTagName('IFRAME'));
+    // if (document.getElementsByTagName('IFRAME')[0]) {
+    //   const node = document.getElementsByTagName('IFRAME')[0].contentWindow.document.querySelector('[title="play"]');
+    //   console.log(node);
+    //   console.log(document.getElementsByTagName('IFRAME'));
+    //   if (node) {
+    //     node.click();
+    //   }
+    // }
+  }
+
   render() {
     console.log(this.state.activeTrackId)
-    const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + this.state.activeTrackId + '&theme=white'
+    const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + this.state.currentlyPlayingTrackId + '&theme=white'
     return (
       <div className="App">
         
@@ -140,7 +155,8 @@ class App extends Component {
         {(this.state.appMode !== 'search') 
           ? <div className='top'>
               <TrackContent track={this.state.activeTrack}/>
-              <Header track={this.state.activeTrack}/> 
+              <Header track={this.state.activeTrack}
+                      loadTrackInPlayer={this.loadTrackInPlayer}/> 
             </div>
           : ''}
 
@@ -171,13 +187,15 @@ class App extends Component {
               ? <RelatedTracks  relatedTracks={this.state.relatedTracks}
                                 setActiveTrack={this.setActiveTrack}
                                 activeFeature = {this.state.activeFeature}
-                                setActiveFeature={this.setActiveFeature}/> 
+                                setActiveFeature={this.setActiveFeature}
+                                loadTrackInPlayer={this.loadTrackInPlayer}/> 
               : ''}
         </div>
         : ''}
+        {(this.state.currentlyPlayingTrackId) ?
         <div className='footer'>
           <iframe src={iframeURL} width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div>
+        </div> :''}
         
           
       </div>

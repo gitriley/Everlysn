@@ -40,6 +40,7 @@ class Header extends Component {
                 <div className='header__text'>
                     <p className='header__track-title'>{this.props.track.name}</p>
                     {this.listArtists()}    
+                    <button onClick={() => this.props.loadTrackInPlayer(this.props.track.id)}class="header__load-track-btn">Load track in audio player</button>
                 </div>           
             </div>
         )

@@ -67,7 +67,7 @@ body {
 
 .search-button {
   color: white;
-  background: #639fff;
+  background: #888888;
   width: 80px;
   padding: 5px;
   font-size: 15px;
@@ -102,6 +102,21 @@ body {
   margin: 0;
   font-size: 34px;
   color: #484747;
+}
+
+
+.header__load-track-btn {
+  width: 220px;
+  height: 36px;
+  background: white;
+  color: #888686;
+  border: 1px solid #cecece;
+  margin-top: 6px;
+  border-radius: 30px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  vertical-align: text-bottom;
+  display: block;
 }
 
 .feature-main_wrapper {
@@ -190,7 +205,7 @@ body {
 .feature-row {
   display: grid;
   padding: 4px 0px;
-  grid-template-columns: 180px 1fr 40px;
+  grid-template-columns: auto 180px 1fr 40px;
   grid-template-rows: auto 1fr auto;
   border-bottom: 1px solid #d6d6d6;
   margin: 0px 25px;
@@ -271,6 +286,7 @@ body {
   min-width: 160px;
   margin-right: 15px;
   font-size: 14px;
+  color: #888888;
 }
 
 .related-tracks .graph-bar {
@@ -415,5 +431,15 @@ body {
   position: relative;
 }
 
+.load-track_wrapper {
+  width: 20px;
+  align-self: center;
+  margin: 0 10px 0 0;
+}
+
+.load-track_svg {
+  vertical-align: middle;
+  fill: #888888;
+}
 
 /* brand color: #9dc6d0 */
