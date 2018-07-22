@@ -106,7 +106,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['acousticness']}
                                         feature='acousticness'/>
-                        <span className='numerical'>{Math.round(this.props.features['acousticness'] * 1000) / 1000}</span>
+                        <span className='numerical'>{this.props.features['acousticness'].toFixed(2)}</span>
                     </div>
 
                     <div className="track-feature-row">
@@ -140,7 +140,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['energy']}
                                         feature='energy'/>
-                        <span className='numerical'>{Math.round(this.props.features['energy'] * 1000) / 1000}</span>
+                        <span className='numerical'>{this.props.features['energy'].toFixed(2)}</span>
                     </div>
 
                     <div className="track-feature-row">
@@ -174,7 +174,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['danceability']}
                                         feature='danceability'/>
-                        <span className='numerical'>{Math.round(this.props.features['danceability'] * 1000) / 1000}</span>
+                        <span className='numerical'>{this.props.features['danceability'].toFixed(2)}</span>
                     </div>
 
                     <div className="track-feature-row">
@@ -208,7 +208,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['instrumentalness']}
                                         feature='instrumentalness'/>
-                        <span className='numerical'>{Math.round(this.props.features['instrumentalness'] * 1000) / 1000}</span>
+                        <span className='numerical'>{this.props.features['instrumentalness'].toFixed(2)}</span>
                     </div>
 
                     <div className="track-feature-row">
@@ -242,7 +242,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['liveness']}
                                         feature='liveness'/>
-                        <span className='numerical'>{Math.round(this.props.features['liveness'] * 1000) / 1000}</span>
+                        <span className='numerical'>{this.props.features['liveness'].toFixed(2)}</span>
                     </div>
 
                     <div className="track-feature-row">
@@ -276,7 +276,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['speechiness']}
                                         feature='speechiness'/>
-                        <span className='numerical'>{Math.round(this.props.features['speechiness'] * 1000) / 1000}</span>
+                        <span className='numerical'>{this.props.features['speechiness'].toFixed(2)}</span>
                     </div>
 
                     <div className="track-feature-row">
@@ -310,7 +310,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['valence']}
                                         feature='valence'/>
-                        <span className='numerical'>{Math.round(this.props.features['valence'] * 1000) / 1000}</span>
+                        <span className='numerical'>{this.props.features['valence'].toFixed(2)}</span>
                     </div>
 
                     <div className="track-feature-row">
@@ -344,7 +344,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['tempo']}
                                         feature='tempo'/>
-                        <span className='numerical'>{Math.round(this.props.features['tempo'] * 1000) / 1000}</span>
+                        <span className='numerical'>{this.props.features['tempo'].toFixed(2)}</span>
                     </div>
 
                     <div className="track-feature-row">

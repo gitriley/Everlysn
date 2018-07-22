@@ -71,7 +71,7 @@ class RelatedTracks extends Component {
                         <p className='rel-track_artist'>{track.artists[0].name}</p>
                     </div>
                     {this.representation(track)}
-                    <div class='rel-track_val'>{Math.round(track.features[this.props.activeFeature] * 1000) / 1000}</div>
+                    <div class='rel-track_val'>{track.features[this.props.activeFeature].toFixed(2)}</div>
                 </div>)
         })
     }
