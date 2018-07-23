@@ -12,6 +12,10 @@ body {
   /* padding-bottom: 90px; */
 }
 
+.App.hasFooter {
+  padding-bottom: 90px;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;

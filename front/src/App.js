@@ -25,6 +25,8 @@ class App extends Component {
     this.onFindSimilarTracks = this.onFindSimilarTracks.bind(this)
     this.setActiveFeature = this.setActiveFeature.bind(this)
     this.loadTrackInPlayer = this.loadTrackInPlayer.bind(this)
+    this.sortTracksAscending = this.sortTracksAscending.bind(this)
+    this.sortTracksDescending = this.sortTracksDescending.bind(this)
   }
 
 
@@ -133,22 +135,29 @@ class App extends Component {
 
   loadTrackInPlayer(id) {
     this.setState({currentlyPlayingTrackId: id});
-    console.log(document.getElementsByTagName('IFRAME'));
-    // if (document.getElementsByTagName('IFRAME')[0]) {
-    //   const node = document.getElementsByTagName('IFRAME')[0].contentWindow.document.querySelector('[title="play"]');
-    //   console.log(node);
-    //   console.log(document.getElementsByTagName('IFRAME'));
-    //   if (node) {
-    //     node.click();
-    //   }
-    // }
+  }
+
+  sortTracksAscending(attribute) {
+    let sortedTracks = this.state.relatedTracks.slice()
+    sortedTracks.sort(function(a, b) {
+      return a.features[attribute] - b.features[attribute]
+    })
+    this.setState({relatedTracks: sortedTracks});
+  }
+
+  sortTracksDescending(attribute) {
+    let sortedTracks = this.state.relatedTracks.slice()
+    sortedTracks.sort(function(a, b) {
+      return b.features[attribute] -a.features[attribute]
+    })
+    this.setState({relatedTracks: sortedTracks});
   }
 
   render() {
     console.log(this.state.activeTrackId)
     const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + this.state.currentlyPlayingTrackId + '&theme=white'
     return (
-      <div className="App">
+      <div className={"App " + (this.state.currentlyPlayingTrackId && 'hasFooter')}>
         
         
         <Search token={this.state.access_token}
@@ -174,7 +183,9 @@ class App extends Component {
                 setActiveFeature={this.setActiveFeature}
                 enterFeatureSelectionMode = {this.enterFeatureSelectionMode}
                 featureSelectionMode = {this.state.featureSelectionMode}
-                findSimilarTracks = {this.onFindSimilarTracks}/>
+                findSimilarTracks = {this.onFindSimilarTracks}
+                sortTracksAscending = {this.sortTracksAscending}
+                sortTracksDescending = {this.sortTracksDescending}/>
             </div>
 
             {(this.state.appMode === 'trackFeatures') 

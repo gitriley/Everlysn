@@ -8,10 +8,12 @@ class FeatureDescription extends Component {
         this.setActiveFeature = this.setActiveFeature.bind(this);
         this.onButtonClick = this.onButtonClick.bind(this);
         this.showFeatureDescription = this.showFeatureDescription.bind(this);
+        this.sortTracks = this.sortTracks.bind(this);
     }
 
     state = {
-        displayDescr: 'none'
+        displayDescr: 'none',
+        sortMode: 'asscending'
     }
 
     setActiveFeature = (e) => {
@@ -38,6 +40,16 @@ class FeatureDescription extends Component {
             this.setState({displayDescr: 'none'});
         }
         
+    }
+
+    sortTracks(activeFeature) {
+        if (this.state.sortMode === 'ascending') {
+            this.props.sortTracksDescending(activeFeature);
+            this.setState({sortMode: 'descending'});
+        } else {
+            this.props.sortTracksAscending(activeFeature);
+            this.setState({sortMode: 'ascending'});
+        }
     }
 
     renderCorrect() {
@@ -101,6 +113,11 @@ class FeatureDescription extends Component {
                         </div>
                     </div>
                     
+                </div>
+                <div class='sort__wrapper'>
+                    <span class='sort__wrapper' onClick={() => this.sortTracks(this.props.activeFeature)}>
+                        {(this.state.sortMode ==='ascending') ? '▼' : '▲'}
+                    </span>
                 </div>
             </div>
             )
