@@ -215,7 +215,7 @@ body {
 .feature-row {
   display: grid;
   padding: 4px 0px;
-  grid-template-columns: auto 180px 1fr 50px;
+  grid-template-columns: auto auto 180px 1fr 50px;
   grid-template-rows: auto 1fr auto;
   border-bottom: 1px solid #d6d6d6;
   margin: 0px 25px;
@@ -449,15 +449,19 @@ body {
   position: relative;
 }
 
-.load-track_wrapper {
+.load-track_wrapper, .external-link_wrapper {
   width: 20px;
   align-self: center;
   margin: 0 10px 0 0;
 }
 
-.load-track_svg {
+.load-track_svg, .external-link_svg {
   vertical-align: middle;
   fill: #888888;
+}
+
+.sort__wrapper {
+  color: #888888;
 }
 
 /* brand color: #9dc6d0 */
