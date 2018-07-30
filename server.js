@@ -2,6 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const errorhandler = require('errorhandler')
 const bodyParser = require('body-parser')
+const PORT = process.env.PORT || 3005
 
 
 let app = express()
@@ -74,4 +75,4 @@ app.get('/token', (mainreq, mainres) => {
     
 })
 
-app.listen(3005)
+app.listen(PORT)
