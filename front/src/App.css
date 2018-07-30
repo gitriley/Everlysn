@@ -206,10 +206,11 @@ body {
 }
 
 .attribute {
-  margin-top: 5px;
   margin-right: 15px;
-  vertical-align: top;
   text-align: right;
+  font-size: 14px;
+  color: #888888;
+  align-self: center;
 }
 
 .feature-row {
@@ -225,7 +226,7 @@ body {
   display: grid;
   padding: 4px 0px;
   grid-template-columns: 15px 165px auto 1fr auto;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 28px;
   border-bottom: 1px solid #d6d6d6;
   margin: 0px 25px;
 }
@@ -308,15 +309,17 @@ body {
 }
 
 .related-tracks .graph-bar {
-  margin-top: 10px;
+  align-self: center;
 }
 
 .track-features .graph-bar {
-  margin-top: 6px;
+  align-self: center;
 }
 
-.musical-key {
-  margin-top: 9px;
+.text-val {
+  align-self: center;
+  font-size: 14px;
+  color:#888888
 }
 
 .track-feature_checkbox {
@@ -333,7 +336,7 @@ body {
   max-width: 1200px;
   min-width: 300px;
   width: 100%;
-  padding-left: 205px;
+  padding-left: 90px;
   margin: 0 auto;
   box-sizing: border-box;
   padding-right: 25px;
@@ -378,20 +381,26 @@ body {
   display: block;
   color: #888686;
   border: none;
+  background: white;
  }
+
+.feature__select-svg__wrapper {
+  margin-left: 10px;
+}
+
 .feature__header-text {
   width: 200px;
 }
 
 .feature__header-info-text {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 300;
   color: #888686;
   max-width: 300px;
 }
 
 .feature__header-info-track {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 300;
   color: #888686;
 }
@@ -453,6 +462,7 @@ body {
   width: 20px;
   align-self: center;
   margin: 0 10px 0 0;
+  cursor: pointer;
 }
 
 .load-track_svg, .external-link_svg {
@@ -462,6 +472,10 @@ body {
 
 .sort__wrapper {
   color: #888888;
+  cursor: pointer;
+  align-self: flex-end;
+  padding-bottom: 5px;
+  margin-right: 15px;
 }
 
 /* brand color: #9dc6d0 */

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BarGraphFeature from './barGraphFeature.js'
+import TextFeature from './textFeature.js' 
 import * as descriptions from '../featureDescriptions.js'
 
 class TrackFeatures extends Component {
@@ -375,7 +376,9 @@ class TrackFeatures extends Component {
                                         onChange={() => this.toggle('mode')}/>  
                             : ''}
                         </div>
-                        <div> {this.props.features['mode']} </div>
+                        <TextFeature className="graph-bar" 
+                                val={this.props.features['mode']}
+                                feature={'mode'}/>
                     </div>
 
                     <div className="track-feature-row">
@@ -406,7 +409,9 @@ class TrackFeatures extends Component {
                                         onChange={() => this.toggle('key')}/>  
                             : ''}
                         </div>
-                        <div> {this.props.features['key']} </div>
+                        <TextFeature className="graph-bar" 
+                                val={this.props.features['key']}
+                                feature={'key'}/>
                     </div>
                 </div>
             </div>

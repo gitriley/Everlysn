@@ -41,7 +41,7 @@ class TextFeature extends Component {
 
     render() {
         return (
-            <div className='musical-key'> 
+            <div className='text-val'> 
                 {this.getVal(this.props.val, this.props.feature)}
             </div>
         )
