@@ -35,13 +35,6 @@ const opts = {
     json: true
 };
 
-// request(opts, function (err, res, body) {
-//     console.log('error', err);
-//     console.log('status', res.statusCode);
-//     console.log('body', body);
-//     console.log('access_token', body.access_token)
-// });
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -49,7 +42,6 @@ app.use(function(req, res, next) {
 });
 
 app.get('/token', (mainreq, mainres) => {
-    console.log('hit tokens endpoint')
     const currentTime = Date.now()
 
     const tokenAgeInMinutes = Math.floor((Date.now() - timeOfTokenCreation)/60000)
@@ -60,17 +52,10 @@ app.get('/token', (mainreq, mainres) => {
         if the token is more than 45 minutes old 
     */
     if (access_token && tokenAgeInMinutes < 45) {
-        console.log('access token exists', message)
-        console.log('token age: ', tokenAgeInMinutes)
         mainres.status(200).send(message)
     } else {
-        console.log('requesting new token...token age: ', tokenAgeInMinutes)
         timeOfTokenCreation = Date.now()
         request(opts, function (err, res, body) {
-            console.log('error: ', err);
-            //console.log('status: ', res.statusCode);
-            console.log('body: ', body);
-            console.log('access_token: ', body['access_token'])
             access_token = body['access_token']
             message = {
                 token: access_token,
@@ -80,7 +65,6 @@ app.get('/token', (mainreq, mainres) => {
             message = JSON.stringify(message);
 
             try {
-                console.log("sending the first time: ", message)
                 mainres.status(200).send(message) 
             } catch(error) {
                 console.log("errored the first time: ", error)
