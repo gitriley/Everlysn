@@ -22,7 +22,7 @@ const encodedPayload = new Buffer(payload).toString("base64");
 
 
 let access_token = null;
-let timeOfTokenCreation;
+let timeOfTokenCreation = null;
 let message = null;
 
 const opts = {
@@ -45,7 +45,14 @@ app.use(function(req, res, next) {
 app.get('/token', (mainreq, mainres) => {
     const currentTime = Date.now()
 
+    if (!timeOfTokenCreation) {
+        timeOfTokenCreation = Date.now()
+    }
+
     const tokenAgeInMinutes = Math.floor((Date.now() - timeOfTokenCreation)/60000)
+
+    console.log('tokenAgeInMinutes', tokenAgeInMinutes)
+    console.log(Date.now())
 
     /* 
         these spotify tokens expire every hour, so we need to refresh them.
@@ -53,7 +60,11 @@ app.get('/token', (mainreq, mainres) => {
         if the token is more than 45 minutes old 
     */
     if (access_token && tokenAgeInMinutes < 45) {
-        mainres.status(200).send(message)
+        console.log(tokenAgeInMinutes)
+        
+        message.token_age_minutes = tokenAgeInMinutes
+        console.log(message)
+        mainres.status(200).send(JSON.stringify(message))
     } else {
         timeOfTokenCreation = Date.now()
         request(opts, function (err, res, body) {
@@ -63,10 +74,10 @@ app.get('/token', (mainreq, mainres) => {
                 expires_in: body['expires_in'],
                 token_age_minutes: tokenAgeInMinutes
             }
-            message = JSON.stringify(message);
+            //message = JSON.stringify(message);
 
             try {
-                mainres.status(200).send(message) 
+                mainres.status(200).send(JSON.stringify(message)) 
             } catch(error) {
                 console.log("errored the first time: ", error)
             }

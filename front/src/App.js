@@ -27,6 +27,8 @@ class App extends Component {
     this.loadTrackInPlayer = this.loadTrackInPlayer.bind(this)
     this.sortTracksAscending = this.sortTracksAscending.bind(this)
     this.sortTracksDescending = this.sortTracksDescending.bind(this)
+    this.updateToken = this.updateToken.bind(this)
+    this.tokenNeedsRefreshed = this.tokenNeedsRefreshed.bind(this)
   }
 
 
@@ -35,6 +37,10 @@ class App extends Component {
     activeTrackId: '',
     currentlyPlayingTrackId: '',
     access_token: '',
+    tokenInfo: {
+      ageWhenReceived: null,
+      timeWhenReceived: null
+    },
     appMode: 'search',
     activeTrack: {},
     featureSelectionMode: false,
@@ -67,6 +73,11 @@ class App extends Component {
         this.setState({appMode: 'trackFeatures'})
       }
 
+      console.log('token needs refreshed: ', this.tokenNeedsRefreshed(this.state.tokenInfo));
+      if (this.tokenNeedsRefreshed(this.state.tokenInfo)) {
+        this.updateToken()
+      }
+
       this.setState({ 
         activeTrack:  await Spotify.fetchTrack(this.state.activeTrackId, this.state.access_token),
         trackFeatures: await Spotify.fetchTrackFeatures(this.state.activeTrackId, this.state.access_token)
@@ -81,8 +92,28 @@ class App extends Component {
     this.setState({appMode: mode})
   }
 
+  async updateToken() {
+    const tokenObj = await Spotify.fetchToken()
+    this.setState({
+      access_token: tokenObj.token,
+      tokenInfo: {
+        ageWhenReceived: tokenObj.token_age_minutes,
+        timeWhenReceived: Date.now()
+      }
+    })
+  }
+
+  tokenNeedsRefreshed(tokenInfo) {
+    const totalAge = Math.floor((Date.now() - tokenInfo.timeWhenReceived)/60000) + tokenInfo.ageWhenReceived
+    if (totalAge > 50) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   async componentWillMount() {
-    this.setState({access_token: await Spotify.fetchToken()})
+    this.updateToken()
   }
 
   enterFeatureSelectionMode() {
@@ -112,6 +143,11 @@ class App extends Component {
   }
 
   async onFindSimilarTracks() {
+    console.log('token needs refreshed: ', this.tokenNeedsRefreshed(this.state.tokenInfo));
+    if (this.tokenNeedsRefreshed(this.state.tokenInfo)) {
+      this.updateToken()
+    }
+
     console.log('find sim tracks')
     const queryString = this.buildRecommendationQueryString()
     this.setState({

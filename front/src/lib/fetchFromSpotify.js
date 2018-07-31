@@ -1,8 +1,9 @@
 export async function fetchToken() {
     const resp = await fetch('http://localhost:3005/token')
+    //const resp = await fetch('https://shielded-waters-65196.herokuapp.com/token')
     const tokenObj = await resp.json()
     console.log(tokenObj)
-    return tokenObj.token
+    return tokenObj
 }
 
 export async function fetchTrack(trackId, token) {
