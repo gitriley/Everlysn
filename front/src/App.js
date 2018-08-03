@@ -105,6 +105,7 @@ class App extends Component {
 
   tokenNeedsRefreshed(tokenInfo) {
     const totalAge = Math.floor((Date.now() - tokenInfo.timeWhenReceived)/60000) + tokenInfo.ageWhenReceived
+    console.log('token age', totalAge);
     if (totalAge > 50) {
       return true
     } else {

@@ -52,6 +52,8 @@ body {
     background: #e8e8e8;
     border-radius: 4px;
     margin: 8px;
+    padding-right: 30px;
+    width: 260px;
 }
 
 .search-wrapper {
@@ -86,9 +88,22 @@ body {
   border: none;
 }
 
+.search-button-icon {
+  border: none;
+  background: none;
+  width: 20px;
+  right: 15px;
+  fill: #848383;
+  margin-left: -35px;
+  width: 20px;
+  padding: 0;
+  cursor: pointer;
+}
+
 .search-prompt {
   color: #848383;
   display: inline-flex;
+  margin: 0px 8px;
 }
 
 .header {
@@ -479,3 +494,20 @@ body {
 }
 
 /* brand color: #9dc6d0 */
+
+@media screen and (max-width: 700px) {
+	.menu-toggle {
+		display: none;
+	}
+	.main-navigation ul {
+		display: block;
+  }
+  
+  .search-inner {
+    width: min-content;
+  }
+
+  .search-prompt.bar {
+    display: none;
+  }
+}
