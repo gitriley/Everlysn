@@ -495,7 +495,21 @@ body {
 
 /* brand color: #9dc6d0 */
 
-@media screen and (max-width: 700px) {
+
+@media screen and (max-width: 900px) {
+	.menu-toggle {
+		display: none;
+	}
+	.feature-main_wrapper {
+    border: none;
+    border-radius: 0px;
+  }
+  .feature-description {
+    border-radius: 0px;
+  }
+}
+
+@media screen and (max-width: 710px) {
 	.menu-toggle {
 		display: none;
 	}
@@ -510,4 +524,35 @@ body {
   .search-prompt.bar {
     display: none;
   }
+
+  .feature-description {
+    padding-left: 10px;
+  }
+
+  .track-feature-row {
+    padding: 4px 10px;
+    margin: 0px;
+  }
+  .track-feature-row {
+    grid-template-columns: 15px 135px auto 1fr auto;
+  }
 }
+
+@media screen and (max-width: 400px) {
+	.header__load-track-btn {
+    width: 165px;
+    font-size: 12px;
+    height: 30px;
+  }
+
+  .feature__header-info-text {
+    font-size: 16px;
+  }
+
+  .rel-track__btn {
+    width: 165px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
