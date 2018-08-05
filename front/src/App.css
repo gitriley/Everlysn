@@ -534,7 +534,42 @@ body {
     margin: 0px;
   }
   .track-feature-row {
-    grid-template-columns: 15px 135px auto 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-columns: 35px 1fr auto;
+  }
+  .track-feature_info-wrapper {
+    position: relative;
+    justify-self: center;
+  }
+
+  .track-feature_checkbox-wrapper {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    align-self: center;
+    vertical-align: middle;
+    justify-self: center;
+  }
+  .track-feature_checkbox {
+    vertical-align: middle;
+    justify-self: center;
+    margin: 0;
+  }
+  .numerical {
+    grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    height: 20px;
+  }
+
+  .text-val {
+    grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    height: 20px;
+  }
+
+  .attribute {
+    text-align: left;
   }
 }
 

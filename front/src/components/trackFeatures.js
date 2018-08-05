@@ -96,7 +96,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> acousticness: </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                         ? <input    type='checkbox'
                                     className='track-feature_checkbox'
@@ -107,7 +107,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['acousticness']}
                                         feature='acousticness'/>
-                        <span className='numerical'>{this.props.features['acousticness'].toFixed(2)}</span>
+                        <div className='numerical'>{this.props.features['acousticness'].toFixed(2)}</div>
                     </div>
 
                     <div className="track-feature-row">
@@ -130,7 +130,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> energy: </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
@@ -141,7 +141,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['energy']}
                                         feature='energy'/>
-                        <span className='numerical'>{this.props.features['energy'].toFixed(2)}</span>
+                        <div className='numerical'>{this.props.features['energy'].toFixed(2)}</div>
                     </div>
 
                     <div className="track-feature-row">
@@ -164,7 +164,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> danceability: </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
@@ -175,7 +175,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['danceability']}
                                         feature='danceability'/>
-                        <span className='numerical'>{this.props.features['danceability'].toFixed(2)}</span>
+                        <div className='numerical'>{this.props.features['danceability'].toFixed(2)}</div>
                     </div>
 
                     <div className="track-feature-row">
@@ -198,7 +198,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> instrumentalness: </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
@@ -209,7 +209,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['instrumentalness']}
                                         feature='instrumentalness'/>
-                        <span className='numerical'>{this.props.features['instrumentalness'].toFixed(2)}</span>
+                        <div className='numerical'>{this.props.features['instrumentalness'].toFixed(2)}</div>
                     </div>
 
                     <div className="track-feature-row">
@@ -232,7 +232,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> liveness: </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
@@ -243,7 +243,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['liveness']}
                                         feature='liveness'/>
-                        <span className='numerical'>{this.props.features['liveness'].toFixed(2)}</span>
+                        <div className='numerical'>{this.props.features['liveness'].toFixed(2)}</div>
                     </div>
 
                     <div className="track-feature-row">
@@ -266,7 +266,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> speechiness: </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
@@ -277,7 +277,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['speechiness']}
                                         feature='speechiness'/>
-                        <span className='numerical'>{this.props.features['speechiness'].toFixed(2)}</span>
+                        <div className='numerical'>{this.props.features['speechiness'].toFixed(2)}</div>
                     </div>
 
                     <div className="track-feature-row">
@@ -300,7 +300,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> valence: </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
@@ -311,7 +311,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['valence']}
                                         feature='valence'/>
-                        <span className='numerical'>{this.props.features['valence'].toFixed(2)}</span>
+                        <div className='numerical'>{this.props.features['valence'].toFixed(2)}</div>
                     </div>
 
                     <div className="track-feature-row">
@@ -334,7 +334,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> tempo: </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
@@ -345,7 +345,7 @@ class TrackFeatures extends Component {
                         <BarGraphFeature className="graph-bar" 
                                         val={this.props.features['tempo']}
                                         feature='tempo'/>
-                        <span className='numerical'>{this.props.features['tempo'].toFixed(2)}</span>
+                        <div className='numerical'>{this.props.features['tempo'].toFixed(2)}</div>
                     </div>
 
                     <div className="track-feature-row">
@@ -368,7 +368,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> major/minor </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
@@ -401,7 +401,7 @@ class TrackFeatures extends Component {
                             </div>
                         </div>
                         <span className="attribute"> key </span>
-                        <div>
+                        <div className='track-feature_checkbox-wrapper'>
                         {this.props.featureSelectionMode 
                             ? <input    type='checkbox'
                                         className='track-feature_checkbox'
