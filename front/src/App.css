@@ -571,6 +571,32 @@ body {
   .attribute {
     text-align: left;
   }
+
+  .feature-row {
+    margin: 0;
+    padding: 4px 10px 4px 0px;
+    grid-template-rows: auto auto;
+    grid-template-columns: 40px 1fr auto;
+  }
+  .load-track_wrapper, .external-link_wrapper {
+
+    grid-column-start: 1;
+    margin: 0;
+    justify-self: center;
+  }
+  .rel-track_text {
+    grid-row-start: 1;
+    grid-column-start: 2;
+  }
+  .rel-track_name, .rel-track_artist {
+    text-align: left;
+  }
+  .rel-track_val {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    height: 8px;
+  }
 }
 
 @media screen and (max-width: 400px) {
