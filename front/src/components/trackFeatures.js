@@ -30,37 +30,13 @@ class TrackFeatures extends Component {
     }
 
 
-    // https://api.spotify.com/v1/audio-features/06AKEBrKUckW0KREUWRnvT
-
-    // async componentWillMount() {
-    //     if (!this.props.trackId) {
-    //         console.log('dont call yet')
-    //         return
-    //     }
-    //     const url = `https://api.spotify.com/v1/audio-features/${this.props.trackId}`
-    //     const response = await fetch(url, {
-    //         headers: new Headers({
-    //             'Authorization': 'Bearer ' + this.props.token, 
-    //         })
-    //     });
-    //     const data = await response.json()
-    //     console.log(data)
-    //     this.setState({features: data})
-    // }
 
     showFeatureDescription(feature) {
-        console.log('show the feature description');
-        // if (this.state.displayDescr === 'none') {
-        //     this.setState({displayDescr: 'block'});
-        // } else {
-        //     this.setState({displayDescr: 'none'});
-        // }
         if (!this.state.activeFeatureDescr) {
             this.setState({activeFeatureDescr: feature})
         } else {
             this.setState({activeFeatureDescr: null})
         }
-        
     }
 
     toggle(feature) {
@@ -68,7 +44,6 @@ class TrackFeatures extends Component {
     }
 
     render() {
-        console.log(this.props.features)
         if (Object.keys(this.props.features).length === 0 && this.props.features.constructor === Object) {
             return ('')
         }

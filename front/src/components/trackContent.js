@@ -15,9 +15,7 @@ class TrackContent extends Component {
             return
         }
         let artists = this.props.track.artists.map((artist, index) => {
-            console.log(index);
             if (index > 0) {
-                console.log('should render dot before', artist.name)
                 return (
                     <span> • {artist.name} </span>
                 )
@@ -34,7 +32,6 @@ class TrackContent extends Component {
     
 
     render() {
-        console.log('TRACK DATA:', this.props.track)
         if (Object.keys(this.props.track).length === 0 && this.props.track.constructor === Object) {
             return ('')
         }

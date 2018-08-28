@@ -54,7 +54,6 @@ class FeatureDescription extends Component {
 
     renderCorrect() {
         let featureSelectionMode = this.props.featureSelectionMode
-        console.log(this.props.mode, this.props.featureSelectionMode)
         if ((this.props.mode === 'trackFeatures') && (this.props.featureSelectionMode)) {
             return (
             <div className='feature__wrapper'> 
@@ -125,7 +124,6 @@ class FeatureDescription extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div className='feature__wrapper-outer'>
                 {this.renderCorrect()}

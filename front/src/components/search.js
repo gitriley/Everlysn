@@ -16,10 +16,7 @@ class Search extends Component {
     
     async submitQuery(e) {
         e.preventDefault();
-        console.log(this.props)
-        console.log(this.props.mode === 'search')
         if (!(this.props.mode === 'search')) {
-            console.log('change app mode to search')
             this.props.setAppMode('search')
         }
         const response = await fetch(`https://api.spotify.com/v1/search?q=${this.state.searchTerms}&type=track`, {
@@ -28,12 +25,9 @@ class Search extends Component {
             })
         });
         const data = await response.json()
-        console.log(data)
         let tracks = data.tracks.items.map((item) => {
             let artists = item.artists.map((artist, index) => {
-                console.log(index);
                 if (index > 0) {
-                    console.log('should render dot before', artist.name)
                     return (
                         <span> • {artist.name} </span>
                     )

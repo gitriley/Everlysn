@@ -6,7 +6,6 @@ async function fetchTrackFeatures(trackId, token) {
         })
     })
     const trackFeatures = await resp.json()
-    console.log(trackFeatures);
     return trackFeatures
 }
 

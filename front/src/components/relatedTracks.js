@@ -35,8 +35,6 @@ class RelatedTracks extends Component {
 
     representation(track, activeFeature) {
         const value = track.features[activeFeature]
-        console.log('value', this.props.activeFeature)
-
         if (this.getFeatureType(activeFeature) === 'text') {
             return <TextFeature className="graph-bar" 
                                 val={value}
@@ -60,13 +58,6 @@ class RelatedTracks extends Component {
     }
 
     RelatedTrackList() {
-
-        let trackVal;
-        if (this.getFeatureType(this.props.activeFeature) === 'numerical') {
-            
-        }
-
-
         return this.props.relatedTracks.map((track) => {
             return (
                 <div className='feature-row' key={track.id}>
@@ -116,19 +107,16 @@ class RelatedTracks extends Component {
     }
 
     render() {
-        if (this.props.relatedTracks.length > 18) {
-            //const list = this.buildList()
+        if (this.props.relatedTracks.length > 0) {
             return (
                 <div className='related-tracks'>
                     <div>{this.RelatedTrackList()}</div>
                 </div>
             )
         } else {
-            return ''
+            return <p style={{margin: '15px'}}>Sorry, we could not find any tracks similar to this one. Please try a different track.</p>
         }
-        
     }
 }
 
 export default RelatedTracks;
-//<span>{track.features[this.state.activeFeature]}</span>

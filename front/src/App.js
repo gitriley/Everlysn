@@ -73,7 +73,6 @@ class App extends Component {
           this.setState({appMode: 'trackFeatures'})
         }
 
-        console.log('token needs refreshed: ', this.tokenNeedsRefreshed(this.state.tokenInfo));
         if (this.tokenNeedsRefreshed(this.state.tokenInfo)) {
           this.updateToken()
         }
@@ -105,12 +104,9 @@ class App extends Component {
 
   tokenNeedsRefreshed(tokenInfo) {
     const totalAge = Math.floor((Date.now() - tokenInfo.timeWhenReceived)/60000) + tokenInfo.ageWhenReceived
-    console.log('token age', totalAge);
     if (totalAge > 50) {
-      console.log('totalAge greater than 50; totalAge:', totalAge);
       return true
     } else {
-      console.log('totalAge less than 50; totalAge:', totalAge);
       return false
     }
   }
@@ -141,23 +137,19 @@ class App extends Component {
     })
     const featuresString = featuresStrings.join("")
     const queryString = `${trackString}${artistsString}${featuresString}`
-    console.log(queryString);
     return queryString;
   }
 
   async onFindSimilarTracks() {
-    console.log('token needs refreshed: ', this.tokenNeedsRefreshed(this.state.tokenInfo));
     if (this.tokenNeedsRefreshed(this.state.tokenInfo)) {
       this.updateToken()
     }
 
-    console.log('find sim tracks')
     const queryString = this.buildRecommendationQueryString()
     this.setState({
       relatedTracks: await Spotify.fetchRelatedTracks(queryString, this.state.access_token),  
     }, this.setAppMode('relatedTracks'))
     this.setState({featureSelectionMode: false}) 
-    console.log(this.state.relatedTracks)
   }
 
   toggleQueryFeatures(feature) {
@@ -193,7 +185,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.activeTrackId)
     const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + this.state.currentlyPlayingTrackId + '&theme=white'
     return (
       <div className={"App " + (this.state.currentlyPlayingTrackId && 'hasFooter')}>
@@ -248,7 +239,7 @@ class App extends Component {
         : ''}
         {(this.state.currentlyPlayingTrackId) ?
         <div className='footer'>
-          <iframe src={iframeURL} width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src={iframeURL} width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div> :''}
         
           
@@ -258,18 +249,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-// <button onClick={this.onFindSimilarTracks}>Find Similar Tracks now</button>
-
-
-// {(this.state.appMode !== 'search') 
-//           ? <div className='side-bar'> 
-//               <FeatureDescription 
-//                 activeFeature = {this.state.activeFeature}
-//                 mode={this.state.appMode}
-//                 setActiveFeature={this.setActiveFeature}/>
-      
-//             </div>
-//           : ''}

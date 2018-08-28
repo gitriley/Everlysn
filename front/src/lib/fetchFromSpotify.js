@@ -1,8 +1,7 @@
 export async function fetchToken() {
-    const resp = await fetch('http://localhost:3005/token')
-    //const resp = await fetch('https://shielded-waters-65196.herokuapp.com/token')
+    //const resp = await fetch('http://localhost:3005/token')
+    const resp = await fetch('https://shielded-waters-65196.herokuapp.com/token')
     const tokenObj = await resp.json()
-    console.log(tokenObj)
     return tokenObj
 }
 
@@ -32,7 +31,6 @@ export async function fetchTrackFeatures(trackId, token) {
         })
     })
     const trackFeatures = await resp.json()
-    console.log(trackFeatures);
     return trackFeatures
 }
 
@@ -67,6 +65,5 @@ export async function fetchRelatedTracks(queryString, token) {
         }
         return newObj
     })
-    console.log(tracksWithFeatures)
     return tracksWithFeatures
 }

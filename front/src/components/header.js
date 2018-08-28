@@ -12,9 +12,7 @@ class Header extends Component {
             return
         }
         let artists = this.props.track.artists.map((artist, index) => {
-            console.log(index);
             if (index > 0) {
-                console.log('should render dot before', artist.name)
                 return (
                     <span> • {artist.name} </span>
                 )
