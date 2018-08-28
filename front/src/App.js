@@ -69,19 +69,19 @@ class App extends Component {
       activeTrack: {},
       trackFeatures: {}
       }, async function() {
-      if (!(this.state.appMode === 'trackFeatures')) {
-        this.setState({appMode: 'trackFeatures'})
-      }
+        if (!(this.state.appMode === 'trackFeatures')) {
+          this.setState({appMode: 'trackFeatures'})
+        }
 
-      console.log('token needs refreshed: ', this.tokenNeedsRefreshed(this.state.tokenInfo));
-      if (this.tokenNeedsRefreshed(this.state.tokenInfo)) {
-        this.updateToken()
-      }
+        console.log('token needs refreshed: ', this.tokenNeedsRefreshed(this.state.tokenInfo));
+        if (this.tokenNeedsRefreshed(this.state.tokenInfo)) {
+          this.updateToken()
+        }
 
-      this.setState({ 
-        activeTrack:  await Spotify.fetchTrack(this.state.activeTrackId, this.state.access_token),
-        trackFeatures: await Spotify.fetchTrackFeatures(this.state.activeTrackId, this.state.access_token)
-      })
+        this.setState({ 
+          activeTrack:  await Spotify.fetchTrack(this.state.activeTrackId, this.state.access_token),
+          trackFeatures: await Spotify.fetchTrackFeatures(this.state.activeTrackId, this.state.access_token)
+        })
       
       
     })
@@ -107,8 +107,10 @@ class App extends Component {
     const totalAge = Math.floor((Date.now() - tokenInfo.timeWhenReceived)/60000) + tokenInfo.ageWhenReceived
     console.log('token age', totalAge);
     if (totalAge > 50) {
+      console.log('totalAge greater than 50; totalAge:', totalAge);
       return true
     } else {
+      console.log('totalAge less than 50; totalAge:', totalAge);
       return false
     }
   }

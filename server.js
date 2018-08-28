@@ -43,6 +43,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/token', (mainreq, mainres) => {
+    console.log(' ');
     const currentTime = Date.now()
 
     if (!timeOfTokenCreation) {
@@ -63,7 +64,7 @@ app.get('/token', (mainreq, mainres) => {
         console.log(tokenAgeInMinutes)
         
         message.token_age_minutes = tokenAgeInMinutes
-        console.log(message)
+        console.log('didnt refresh token: ', message);
         mainres.status(200).send(JSON.stringify(message))
     } else {
         timeOfTokenCreation = Date.now()
@@ -75,7 +76,7 @@ app.get('/token', (mainreq, mainres) => {
                 token_age_minutes: tokenAgeInMinutes
             }
             //message = JSON.stringify(message);
-
+            console.log('refreshing token: ', message);
             try {
                 mainres.status(200).send(JSON.stringify(message)) 
             } catch(error) {

@@ -6,9 +6,10 @@ class RelatedTracks extends Component {
 
     constructor(props) {
         super(props)
-        this.representation = this.representation.bind(this)
+        this.representation = this.representation.bind(this);
+        this.getFeatureType = this.getFeatureType.bind(this);
         this.selectTrack = this.selectTrack.bind(this);
-        this.setActiveFeature = this.setActiveFeature.bind(this)
+        this.setActiveFeature = this.setActiveFeature.bind(this);
     }
     state = {
         trackFeatures : [
@@ -32,24 +33,40 @@ class RelatedTracks extends Component {
         this.props.toggleQueryFeatures(feature)
     }
 
-    representation(track) {
-        const value = track.features[this.props.activeFeature]
+    representation(track, activeFeature) {
+        const value = track.features[activeFeature]
         console.log('value', this.props.activeFeature)
-        switch(this.props.activeFeature) {
+
+        if (this.getFeatureType(activeFeature) === 'text') {
+            return <TextFeature className="graph-bar" 
+                                val={value}
+                                feature={activeFeature}/>
+        } else {
+            return <BarGraphFeature className="graph-bar" 
+                                    val={value}
+                                    feature={activeFeature}/>
+        }
+    }
+
+    getFeatureType(activeFeature) {
+        switch(activeFeature) {
         case 'key':
         case 'mode':
         case 'time_signature':
-            return <TextFeature className="graph-bar" 
-                                val={value}
-                                feature={this.props.activeFeature}/>
+            return 'text'
         default:
-            return <BarGraphFeature className="graph-bar" 
-                                    val={value}
-                                    feature={this.props.activeFeature}/>
+            return 'numerical'
         }
     }
 
     RelatedTrackList() {
+
+        let trackVal;
+        if (this.getFeatureType(this.props.activeFeature) === 'numerical') {
+            
+        }
+
+
         return this.props.relatedTracks.map((track) => {
             return (
                 <div className='feature-row' key={track.id}>
@@ -77,8 +94,13 @@ class RelatedTracks extends Component {
                             onClick={this.selectTrack}>{track.name}</p>
                         <p className='rel-track_artist'>{track.artists[0].name}</p>
                     </div>
-                    {this.representation(track)}
-                    <div class='rel-track_val'>{track.features[this.props.activeFeature].toFixed(2)}</div>
+                    
+                    {this.representation(track, this.props.activeFeature)}
+
+                    {(this.getFeatureType(this.props.activeFeature) === 'numerical')
+                    ? <div class='rel-track_val'>{track.features[this.props.activeFeature].toFixed(2)}</div>
+                    : ''}
+                    
                 </div>)
         })
     }

@@ -47,13 +47,13 @@ body {
 
 .search-input {
   color: gray;
-    font-size: 26px;
+    font-size: 24px;
     border-style: none;
     background: #e8e8e8;
     border-radius: 4px;
     margin: 8px;
     padding-right: 30px;
-    width: 260px;
+    width: 240px;
 }
 
 .search-wrapper {
@@ -210,7 +210,7 @@ body {
 
 .graph-bar {
   background: rgb(180,123,91);
-  background: linear-gradient(90deg,hsla(0, 0%, 100%, 0.45) 0%, hsl(191, 100%, 76%) 100%);
+  background: linear-gradient(90deg,hsl(213, 47%, 55%) 0%, hsl(166, 100%, 71%) 100%);
 
   border-radius:20px;
   height: 18px;
@@ -337,8 +337,13 @@ body {
   color:#888888
 }
 
+.track-feature_checkbox-wrapper {
+  display: flex;
+}
+
 .track-feature_checkbox {
   margin-right: 15px;
+  align-self: center;
 }
 
 .feature-description {
@@ -401,11 +406,13 @@ body {
 
 .feature__select-svg__wrapper {
   margin-left: 10px;
+  display: flex;
+  height: 20px;
 }
 
-.feature__header-text {
+/* .feature__header-text {
   width: 200px;
-}
+} */
 
 .feature__header-info-text {
   font-size: 20px;
@@ -507,6 +514,9 @@ body {
   .feature-description {
     border-radius: 0px;
   }
+  .top {
+    padding: 0px 25px 0px 0px;
+  }
 }
 
 @media screen and (max-width: 710px) {
@@ -529,12 +539,24 @@ body {
     padding-left: 10px;
   }
 
+  .top {
+    padding: 0;
+  }
+
+  .track__img__wrapper {
+    height: 130px;
+  }
+
+  .track__img {
+    height: 130px;
+  }
+
   .track-feature-row {
     padding: 4px 10px;
     margin: 0px;
   }
   .track-feature-row {
-    grid-template-rows: auto auto;
+    grid-template-rows: 23px 23px;
     grid-template-columns: 35px 1fr auto;
   }
   .track-feature_info-wrapper {
@@ -562,9 +584,8 @@ body {
   }
 
   .text-val {
-    grid-column-start: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-row-start: 2;
     height: 20px;
   }
 
@@ -579,11 +600,14 @@ body {
     grid-template-columns: 40px 1fr auto;
   }
   .load-track_wrapper, .external-link_wrapper {
-
     grid-column-start: 1;
     margin: 0;
     justify-self: center;
   }
+  .external-link_wrapper {
+    margin-bottom: 3px;
+  }
+
   .rel-track_text {
     grid-row-start: 1;
     grid-column-start: 2;
@@ -596,6 +620,21 @@ body {
     grid-row-end: 3;
     grid-column-start: 3;
     height: 8px;
+  }
+  .sort__wrapper {
+    margin-right: 3px;
+  }
+  .feature-description {
+    padding: 4px 10px;
+  }
+  .header-artist {
+    font-size: 18px;  
+  }
+  .header__track-title {
+    font-size: 24px;
+  }
+  .feature__wrapper {
+    padding: 0;
   }
 }
 
@@ -614,6 +653,13 @@ body {
     width: 165px;
     height: 30px;
     font-size: 12px;
+  }
+  .track__img {
+    height: 100px;
+    min-width: 100px;
+  }
+  .track__img__wrapper {
+    height: 100px;
   }
 }
 
