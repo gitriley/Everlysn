@@ -6,19 +6,9 @@ body {
   font-family: avenir;
 }
 
-.App {
-  /* display: grid;
-  grid-template-rows: auto 205px auto auto; */
-  /* padding-bottom: 90px; */
-}
 
 .App.hasFooter {
   padding-bottom: 90px;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
 }
 
 .App-header {
@@ -34,15 +24,6 @@ body {
 
 .App-intro {
   font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.search {
-  /* grid-column: span 2; */
 }
 
 .search-input {
