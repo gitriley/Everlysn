@@ -153,11 +153,14 @@ class App extends Component {
   }
 
   toggleQueryFeatures(feature) {
+    console.log('toggleQueryFeatures', feature);
     const newVal = !this.state.queryFeatures[feature]
     let queryFeatures = Object.assign({}, this.state.queryFeatures);    //creating copy of object
     queryFeatures[feature] = newVal;  
     this.setState({queryFeatures}, () => {
+      console.log(this.state);
     });
+    
   }
 
   setActiveFeature(feature) {

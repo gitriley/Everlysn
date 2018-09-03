@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BarGraphFeature from './barGraphFeature.js'
 import TextFeature from './textFeature.js' 
+import ActiveTrackFeature from './activeTrackFeature'
 import * as descriptions from '../featureDescriptions.js'
 
 class TrackFeatures extends Component {
@@ -8,6 +9,7 @@ class TrackFeatures extends Component {
     constructor(props) {
         super(props);
         this.showFeatureDescription = this.showFeatureDescription.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
     state = {
         trackFeatures : [
@@ -32,6 +34,7 @@ class TrackFeatures extends Component {
 
 
     showFeatureDescription(feature) {
+        console.log('showFeatureDescription', feature);
         if (!this.state.activeFeatureDescr) {
             this.setState({activeFeatureDescr: feature})
         } else {
@@ -40,16 +43,28 @@ class TrackFeatures extends Component {
     }
 
     toggle(feature) {
+        console.log('toggle function, calling parent');
         this.props.toggleQueryFeatures(feature)
     }
 
     render() {
+        console.log(this.props);
         if (Object.keys(this.props.features).length === 0 && this.props.features.constructor === Object) {
             return ('')
         }
         return ( 
             <div className="track-features">
                 <div className='track-features_wrapper'>
+
+                    <ActiveTrackFeature feature='acousticness'
+                                        featureVal={this.props.features['acousticness']}
+                                        showFeatureDescription={this.showFeatureDescription}
+                                        activeFeatureDescr={this.props.activeFeatureDescr}
+                                        toggle={this.toggle}
+                                        checked={this.props.queryFeatures['acousticness']}
+                                        featureSelectionMode={this.props.featureSelectionMode}
+
+                    />
 
                     <div className="track-feature-row">
                         <div className='track-feature_info-wrapper'>
