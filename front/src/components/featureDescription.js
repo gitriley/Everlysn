@@ -94,8 +94,8 @@ class FeatureDescription extends Component {
                             <option value='tempo'>tempo</option>
                             <option value='valence'>valence</option>
                             <option value='key'>key</option>
-                            <option value='mode'>mode</option>
-                            <option value='time_signature'>time_signature</option>
+                            <option value='mode'>major/minor</option>
+                            <option value='time_signature'>time signature</option>
                         </select>
                         <span className='feature__select-svg__wrapper'  onClick={this.showFeatureDescription}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
