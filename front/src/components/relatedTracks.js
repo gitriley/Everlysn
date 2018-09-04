@@ -74,7 +74,8 @@ class RelatedTracks extends Component {
                     <div className='rel-track_text'>
                         <p  id={track.id}
                             className='rel-track_name'
-                            onClick={this.selectTrack}>{track.name}</p>
+                            onClick={this.selectTrack}
+                            title={track.name}>{track.name}</p>
                         <p className='rel-track_artist'>{track.artists[0].name}</p>
                     </div>
                     
