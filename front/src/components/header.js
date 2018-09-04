@@ -14,7 +14,7 @@ class Header extends Component {
         let artists = this.props.track.artists.map((artist, index) => {
             if (index > 0) {
                 return (
-                    <span> • {artist.name} </span>
+                    <span className='header-addition-artist'> • {artist.name} </span>
                 )
             } else {
                 return (
