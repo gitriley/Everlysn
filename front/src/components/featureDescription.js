@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as descriptions from '../featureDescriptions.js'
+import InfoSVG from './icons/infoSVG.js';
 
 class FeatureDescription extends Component {
 
@@ -98,13 +99,7 @@ class FeatureDescription extends Component {
                             <option value='time_signature'>time signature</option>
                         </select>
                         <span className='feature__select-svg__wrapper'  onClick={this.showFeatureDescription}>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
-                                <circle cy="24" cx="24" r="24"/>
-                                <g fill="#fff">
-                                    <circle cx="24" cy="11.6" r="4.7"/>
-                                    <path d="m17.4 18.8v2.15h1.13c2.26 0 2.26 1.38 2.26 1.38v15.1s0 1.38-2.26 1.38h-1.13v2.08h14.2v-2.08h-1.13c-2.26 0-2.26-1.38-2.26-1.38v-18.6"/>
-                                </g>
-                            </svg>
+                            <InfoSVG/>
                         </span>
                         <div className='feature-description__wrapper' style={{ display: this.state.displayDescr }}>
                             <span className='feature-description__title'>{this.props.activeFeature}</span>

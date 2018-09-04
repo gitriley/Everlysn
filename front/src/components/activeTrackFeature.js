@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BarGraphFeature from './barGraphFeature.js'
 import TextFeature from './textFeature.js' 
 import * as descriptions from '../featureDescriptions.js'
+import InfoSVG from './icons/infoSVG.js'
 
 class ActiveTrackFeature extends Component {
 
@@ -48,7 +49,6 @@ class ActiveTrackFeature extends Component {
  
     render() {
         const feature = this.props.feature;
-        console.log(feature);
         return (
             <div className="track-feature-row">
                 <div className='track-feature_info-wrapper'>
@@ -60,13 +60,7 @@ class ActiveTrackFeature extends Component {
                         </div> : <div></div>}
 
                     <div onClick={() => this.props.showFeatureDescription(feature)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className='svg__info'>
-                            <circle cy="24" cx="24" r="24"/>
-                            <g fill="#fff">
-                                <circle cx="24" cy="11.6" r="4.7"/>
-                                <path d="m17.4 18.8v2.15h1.13c2.26 0 2.26 1.38 2.26 1.38v15.1s0 1.38-2.26 1.38h-1.13v2.08h14.2v-2.08h-1.13c-2.26 0-2.26-1.38-2.26-1.38v-18.6"/>
-                            </g>
-                        </svg>
+                        <InfoSVG/>
                     </div>
                 </div>
                 <span className="attribute"> {this.getDisplayText(feature)}: </span>
@@ -81,14 +75,10 @@ class ActiveTrackFeature extends Component {
 
                 {this.representation(this.props.featureVal, feature)}
 
-                {/* <BarGraphFeature className="graph-bar" 
-                                val={this.props.featureVal}
-                                feature={feature}/> */}
-
+    
                 {(this.getFeatureType(feature) === 'numerical')
                     ? <div className='numerical'>{this.props.featureVal.toFixed(2)}</div>
                     : ''}
-                {/* <div className='numerical'>{this.props.featureVal.toFixed(2)}</div> */}
             </div>
         )
     }
