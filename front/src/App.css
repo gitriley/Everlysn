@@ -648,5 +648,8 @@ body {
   .track__img__wrapper {
     height: 100px;
   }
+  .header__track-title {
+    font-size: 20px;
+  }
 }
 

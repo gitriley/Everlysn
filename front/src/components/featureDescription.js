@@ -93,7 +93,7 @@ class FeatureDescription extends Component {
                             <option value='loudness'>loudness</option>
                             <option value='speechiness'>speechiness</option>
                             <option value='tempo'>tempo</option>
-                            <option value='valence'>valence</option>
+                            <option value='valence'>positivity</option>
                             <option value='key'>key</option>
                             <option value='mode'>major/minor</option>
                             <option value='time_signature'>time signature</option>
