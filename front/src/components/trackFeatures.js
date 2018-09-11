@@ -34,7 +34,6 @@ class TrackFeatures extends Component {
 
 
     showFeatureDescription(feature) {
-        console.log('showFeatureDescription', feature);
         if (!this.state.activeFeatureDescr) {
             this.setState({activeFeatureDescr: feature})
         } else {
@@ -43,7 +42,6 @@ class TrackFeatures extends Component {
     }
 
     toggle(feature) {
-        console.log('toggle function, calling parent');
         this.props.toggleQueryFeatures(feature)
     }
 
@@ -62,7 +60,6 @@ class TrackFeatures extends Component {
     }
 
     render() {
-        console.log(this.props);
         if (Object.keys(this.props.features).length === 0 && this.props.features.constructor === Object) {
             return ('')
         }
