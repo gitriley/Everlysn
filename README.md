@@ -1,5 +1,7 @@
 # Everlysn
 
+https://gitriley.github.io/everlysn/
+
 Everlysn is a web application that helps users explore music and find new recommendations. It is built off of Spotify's API and it gives users an essentially infinite source of new recommendations.
 
 The app has two main features:
