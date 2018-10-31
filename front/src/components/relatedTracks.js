@@ -63,10 +63,10 @@ class RelatedTracks extends Component {
         return this.props.relatedTracks.map((track) => {
             return (
                 <div className='feature-row' key={track.id}>
-                    <div class='load-track_wrapper' onClick={() => this.props.loadTrackInPlayer(track.id)}>
+                    <div className='load-track_wrapper' onClick={() => this.props.loadTrackInPlayer(track.id)}>
                         <AudioSVG/>
                     </div>
-                    <div class='external-link_wrapper'>
+                    <div className='external-link_wrapper'>
                         <a href={track.external_urls.spotify} target="_blank">
                             <SpotifySVG/>
                         </a>
@@ -82,7 +82,7 @@ class RelatedTracks extends Component {
                     {this.representation(track, this.props.activeFeature)}
 
                     {(this.getFeatureType(this.props.activeFeature) === 'numerical')
-                    ? <div class='rel-track_val'>{track.features[this.props.activeFeature].toFixed(2)}</div>
+                    ? <div className='rel-track_val'>{track.features[this.props.activeFeature].toFixed(2)}</div>
                     : ''}
                     
                 </div>)

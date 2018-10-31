@@ -30,11 +30,11 @@ class Search extends Component {
             let artists = item.artists.map((artist, index) => {
                 if (index > 0) {
                     return (
-                        <span> • {artist.name} </span>
+                        <span key={artist.id}> • {artist.name} </span>
                     )
                 } else {
                     return (
-                        <span> {artist.name} </span>
+                        <span key={artist.id}> {artist.name} </span>
                     )
                 }
             })

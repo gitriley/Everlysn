@@ -46,9 +46,11 @@ class TrackFeatures extends Component {
     }
 
     RenderFeatures(features) {
-        return features.map((feature) => {
+        return features.map((feature, index) => {
             return (
-                <ActiveTrackFeature feature={feature}
+                <ActiveTrackFeature 
+                                    key={index}
+                                    feature={feature}
                                     featureVal={this.props.features[feature]}
                                     showFeatureDescription={this.showFeatureDescription}
                                     activeFeatureDescr={this.state.activeFeatureDescr}

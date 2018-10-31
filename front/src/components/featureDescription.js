@@ -108,8 +108,8 @@ class FeatureDescription extends Component {
                     </div>
                     
                 </div>
-                <div class='sort__wrapper'>
-                    <span class='sort__wrapper' onClick={() => this.sortTracks(this.props.activeFeature)}>
+                <div className='sort__wrapper'>
+                    <span className='sort__wrapper' onClick={() => this.sortTracks(this.props.activeFeature)}>
                         {(this.state.sortMode ==='ascending') ? '▼' : '▲'}
                     </span>
                 </div>

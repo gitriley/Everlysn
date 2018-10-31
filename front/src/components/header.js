@@ -14,11 +14,11 @@ class Header extends Component {
         let artists = this.props.track.artists.map((artist, index) => {
             if (index > 0) {
                 return (
-                    <span className='header-addition-artist'> • {artist.name} </span>
+                    <span key={artist.id} className='header-addition-artist'> • {artist.name} </span>
                 )
             } else {
                 return (
-                    <span className='header-artist'> {artist.name} </span>
+                    <span key={artist.id} className='header-artist'> {artist.name} </span>
                 )
             }
         })
@@ -38,7 +38,7 @@ class Header extends Component {
                 <div className='header__text'>
                     <p className='header__track-title'>{this.props.track.name}</p>
                     {this.listArtists()}    
-                    <button onClick={() => this.props.loadTrackInPlayer(this.props.track.id)}class="header__load-track-btn">Load track in audio player</button>
+                    <button onClick={() => this.props.loadTrackInPlayer(this.props.track.id)}className="header__load-track-btn">Load track in audio player</button>
                 </div>           
             </div>
         )
