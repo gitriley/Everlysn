@@ -19,9 +19,20 @@ export async function fetchTrack(trackId, token) {
     } else {
         return trackData
     }
-    
-
 }
+
+export async function fetchSearchResults(searchTerms, token) {
+    const url = `https://api.spotify.com/v1/search?q=${searchTerms}&type=track`
+
+    const resp = await fetch(url,{
+        headers: new Headers({
+            'Authorization': 'Bearer ' + token, 
+        })
+    })
+
+    return await resp.json()
+}
+
 
 export async function fetchTrackFeatures(trackId, token) {
     const url = `https://api.spotify.com/v1/audio-features/${trackId}`

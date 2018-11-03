@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchSVG from './icons/searchSVG';
+import * as Spotify from '../lib/fetchFromSpotify.js'
 
 class Search extends Component {
 
@@ -20,12 +21,9 @@ class Search extends Component {
         if (!(this.props.mode === 'search')) {
             this.props.setAppMode('search')
         }
-        const response = await fetch(`https://api.spotify.com/v1/search?q=${this.state.searchTerms}&type=track`, {
-            headers: new Headers({
-                'Authorization': 'Bearer ' + this.props.token, 
-            })
-        });
-        const data = await response.json()
+
+        const data = await Spotify.fetchSearchResults(this.state.searchTerms, this.props.token)
+
         let tracks = data.tracks.items.map((item) => {
             let artists = item.artists.map((artist, index) => {
                 if (index > 0) {
