@@ -112,6 +112,7 @@ class App extends Component {
   }
 
   async componentWillMount() {
+    console.log('componentWillMount');
     this.updateToken()
   }
 
@@ -240,7 +241,7 @@ class App extends Component {
         </div>
         : ''}
         {(this.state.currentlyPlayingTrackId) ?
-        <div className='footer'>
+        <div className='footer' data-testid='footer'>
           <iframe src={iframeURL} width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div> :''}
         

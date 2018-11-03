@@ -16,5 +16,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://gitriley.github.io/everlysn"
+  "homepage": "https://gitriley.github.io/everlysn",
+  "devDependencies": {
+    "react-testing-library": "^5.2.3"
+  }
 }
