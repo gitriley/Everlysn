@@ -21,9 +21,18 @@ class Search extends Component {
         if (!(this.props.mode === 'search')) {
             this.props.setAppMode('search')
         }
+        
+
+        console.log('this.state.searchTerms: ', this.state.searchTerms);
+
+        console.log('this.props.token: ', this.props.token);
 
         const data = await Spotify.fetchSearchResults(this.state.searchTerms, this.props.token)
-        console.log(JSON.stringify(data))
+
+        console.log('this.state.searchTerms: ', this.state.searchTerms);
+
+        console.log('this.props.token: ', this.props.token);
+        //console.log(JSON.stringify(data))
         let tracks = data.tracks.items.map((item) => {
             let artists = item.artists.map((artist, index) => {
                 if (index > 0) {
@@ -56,12 +65,14 @@ class Search extends Component {
         this.props.setActiveTrack(e.currentTarget.getAttribute('id'))
     }    
 
-    handleChange = (e) => {
+    handleChange (e) {
+        console.log('handle change', e.target.value)
         e.preventDefault();
         this.setState({searchTerms: e.target.value});
     }
 
     render() {
+        console.log('search renders')
         const searchTerms = this.state.searchTerms;
         const searchResultsPresent = this.state.searchResultsPresent;
         return (
