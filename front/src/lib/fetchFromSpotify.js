@@ -29,7 +29,7 @@ export async function fetchSearchResults(searchTerms, token) {
             'Authorization': 'Bearer ' + token, 
         })
     })
-
+    console.log(resp)
     return await resp.json()
 }
 

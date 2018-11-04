@@ -23,7 +23,7 @@ class Search extends Component {
         }
 
         const data = await Spotify.fetchSearchResults(this.state.searchTerms, this.props.token)
-
+        console.log(JSON.stringify(data))
         let tracks = data.tracks.items.map((item) => {
             let artists = item.artists.map((artist, index) => {
                 if (index > 0) {
@@ -69,7 +69,7 @@ class Search extends Component {
                 <div className={'search-wrapper ' +  (!searchResultsPresent && 'full')}>
                     <div className='search-inner'>
                         <p className={'search-prompt ' + (searchResultsPresent && 'bar')}>
-                            Search for songs by albums name, song name, or artists
+                            Search for songs by album name, song name, or artist
                         </p>
                         <form onSubmit={this.submitQuery} className='search-form'>
                             <input 
