@@ -6,6 +6,7 @@ class Search extends Component {
 
     constructor(props) {
         super(props);
+        this.handleChange = this.handleChange.bind(this);
         this.submitQuery = this.submitQuery.bind(this);
         this.selectTrack = this.selectTrack.bind(this);
     }
@@ -21,18 +22,9 @@ class Search extends Component {
         if (!(this.props.mode === 'search')) {
             this.props.setAppMode('search')
         }
-        
-
-        console.log('this.state.searchTerms: ', this.state.searchTerms);
-
-        console.log('this.props.token: ', this.props.token);
 
         const data = await Spotify.fetchSearchResults(this.state.searchTerms, this.props.token)
 
-        console.log('this.state.searchTerms: ', this.state.searchTerms);
-
-        console.log('this.props.token: ', this.props.token);
-        //console.log(JSON.stringify(data))
         let tracks = data.tracks.items.map((item) => {
             let artists = item.artists.map((artist, index) => {
                 if (index > 0) {
@@ -49,7 +41,7 @@ class Search extends Component {
                 <div key={item.id} className="track-wrapper"
                     id={item.id}
                     onClick={this.selectTrack}>
-                    <span>{item.name}</span>
+                    <span data-testid='searchResults_name'>{item.name}</span>
                     <span className="track-artists">{artists}</span>
                 </div>
             )
@@ -66,13 +58,11 @@ class Search extends Component {
     }    
 
     handleChange (e) {
-        console.log('handle change', e.target.value)
         e.preventDefault();
         this.setState({searchTerms: e.target.value});
     }
 
     render() {
-        console.log('search renders')
         const searchTerms = this.state.searchTerms;
         const searchResultsPresent = this.state.searchResultsPresent;
         return (
