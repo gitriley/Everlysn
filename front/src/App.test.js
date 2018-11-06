@@ -4,6 +4,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import mockSearchResults from '../test_data/searchResults'
+import mockTrack from '../test_data/track'
+import mockTrackFeatures from '../test_data/trackFeatures'
 //import renderer from 'react-test-renderer';
 import { render, cleanup, fireEvent } from 'react-testing-library'
 
@@ -22,6 +24,14 @@ jest.mock('./lib/fetchFromSpotify', ()=>({
   fetchSearchResults: jest.fn((a, b)=> {
     console.log('ran the fetchSearchResults mock', a, b)
     return mockSearchResults
+  }),
+  fetchTrack: jest.fn((a, b)=> {
+    console.log('ran the fetchTrack mock', a, b)
+    return mockTrack
+  }),
+  fetchTrackFeatures: jest.fn((a, b)=> {
+    console.log('ran the fetchTrackFeatures mock', a, b)
+    return mockTrackFeatures
   })
 }))
 
@@ -47,7 +57,7 @@ test('<App /> calls updateToken() upon initialization', () => {
   
 })
 
-test('submitting a search term results in search results being rendered', async () => {
+test('Initial app-wide integration test', async () => {
   const wrapper = render(<App/>)
   await fireEvent.change(wrapper.container.getElementsByClassName('search-input')[0], {
     target: {value: 'saba'},
@@ -67,8 +77,11 @@ test('submitting a search term results in search results being rendered', async 
     expect(element.innerHTML).toBe(track.name)
   });
 
+  fireEvent.click(wrapper.getByText('Ace'))
+
+  await flushPromises()
+
 
 });
-
 
 

@@ -7,9 +7,28 @@ export async function fetchToken() {
     } catch(error) {
         console.log(error)
     }
-    
+    console.log(tokenObj)
     return tokenObj
 }
+
+export async function fetchSearchResults(searchTerms, token) {
+    const url = `https://api.spotify.com/v1/search?q=${searchTerms}&type=track`
+
+    const resp = await fetch(url,{
+        headers: new Headers({
+            'Authorization': 'Bearer ' + token, 
+        })
+    })
+
+    const results = await resp.json()
+    if (results.error) {
+        console.log(results.error)
+        return Error('error')
+    } else {
+        return results
+    } 
+}
+
 
 export async function fetchTrack(trackId, token) {
     const url = `https://api.spotify.com/v1/tracks/${trackId}`
@@ -27,25 +46,6 @@ export async function fetchTrack(trackId, token) {
     }
 }
 
-export async function fetchSearchResults(searchTerms, token) {
-    const url = `https://api.spotify.com/v1/search?q=${searchTerms}&type=track`
-
-    const resp = await fetch(url,{
-        headers: new Headers({
-            'Authorization': 'Bearer ' + token, 
-        })
-    })
-
-    const results = await resp.json()
-
-    if (results.error) {
-        console.log(results.error)
-        return Error('error')
-    } else {
-        return results
-    } 
-}
-
 
 export async function fetchTrackFeatures(trackId, token) {
     const url = `https://api.spotify.com/v1/audio-features/${trackId}`
@@ -55,6 +55,8 @@ export async function fetchTrackFeatures(trackId, token) {
         })
     })
     const trackFeatures = await resp.json()
+    console.log('fetchTrackFeatures')
+    console.log(JSON.stringify(trackFeatures))
     return trackFeatures
 }
 
@@ -66,6 +68,7 @@ export async function fetchRelatedTracks(queryString, token) {
         })
     })
     const relatedTracks = await resp.json()
+    
     // extract ids
     const ids = relatedTracks.tracks.map((track) => {
         return track.id
@@ -89,5 +92,8 @@ export async function fetchRelatedTracks(queryString, token) {
         }
         return newObj
     })
+
+    console.log('tracksWithFeatures')
+    console.log(JSON.stringify(tracksWithFeatures))
     return tracksWithFeatures
 }
