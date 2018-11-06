@@ -14,7 +14,7 @@ class FeatureDescription extends Component {
 
     state = {
         displayDescr: 'none',
-        sortMode: 'asscending'
+        sortMode: 'ascending'
     }
 
     setActiveFeature = (e) => {

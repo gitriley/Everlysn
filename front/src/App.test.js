@@ -7,7 +7,10 @@ import mockSearchResults from '../test_data/searchResults'
 //import renderer from 'react-test-renderer';
 import { render, cleanup, fireEvent } from 'react-testing-library'
 
-afterEach(cleanup)
+afterEach(() => {
+  cleanup()
+  Spotify.fetchToken.mockClear()
+})
 
 jest.mock('./lib/fetchFromSpotify', ()=>({
   fetchToken: jest.fn(()=> {

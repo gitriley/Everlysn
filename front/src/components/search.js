@@ -6,7 +6,7 @@ class Search extends Component {
 
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        //this.handleChange = this.handleChange.bind(this);
         this.submitQuery = this.submitQuery.bind(this);
         this.selectTrack = this.selectTrack.bind(this);
     }
@@ -19,10 +19,17 @@ class Search extends Component {
     
     async submitQuery(e) {
         e.preventDefault();
+
+        this.setState({
+            searchResults: [],
+            searchResultsPresent: true
+        })
+
         if (!(this.props.mode === 'search')) {
             this.props.setAppMode('search')
         }
 
+        // todo: make sure token is not expired
         const data = await Spotify.fetchSearchResults(this.state.searchTerms, this.props.token)
 
         let tracks = data.tracks.items.map((item) => {
@@ -57,10 +64,6 @@ class Search extends Component {
         this.props.setActiveTrack(e.currentTarget.getAttribute('id'))
     }    
 
-    handleChange (e) {
-        e.preventDefault();
-        this.setState({searchTerms: e.target.value});
-    }
 
     render() {
         const searchTerms = this.state.searchTerms;
@@ -77,7 +80,7 @@ class Search extends Component {
                                 className='search-input'
                                 type='text'
                                 value={searchTerms} 
-                                onChange={this.handleChange}/>
+                                onChange={e => this.setState({searchTerms: e.target.value })}/>
                             <button className='search-button-icon' type='submit'>
                                 <SearchSVG/>
                             </button>
@@ -86,7 +89,7 @@ class Search extends Component {
                 </div>
                 {(this.props.mode === "search") ?
                     <div className="searchResults">
-                        {this.state.searchResults}
+                        {this.state.searchResults.length === 0 ? <div className='loader'></div> : this.state.searchResults} 
                     </div>
                     : ""}
             </div>

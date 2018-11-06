@@ -112,6 +112,7 @@ class App extends Component {
   }
 
   async componentWillMount() {
+    console.log('hi')
     this.updateToken()
   }
 

@@ -1,7 +1,13 @@
 export async function fetchToken() {
     //const resp = await fetch('http://localhost:3005/token')
-    const resp = await fetch('https://shielded-waters-65196.herokuapp.com/token')
-    const tokenObj = await resp.json()
+    let tokenObj
+    try {
+        const resp = await fetch('https://shielded-waters-65196.herokuapp.com/token')
+        tokenObj = await resp.json()
+    } catch(error) {
+        console.log(error)
+    }
+    
     return tokenObj
 }
 
@@ -29,8 +35,15 @@ export async function fetchSearchResults(searchTerms, token) {
             'Authorization': 'Bearer ' + token, 
         })
     })
-    console.log(resp)
-    return await resp.json()
+
+    const results = await resp.json()
+
+    if (results.error) {
+        console.log(results.error)
+        return Error('error')
+    } else {
+        return results
+    } 
 }
 
 
