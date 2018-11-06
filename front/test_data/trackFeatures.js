@@ -1,0 +1,20 @@
+export default {
+    "danceability": 0.687,
+    "energy": 0.509,
+    "key": 10,
+    "loudness": -9.173,
+    "mode": 1,
+    "speechiness": 0.405,
+    "acousticness": 0.865,
+    "instrumentalness": 0,
+    "liveness": 0.12,
+    "valence": 0.651,
+    "tempo": 106.892,
+    "type": "audio_features",
+    "id": "2jlVsVNu7aL9OjxyJwYZF5",
+    "uri": "spotify:track:2jlVsVNu7aL9OjxyJwYZF5",
+    "track_href": "https://api.spotify.com/v1/tracks/2jlVsVNu7aL9OjxyJwYZF5",
+    "analysis_url": "https://api.spotify.com/v1/audio-analysis/2jlVsVNu7aL9OjxyJwYZF5",
+    "duration_ms": 182752,
+    "time_signature": 4
+}
