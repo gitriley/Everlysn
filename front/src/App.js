@@ -59,7 +59,7 @@ class App extends Component {
       valence: false
     },
     trackFeatures: {},
-    relatedTracks: {}, 
+    relatedTracks: {},
     activeFeature: 'danceability'
   }
 
@@ -68,27 +68,27 @@ class App extends Component {
       activeTrackId: trackId,
       activeTrack: {},
       trackFeatures: {}
-      }, async function() {
-        if (!(this.state.appMode === 'trackFeatures')) {
-          this.setState({appMode: 'trackFeatures'})
-        }
+    }, async function () {
+      if (!(this.state.appMode === 'trackFeatures')) {
+        this.setState({ appMode: 'trackFeatures' })
+      }
 
-        if (this.tokenNeedsRefreshed(this.state.tokenInfo)) {
-          this.updateToken()
-        }
+      if (this.tokenNeedsRefreshed(this.state.tokenInfo)) {
+        this.updateToken()
+      }
 
-        this.setState({ 
-          activeTrack:  await Spotify.fetchTrack(this.state.activeTrackId, this.state.access_token),
-          trackFeatures: await Spotify.fetchTrackFeatures(this.state.activeTrackId, this.state.access_token)
-        })
-      
-      
+      this.setState({
+        activeTrack: await Spotify.fetchTrack(this.state.activeTrackId, this.state.access_token),
+        trackFeatures: await Spotify.fetchTrackFeatures(this.state.activeTrackId, this.state.access_token)
+      })
+
+
     })
   }
 
 
   setAppMode = (mode) => {
-    this.setState({appMode: mode})
+    this.setState({ appMode: mode })
   }
 
   async updateToken() {
@@ -103,7 +103,7 @@ class App extends Component {
   }
 
   tokenNeedsRefreshed(tokenInfo) {
-    const totalAge = Math.floor((Date.now() - tokenInfo.timeWhenReceived)/60000) + tokenInfo.ageWhenReceived
+    const totalAge = Math.floor((Date.now() - tokenInfo.timeWhenReceived) / 60000) + tokenInfo.ageWhenReceived
     if (totalAge > 50) {
       return true
     } else {
@@ -117,17 +117,17 @@ class App extends Component {
   }
 
   enterFeatureSelectionMode() {
-    this.setState({featureSelectionMode: true})
+    this.setState({ featureSelectionMode: true })
   }
 
   buildRecommendationQueryString() {
     const artists = this.state.activeTrack.artists
-    const artist1String = `&seed_artists=${artists[0].id}` 
+    const artist1String = `&seed_artists=${artists[0].id}`
     const artist2String = artists[1] ? `&seed_artists=${artists[1].id}` : ''
     const artist3String = artists[2] ? `&seed_artists=${artists[2].id}` : ''
     const artistsString = `${artist1String}${artist2String}${artist3String}`
     const trackString = `seed_tracks=${this.state.activeTrackId}`
-    
+
     const featuresToSearchBy = Object.keys(this.state.queryFeatures).filter((feature) => {
       return this.state.queryFeatures[feature] === true
     })
@@ -148,104 +148,104 @@ class App extends Component {
 
     const queryString = this.buildRecommendationQueryString()
     this.setState({
-      relatedTracks: await Spotify.fetchRelatedTracks(queryString, this.state.access_token),  
+      relatedTracks: await Spotify.fetchRelatedTracks(queryString, this.state.access_token),
     }, this.setAppMode('relatedTracks'))
-    this.setState({featureSelectionMode: false}) 
+    this.setState({ featureSelectionMode: false })
   }
 
   toggleQueryFeatures(feature) {
     const newVal = !this.state.queryFeatures[feature]
     let queryFeatures = Object.assign({}, this.state.queryFeatures);    //creating copy of object
-    queryFeatures[feature] = newVal;  
-    this.setState({queryFeatures}, () => {
+    queryFeatures[feature] = newVal;
+    this.setState({ queryFeatures }, () => {
       // console.log(this.state);
     });
-    
+
   }
 
   setActiveFeature(feature) {
-    this.setState({activeFeature: feature})
+    this.setState({ activeFeature: feature })
   }
 
   loadTrackInPlayer(id) {
-    this.setState({currentlyPlayingTrackId: id});
+    this.setState({ currentlyPlayingTrackId: id });
   }
 
   sortTracksAscending(attribute) {
     let sortedTracks = this.state.relatedTracks.slice()
-    sortedTracks.sort(function(a, b) {
+    sortedTracks.sort(function (a, b) {
       return a.features[attribute] - b.features[attribute]
     })
-    this.setState({relatedTracks: sortedTracks});
+    this.setState({ relatedTracks: sortedTracks });
   }
 
   sortTracksDescending(attribute) {
     let sortedTracks = this.state.relatedTracks.slice()
-    sortedTracks.sort(function(a, b) {
-      return b.features[attribute] -a.features[attribute]
+    sortedTracks.sort(function (a, b) {
+      return b.features[attribute] - a.features[attribute]
     })
-    this.setState({relatedTracks: sortedTracks});
+    this.setState({ relatedTracks: sortedTracks });
   }
 
   render() {
     const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + this.state.currentlyPlayingTrackId + '&theme=white'
     return (
       <div className={"App " + (this.state.currentlyPlayingTrackId && 'hasFooter')}>
-        
-        
-        <Search token={this.state.access_token}
-                setActiveTrack={this.setActiveTrack}
-                mode={this.state.appMode}
-                setAppMode={this.setAppMode}/>
 
-        {(this.state.appMode !== 'search') 
+
+        <Search token={this.state.access_token}
+          setActiveTrack={this.setActiveTrack}
+          mode={this.state.appMode}
+          setAppMode={this.setAppMode} />
+
+        {(this.state.appMode !== 'search')
           ? <div className='top'>
-              <TrackContent track={this.state.activeTrack}/>
-              <Header track={this.state.activeTrack}
-                      loadTrackInPlayer={this.loadTrackInPlayer}/> 
-            </div>
+            <TrackContent track={this.state.activeTrack} />
+            <Header track={this.state.activeTrack}
+              loadTrackInPlayer={this.loadTrackInPlayer} />
+          </div>
           : ''}
 
         {(this.state.appMode !== 'search')
-        ? <div className='feature-main_wrapper'> 
-            <div className='feature-description'> 
-              <FeatureDescription 
+          ? <div className='feature-main_wrapper'>
+            <div className='feature-description'>
+              <FeatureDescription
                 track={this.state.activeTrack}
-                activeFeature = {this.state.activeFeature}
+                activeFeature={this.state.activeFeature}
                 mode={this.state.appMode}
                 setActiveFeature={this.setActiveFeature}
-                enterFeatureSelectionMode = {this.enterFeatureSelectionMode}
-                featureSelectionMode = {this.state.featureSelectionMode}
-                findSimilarTracks = {this.onFindSimilarTracks}
-                sortTracksAscending = {this.sortTracksAscending}
-                sortTracksDescending = {this.sortTracksDescending}/>
+                enterFeatureSelectionMode={this.enterFeatureSelectionMode}
+                featureSelectionMode={this.state.featureSelectionMode}
+                findSimilarTracks={this.onFindSimilarTracks}
+                sortTracksAscending={this.sortTracksAscending}
+                sortTracksDescending={this.sortTracksDescending} />
             </div>
 
-            {(this.state.appMode === 'trackFeatures') 
+            {(this.state.appMode === 'trackFeatures')
               ? <TrackFeatures token={this.state.access_token}
-                              trackId = {this.state.activeTrackId} 
-                              queryFeatures = {this.state.queryFeatures}
-                              toggleQueryFeatures = {this.toggleQueryFeatures}
-                              features = {this.state.trackFeatures}
-                              featureSelectionMode = {this.state.featureSelectionMode}/> 
+                trackId={this.state.activeTrackId}
+                queryFeatures={this.state.queryFeatures}
+                toggleQueryFeatures={this.toggleQueryFeatures}
+                features={this.state.trackFeatures}
+                featureSelectionMode={this.state.featureSelectionMode} />
               : ''}
 
-            
-            {(this.state.appMode === 'relatedTracks') 
-              ? <RelatedTracks  relatedTracks={this.state.relatedTracks}
-                                setActiveTrack={this.setActiveTrack}
-                                activeFeature = {this.state.activeFeature}
-                                setActiveFeature={this.setActiveFeature}
-                                loadTrackInPlayer={this.loadTrackInPlayer}/> 
+
+            {(this.state.appMode === 'relatedTracks')
+              ? <RelatedTracks relatedTracks={this.state.relatedTracks}
+                setActiveTrack={this.setActiveTrack}
+                activeFeature={this.state.activeFeature}
+                setActiveFeature={this.setActiveFeature}
+                loadTrackInPlayer={this.loadTrackInPlayer} />
               : ''}
-        </div>
-        : ''}
+          </div>
+          : ''}
         {(this.state.currentlyPlayingTrackId) ?
-        <div className='footer' data-testid='footer'>
-          <iframe src={iframeURL} width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div> :''}
-        
-          
+          <div className='footer' data-testid='footer'>
+            <iframe src={iframeURL} width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          </div> : ''}
+
+
       </div>
     );
   }

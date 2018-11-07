@@ -14,22 +14,22 @@ afterEach(() => {
   Spotify.fetchToken.mockClear()
 })
 
-jest.mock('./lib/fetchFromSpotify', ()=>({
-  fetchToken: jest.fn(()=> {
+jest.mock('./lib/fetchFromSpotify', () => ({
+  fetchToken: jest.fn(() => {
     return {
       token: 777,
       token_age_minutes: 1
     }
   }),
-  fetchSearchResults: jest.fn((a, b)=> {
+  fetchSearchResults: jest.fn((a, b) => {
     console.log('ran the fetchSearchResults mock', a, b)
     return mockSearchResults
   }),
-  fetchTrack: jest.fn((a, b)=> {
+  fetchTrack: jest.fn((a, b) => {
     console.log('ran the fetchTrack mock', a, b)
     return mockTrack
   }),
-  fetchTrackFeatures: jest.fn((a, b)=> {
+  fetchTrackFeatures: jest.fn((a, b) => {
     console.log('ran the fetchTrackFeatures mock', a, b)
     return mockTrackFeatures
   })
@@ -52,15 +52,15 @@ it('renders without crashing', async () => {
 
 test('<App /> calls updateToken() upon initialization', () => {
   spyOn(App.prototype, 'updateToken').and.callThrough()
-  const wrapper = render(<App/>)
+  const wrapper = render(<App />)
   expect(Spotify.fetchToken).toHaveBeenCalledTimes(1)
-  
+
 })
 
 test('Initial app-wide integration test', async () => {
-  const wrapper = render(<App/>)
+  const wrapper = render(<App />)
   await fireEvent.change(wrapper.container.getElementsByClassName('search-input')[0], {
-    target: {value: 'saba'},
+    target: { value: 'saba' },
   })
   fireEvent.click(wrapper.container.getElementsByClassName('search-button-icon')[0])
   await flushPromises()

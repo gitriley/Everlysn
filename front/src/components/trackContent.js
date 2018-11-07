@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 
-class TrackContent extends Component {
+function TrackContent(props) {
 
-    constructor(props) {
-        super(props);
-    }
 
-    state = {
-        featureSelectionMode: false
-    }
 
-    listArtists() {
-        if (!this.props.track.artists) {
+    const listArtists = () => {
+        if (!props.track.artists) {
             return
         }
-        let artists = this.props.track.artists.map((artist, index) => {
+        let artists = props.track.artists.map((artist, index) => {
             if (index > 0) {
                 return (
                     <span> • {artist.name} </span>
@@ -29,18 +23,18 @@ class TrackContent extends Component {
             <span className="track-artists">{artists}</span>
         )
     }
-    
 
-    render() {
-        if (Object.keys(this.props.track).length === 0 && this.props.track.constructor === Object) {
-            return ('')
-        }
-        return ( 
-            <div className='track__img__wrapper'>
-                <img className='track__img' src={this.props.track.album.images[1].url}/>
-            </div>
-        )
+
+
+    if (Object.keys(props.track).length === 0 && props.track.constructor === Object) {
+        return ('')
     }
+    return (
+        <div className='track__img__wrapper'>
+            <img className='track__img' src={props.track.album.images[1].url} />
+        </div>
+    )
+
 }
 
 export default TrackContent;
