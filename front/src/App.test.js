@@ -58,6 +58,8 @@ test('<App /> calls updateToken() upon initialization', () => {
 })
 
 test('Initial app-wide integration test', async () => {
+  //
+
   const wrapper = render(<App />)
   await fireEvent.change(wrapper.container.getElementsByClassName('search-input')[0], {
     target: { value: 'saba' },
@@ -80,7 +82,23 @@ test('Initial app-wide integration test', async () => {
   fireEvent.click(wrapper.getByText('Ace'))
 
   await flushPromises()
+  //wrapper.debug()
 
+  // test <TrackImage> component
+  expect(wrapper.getByTestId('track-image').src).toEqual(mockTrack.album.images[1].url)
+
+  // test <Header> Component
+  expect(wrapper.getByTestId('main__track-title').innerHTML).toEqual('Ace')
+  expect(wrapper.getAllByTestId('main__track-artist').length).toEqual(3)
+  expect(wrapper.getAllByTestId('main__track-artist')[0].innerHTML).toEqual(' Noname ')
+  expect(wrapper.getAllByTestId('main__track-artist')[1].innerHTML).toEqual(' • Smino ')
+  expect(wrapper.getAllByTestId('main__track-artist')[2].innerHTML).toEqual(' • Saba ')
+
+  // test that audio player loads
+  expect(wrapper.queryByTestId('footer')).toBeNull()
+  fireEvent.click(wrapper.getByText('Load track in audio player'))
+  expect(wrapper.getByTestId('footer')).toBeTruthy()
+  expect(wrapper.getByTestId('audio-player').src).toEqual('https://open.spotify.com/embed?uri=spotify:track:' + mockTrack.id + '&theme=white')
 
 });
 

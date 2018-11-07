@@ -7,7 +7,7 @@ import './App.css';
 // import FetchRelatedTracks from './lib/fetchRelatedTracks.js'
 import * as Spotify from './lib/fetchFromSpotify.js'
 import Search from './components/search.js'
-import TrackContent from './components/trackContent.js'
+import TrackImage from './components/trackImage.js'
 import TrackFeatures from './components/trackFeatures.js'
 import RelatedTracks from './components/relatedTracks.js'
 import Header from './components/header.js'
@@ -200,7 +200,7 @@ class App extends Component {
 
         {(this.state.appMode !== 'search')
           ? <div className='top'>
-            <TrackContent track={this.state.activeTrack} />
+            <TrackImage track={this.state.activeTrack} />
             <Header track={this.state.activeTrack}
               loadTrackInPlayer={this.loadTrackInPlayer} />
           </div>
@@ -242,7 +242,8 @@ class App extends Component {
           : ''}
         {(this.state.currentlyPlayingTrackId) ?
           <div className='footer' data-testid='footer'>
-            <iframe src={iframeURL} width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe src={iframeURL} width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"
+            data-testid='audio-player'></iframe>
           </div> : ''}
 
 

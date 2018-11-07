@@ -39,6 +39,8 @@ export async function fetchTrack(trackId, token) {
         })
     })
     const trackData = await resp.json()
+    console.log('fetchTrack')
+    console.log(JSON.stringify(trackData))
     if (trackData.error) {
         return Error('error')
     } else {
