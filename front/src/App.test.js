@@ -23,19 +23,15 @@ jest.mock('./lib/fetchFromSpotify', () => ({
     }
   }),
   fetchSearchResults: jest.fn((a, b) => {
-    console.log('ran the fetchSearchResults mock', a, b)
     return mockSearchResults
   }),
   fetchTrack: jest.fn((a, b) => {
-    console.log('ran the fetchTrack mock', a, b)
     return mockTrack
   }),
   fetchTrackFeatures: jest.fn((a, b) => {
-    console.log('ran the fetchTrackFeatures mock', a, b)
     return mockTrackFeatures
   }),
   fetchRelatedTracks:jest.fn((a, b) => {
-    console.log('ran the fetchRelatedTracks mock', a, b)
     return mockRelatedTracks
   }),
 }))
@@ -63,7 +59,15 @@ test('<App /> calls updateToken() upon initialization', () => {
 })
 
 test('Initial app-wide integration test', async () => {
-  //
+  /* need to eventually break this test up into smaller units in order to test 
+    more specific features but for now it does a fairly robust job of making sure all the components interact correctly and render the correct data. It also tests
+    user interactions and makes sure the user can move through the entire 'sequence' of the app: 
+    1) opening page --> 2) submit search term --> 3) display search results --> 
+    4) select a specific track --> 5) display track details --> 
+    6) select features for finding realted tracks --> 7) display related tracks -->
+    8) select new track
+    
+  */
 
   const wrapper = render(<App />)
   await fireEvent.change(wrapper.container.getElementsByClassName('search-input')[0], {
@@ -143,6 +147,16 @@ test('Initial app-wide integration test', async () => {
 
   fireEvent.click(wrapper.getByText('Submit Query'))
   expect(Spotify.fetchRelatedTracks).toHaveBeenCalledWith('&acousticness=0.865&energy=0.509&tempo=106.892seed_tracks=2jlVsVNu7aL9OjxyJwYZF5&seed_artists=1EpyA68dKpjf7jXmQL88Hy&seed_artists=1ybINI1qPiFbwDXamRtwxD&seed_artists=7Hjbimq43OgxaBRpFXic4x', 777)
+
+
+  await flushPromises()
+  //make sure each realte track was actually rendered with the correct text
+  mockRelatedTracks.forEach((track) => {
+    const element = wrapper.getByText(track.name)
+    expect(element).toBeTruthy()
+
+    expect(element.innerHTML).toBe(track.name)
+  });
 
 });
 

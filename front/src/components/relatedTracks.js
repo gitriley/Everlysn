@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BarGraphFeature from './barGraphFeature.js' 
+import BarGraphFeature from './barGraphFeature.js'
 import TextFeature from './textFeature.js'
 import AudioSVG from './icons/audioSVG.js'
 import SpotifySVG from './icons/spotifySVG.js'
@@ -14,7 +14,7 @@ class RelatedTracks extends Component {
         this.setActiveFeature = this.setActiveFeature.bind(this);
     }
     state = {
-        trackFeatures : [
+        trackFeatures: [
             'acousticness',
             'danceability',
             'energy',
@@ -38,24 +38,24 @@ class RelatedTracks extends Component {
     representation(track, activeFeature) {
         const value = track.features[activeFeature]
         if (this.getFeatureType(activeFeature) === 'text') {
-            return <TextFeature className="graph-bar" 
-                                val={value}
-                                feature={activeFeature}/>
+            return <TextFeature className="graph-bar"
+                val={value}
+                feature={activeFeature} />
         } else {
-            return <BarGraphFeature className="graph-bar" 
-                                    val={value}
-                                    feature={activeFeature}/>
+            return <BarGraphFeature className="graph-bar"
+                val={value}
+                feature={activeFeature} />
         }
     }
 
     getFeatureType(activeFeature) {
-        switch(activeFeature) {
-        case 'key':
-        case 'mode':
-        case 'time_signature':
-            return 'text'
-        default:
-            return 'numerical'
+        switch (activeFeature) {
+            case 'key':
+            case 'mode':
+            case 'time_signature':
+                return 'text'
+            default:
+                return 'numerical'
         }
     }
 
@@ -64,27 +64,27 @@ class RelatedTracks extends Component {
             return (
                 <div className='feature-row' key={track.id}>
                     <div className='load-track_wrapper' onClick={() => this.props.loadTrackInPlayer(track.id)}>
-                        <AudioSVG/>
+                        <AudioSVG />
                     </div>
                     <div className='external-link_wrapper'>
                         <a href={track.external_urls.spotify} target="_blank">
-                            <SpotifySVG/>
+                            <SpotifySVG />
                         </a>
                     </div>
                     <div className='rel-track_text'>
-                        <p  id={track.id}
+                        <p id={track.id}
                             className='rel-track_name'
                             onClick={this.selectTrack}
                             title={track.name}>{track.name}</p>
                         <p className='rel-track_artist'>{track.artists[0].name}</p>
                     </div>
-                    
+
                     {this.representation(track, this.props.activeFeature)}
 
                     {(this.getFeatureType(this.props.activeFeature) === 'numerical')
-                    ? <div className='rel-track_val'>{track.features[this.props.activeFeature].toFixed(2)}</div>
-                    : ''}
-                    
+                        ? <div className='rel-track_val'>{track.features[this.props.activeFeature].toFixed(2)}</div>
+                        : ''}
+
                 </div>)
         })
     }
@@ -92,7 +92,7 @@ class RelatedTracks extends Component {
     selectTrack = (e) => {
         e.preventDefault();
         this.props.setActiveTrack(e.currentTarget.getAttribute('id'))
-    } 
+    }
 
     setActiveFeature = (e) => {
         e.preventDefault();
@@ -107,7 +107,7 @@ class RelatedTracks extends Component {
                 </div>
             )
         } else {
-            return <p style={{margin: '15px'}}>Sorry, we could not find any tracks similar to this one. Please try a different track.</p>
+            return <p style={{ margin: '15px' }}>Sorry, we could not find any tracks similar to this one. Please try a different track.</p>
         }
     }
 }
