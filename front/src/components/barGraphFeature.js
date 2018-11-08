@@ -11,7 +11,7 @@ class BarGraphFeature extends Component {
     calcWidth(val, feature) {
         switch(feature) {
             case 'tempo':
-                return (val/220)*100
+                return ((val/220)*100).toFixed(2)
             case 'loudness':
                 /* 
                 set a hard floor on minimum loudness value because tracks rarely (if ever) 
@@ -23,17 +23,19 @@ class BarGraphFeature extends Component {
                 if (loudness < -35) {
                     loudness = -25
                 }
-                return (1-(loudness/(-35)))*100
+                return ((1-(loudness/(-35)))*100).toFixed(2)
             default:
                 return val*100
         }
     }
 
     render() {
+        const feature = this.props.feature
         return (
             <div    
-                className="graph-bar" 
-                style={{width: this.calcWidth(this.props.val, this.props.feature) + '%'}}> 
+                className='graph-bar'
+                data-testid={`${feature}-bar`}
+                style={{width: this.calcWidth(this.props.val, feature) + '%'}}> 
             </div>
         )
     }

@@ -100,6 +100,33 @@ test('Initial app-wide integration test', async () => {
   expect(wrapper.getByTestId('footer')).toBeTruthy()
   expect(wrapper.getByTestId('audio-player').src).toEqual('https://open.spotify.com/embed?uri=spotify:track:' + mockTrack.id + '&theme=white')
 
+
+  // test that track features have the correct values
+  expect(wrapper.getByTestId('acousticness-value').innerHTML).toEqual('0.86')
+  expect(wrapper.getByTestId('danceability-value').innerHTML).toEqual('0.69')
+  expect(wrapper.getByTestId('energy-value').innerHTML).toEqual('0.51')
+  expect(wrapper.getByTestId('instrumentalness-value').innerHTML).toEqual('0.00')
+  expect(wrapper.getByTestId('liveness-value').innerHTML).toEqual('0.12')
+  expect(wrapper.getByTestId('speechiness-value').innerHTML).toEqual('0.41')
+  expect(wrapper.getByTestId('valence-value').innerHTML).toEqual('0.65')
+  expect(wrapper.getByTestId('loudness-value').innerHTML).toEqual('-9.17')
+  expect(wrapper.getByTestId('tempo-value').innerHTML).toEqual('106.89')
+
+
+  // test that track feature bar graphs have the correct width
+  expect(wrapper.getByTestId('acousticness-bar').style.width).toEqual('86.5%')
+  expect(wrapper.getByTestId('loudness-bar').style.width).toEqual('73.79%')
+  expect(wrapper.getByTestId('tempo-bar').style.width).toEqual('48.59%')
+
+  expect(wrapper.getByTestId('key-text').innerHTML).toEqual('A♯/B♭')
+  expect(wrapper.getByTestId('time_signature-text').innerHTML).toEqual('4/4')
+  expect(wrapper.getByTestId('mode-text').innerHTML).toEqual('Major')
+
+  // test finding similar tracks
+
+  //fireEvent.click(wrapper.getByText('Find Similar Tracks'))
+
+
 });
 
 

@@ -29,7 +29,7 @@ class TextFeature extends Component {
     }
 
     getVal(val, feature) {
-        switch(feature) {
+        switch (feature) {
             case 'time_signature':
                 return `${val}/4`
             case 'mode':
@@ -40,9 +40,11 @@ class TextFeature extends Component {
     }
 
     render() {
+        const feature = this.props.feature
         return (
-            <div className='text-val'> 
-                {this.getVal(this.props.val, this.props.feature)}
+            <div className='text-val'
+                data-testid={`${feature}-text`}>
+                {this.getVal(this.props.val, feature)}
             </div>
         )
     }
