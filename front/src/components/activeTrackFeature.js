@@ -68,7 +68,7 @@ class ActiveTrackFeature extends Component {
                     {this.props.featureSelectionMode
                         ? <input type='checkbox'
                             className='track-feature_checkbox'
-                            data-testid={`${feature}_feature-checkbox`}
+                            data-testid={`${feature}-checkbox`}
                             checked={this.props.checked}
                             onChange={() => this.props.toggle(feature)} />
                         : ''}

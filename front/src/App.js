@@ -137,7 +137,7 @@ class App extends Component {
       }
     })
     const featuresString = featuresStrings.join("")
-    const queryString = `${trackString}${artistsString}${featuresString}`
+    const queryString = `${featuresString}${trackString}${artistsString}`
     return queryString;
   }
 

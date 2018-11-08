@@ -96,6 +96,7 @@ export async function fetchRelatedTracks(queryString, token) {
     })
 
     console.log('tracksWithFeatures')
-    console.log(JSON.stringify(tracksWithFeatures))
+    //console.log(JSON.stringify(tracksWithFeatures))
+    console.log(tracksWithFeatures);
     return tracksWithFeatures
 }

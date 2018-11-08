@@ -6,6 +6,7 @@ import App from './App'
 import mockSearchResults from '../test_data/searchResults'
 import mockTrack from '../test_data/track'
 import mockTrackFeatures from '../test_data/trackFeatures'
+import mockRelatedTracks from '../test_data/relatedTracks'
 //import renderer from 'react-test-renderer';
 import { render, cleanup, fireEvent } from 'react-testing-library'
 
@@ -32,7 +33,11 @@ jest.mock('./lib/fetchFromSpotify', () => ({
   fetchTrackFeatures: jest.fn((a, b) => {
     console.log('ran the fetchTrackFeatures mock', a, b)
     return mockTrackFeatures
-  })
+  }),
+  fetchRelatedTracks:jest.fn((a, b) => {
+    console.log('ran the fetchRelatedTracks mock', a, b)
+    return mockRelatedTracks
+  }),
 }))
 
 
@@ -118,14 +123,26 @@ test('Initial app-wide integration test', async () => {
   expect(wrapper.getByTestId('loudness-bar').style.width).toEqual('73.79%')
   expect(wrapper.getByTestId('tempo-bar').style.width).toEqual('48.59%')
 
+  // test that 'text; track features display the correct content
   expect(wrapper.getByTestId('key-text').innerHTML).toEqual('A♯/B♭')
   expect(wrapper.getByTestId('time_signature-text').innerHTML).toEqual('4/4')
   expect(wrapper.getByTestId('mode-text').innerHTML).toEqual('Major')
 
-  // test finding similar tracks
+  // test finding similar tracks works
+  expect(wrapper.queryByTestId('acousticness-checkbox')).toBeNull()
+  fireEvent.click(wrapper.getByText('Find Similar Tracks'))
+  expect(wrapper.queryByTestId('acousticness-checkbox')).toBeTruthy()
+  expect(wrapper.queryByTestId('acousticness-checkbox').checked).toEqual(false)
 
-  //fireEvent.click(wrapper.getByText('Find Similar Tracks'))
+  fireEvent.click(wrapper.queryByTestId('acousticness-checkbox'))
+  fireEvent.click(wrapper.queryByTestId('energy-checkbox'))
+  fireEvent.click(wrapper.queryByTestId('tempo-checkbox'))
+  expect(wrapper.queryByTestId('acousticness-checkbox').checked).toEqual(true)
+  expect(wrapper.queryByTestId('energy-checkbox').checked).toEqual(true)
+  expect(wrapper.queryByTestId('tempo-checkbox').checked).toEqual(true)
 
+  fireEvent.click(wrapper.getByText('Submit Query'))
+  expect(Spotify.fetchRelatedTracks).toHaveBeenCalledWith('&acousticness=0.865&energy=0.509&tempo=106.892seed_tracks=2jlVsVNu7aL9OjxyJwYZF5&seed_artists=1EpyA68dKpjf7jXmQL88Hy&seed_artists=1ybINI1qPiFbwDXamRtwxD&seed_artists=7Hjbimq43OgxaBRpFXic4x', 777)
 
 });
 
