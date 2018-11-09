@@ -10,6 +10,12 @@ import mockRelatedTracks from '../test_data/relatedTracks'
 //import renderer from 'react-test-renderer';
 import { render, cleanup, fireEvent } from 'react-testing-library'
 
+
+// redux shit
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './reducers/reducer'
+
 afterEach(() => {
   cleanup()
   Spotify.fetchToken.mockClear()
@@ -44,16 +50,26 @@ const flushPromises = () => {
 
 
 it('renders without crashing', async () => {
+  const store = createStore(reducer)
   spyOn(App.prototype, 'updateToken')
   const div = document.createElement('div')
-  await ReactDOM.render(<App />, div)
+  await ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>, div
+  )
   ReactDOM.unmountComponentAtNode(div)
 })
 
 
 test('<App /> calls updateToken() upon initialization', () => {
+  const store = createStore(reducer)
   spyOn(App.prototype, 'updateToken').and.callThrough()
-  const wrapper = render(<App />)
+  const wrapper = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
   expect(Spotify.fetchToken).toHaveBeenCalledTimes(1)
 
 })
@@ -68,8 +84,12 @@ test('Initial app-wide integration test', async () => {
     8) select new track
     
   */
-
-  const wrapper = render(<App />)
+ const store = createStore(reducer)
+ const wrapper = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  ) 
   await fireEvent.change(wrapper.container.getElementsByClassName('search-input')[0], {
     target: { value: 'saba' },
   })

@@ -12,6 +12,7 @@ import TrackFeatures from './components/trackFeatures.js'
 import RelatedTracks from './components/relatedTracks.js'
 import Header from './components/header.js'
 import FeatureDescription from './components/featureDescription.js'
+import FooterAudioPlayerContainer from './containers/FooterAudioPlayerContainer.js'
 
 class App extends Component {
 
@@ -240,13 +241,9 @@ class App extends Component {
               : ''}
           </div>
           : ''}
-        {(this.state.currentlyPlayingTrackId) ?
-          <div className='footer' data-testid='footer'>
-            <iframe src={iframeURL} width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"
-            data-testid='audio-player'></iframe>
-          </div> : ''}
 
 
+        <FooterAudioPlayerContainer/>
       </div>
     );
   }
