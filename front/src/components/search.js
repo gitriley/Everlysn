@@ -10,13 +10,14 @@ class Search extends Component {
         this.submitQuery = this.submitQuery.bind(this);
         this.selectTrack = this.selectTrack.bind(this);
     }
-    
+
     state = {
         searchTerms: '',
         searchResults: [],
-        searchResultsPresent: false
+        searchResultsPresent: false,
+        error: null
     }
-    
+
     async submitQuery(e) {
         e.preventDefault();
 
@@ -30,68 +31,75 @@ class Search extends Component {
         }
 
         // todo: make sure token is not expired
-        const data = await Spotify.fetchSearchResults(this.state.searchTerms, this.props.token)
+        const data = await Spotify.fetchSearchResults(this.state.searchTerms, this.props.token).catch((error) => {
+            console.log('search error', error)
+            this.setState({ error })
+        })
 
-        let tracks = data.tracks.items.map((item) => {
-            let artists = item.artists.map((artist, index) => {
-                if (index > 0) {
-                    return (
-                        <span key={artist.id}> • {artist.name} </span>
-                    )
-                } else {
-                    return (
-                        <span key={artist.id}> {artist.name} </span>
-                    )
-                }
+        if (data) {
+            let tracks = data.tracks.items.map((item) => {
+                let artists = item.artists.map((artist, index) => {
+                    if (index > 0) {
+                        return (
+                            <span key={artist.id}> • {artist.name} </span>
+                        )
+                    } else {
+                        return (
+                            <span key={artist.id}> {artist.name} </span>
+                        )
+                    }
+                })
+                return (
+                    <div key={item.id} className="track-wrapper"
+                        id={item.id}
+                        onClick={this.selectTrack}>
+                        <span data-testid='searchResults_name'>{item.name}</span>
+                        <span className="track-artists">{artists}</span>
+                    </div>
+                )
             })
-            return (
-                <div key={item.id} className="track-wrapper"
-                    id={item.id}
-                    onClick={this.selectTrack}>
-                    <span data-testid='searchResults_name'>{item.name}</span>
-                    <span className="track-artists">{artists}</span>
-                </div>
-            )
-        })
-        this.setState({
-            searchResults: tracks,
-            searchResultsPresent: true
-        })
+            this.setState({
+                searchResults: tracks,
+                searchResultsPresent: true
+            })
+        }
     }
 
     selectTrack = (e) => {
         e.preventDefault();
         this.props.setActiveTrack(e.currentTarget.getAttribute('id'))
-    }    
+    }
 
 
     render() {
-        const searchTerms = this.state.searchTerms;
-        const searchResultsPresent = this.state.searchResultsPresent;
+        const { searchTerms, error, searchResultsPresent, searchResults } = this.state;
         return (
             <div className='search'>
-                <div className={'search-wrapper ' +  (!searchResultsPresent && 'full')}>
+                <div className={'search-wrapper ' + (!searchResultsPresent && 'full')}>
                     <div className='search-inner'>
                         <p className={'search-prompt ' + (searchResultsPresent && 'bar')}>
                             Search for songs by album name, song name, or artist
                         </p>
                         <form onSubmit={this.submitQuery} className='search-form'>
-                            <input 
+                            <input
                                 className='search-input'
                                 type='text'
-                                value={searchTerms} 
-                                onChange={e => this.setState({searchTerms: e.target.value })}/>
+                                value={searchTerms}
+                                onChange={e => this.setState({ searchTerms: e.target.value })} />
                             <button className='search-button-icon' type='submit'>
-                                <SearchSVG/>
+                                <SearchSVG />
                             </button>
                         </form>
                     </div>
                 </div>
                 {(this.props.mode === "search") ?
-                    <div className="searchResults">
-                        {this.state.searchResults.length === 0 ? <div className='loader'></div> : this.state.searchResults} 
-                    </div>
-                    : ""}
+                    (error ? <div> error! <pre>{JSON.stringify(error, null, 2)}</pre></div>
+                        :
+                        <div className="searchResults">
+                            {searchResults.length === 0 ? <div className='loader'></div> : searchResults}
+                        </div>
+                    ) : ''}
+                
             </div>
         )
     }

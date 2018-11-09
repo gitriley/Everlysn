@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LoadTrackInPlayer from '../containers/LoadTrackInPlayer'
 
 class Header extends Component {
 
@@ -39,6 +40,8 @@ class Header extends Component {
                     <p className='header__track-title' data-testid='main__track-title'>{this.props.track.name}</p>
                     {this.listArtists()}
                     <button onClick={() => this.props.loadTrackInPlayer(this.props.track.id)} className="header__load-track-btn">Load track in audio player</button>
+                    <LoadTrackInPlayer 
+                      trackId={this.props.track.id}  />
                 </div>
             </div>
         )

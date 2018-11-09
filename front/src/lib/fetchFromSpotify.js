@@ -23,7 +23,7 @@ export async function fetchSearchResults(searchTerms, token) {
     const results = await resp.json()
     if (results.error) {
         console.log(results.error)
-        return Error('error')
+        throw results.error
     } else {
         return results
     } 

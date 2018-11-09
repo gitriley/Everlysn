@@ -22,7 +22,7 @@ jest.mock('./lib/fetchFromSpotify', () => ({
       token_age_minutes: 1
     }
   }),
-  fetchSearchResults: jest.fn((a, b) => {
+  fetchSearchResults: jest.fn( async (a, b) => {
     return mockSearchResults
   }),
   fetchTrack: jest.fn((a, b) => {
@@ -31,7 +31,7 @@ jest.mock('./lib/fetchFromSpotify', () => ({
   fetchTrackFeatures: jest.fn((a, b) => {
     return mockTrackFeatures
   }),
-  fetchRelatedTracks:jest.fn((a, b) => {
+  fetchRelatedTracks: jest.fn((a, b) => {
     return mockRelatedTracks
   }),
 }))
