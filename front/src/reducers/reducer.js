@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import {
-  LOAD_TRACK_IN_PLAYER
-} from './actions'
-​
+// import {
+//   LOAD_TRACK_IN_PLAYER
+// } from '../actions/index'
+
 // function visibilityFilter(state = SHOW_ALL, action) {
 //   switch (action.type) {
 //     case SET_VISIBILITY_FILTER:
@@ -38,15 +38,15 @@ import {
 
 function audioPlayerId(state = null, action) {
     switch (action.type) {
-        case LOAD_TRACK_IN_PLAYER:
+        case 'LOAD_TRACK_IN_PLAYER':
             return action.trackId
         default:
             return state
     }
 }
-​
+
 const reducer = combineReducers({
     audioPlayerId
 })
-​
+
 export default reducer
