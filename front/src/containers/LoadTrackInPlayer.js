@@ -7,6 +7,7 @@ const LoadTrackInPlayer = ({ dispatch, trackId }) => {
   return (
     <div>      
       <button 
+        className="header__load-track-btn"
         onClick={e => {
           e.preventDefault()          
           dispatch(loadTrackInPlayer(trackId))
