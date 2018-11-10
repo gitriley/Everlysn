@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 // import FetchToken from './lib/fetchToken.js'
@@ -14,7 +15,7 @@ import Header from './components/header.js'
 import FeatureDescription from './components/featureDescription.js'
 import FooterAudioPlayerContainer from './containers/FooterAudioPlayerContainer.js'
 
-class App extends Component {
+export class App extends Component {
 
   // app modes: trackFeatures, relatedTracks, search
   constructor(props) {
@@ -25,7 +26,6 @@ class App extends Component {
     this.toggleQueryFeatures = this.toggleQueryFeatures.bind(this)
     this.onFindSimilarTracks = this.onFindSimilarTracks.bind(this)
     this.setActiveFeature = this.setActiveFeature.bind(this)
-    this.loadTrackInPlayer = this.loadTrackInPlayer.bind(this)
     this.sortTracksAscending = this.sortTracksAscending.bind(this)
     this.sortTracksDescending = this.sortTracksDescending.bind(this)
     this.updateToken = this.updateToken.bind(this)
@@ -168,10 +168,6 @@ class App extends Component {
     this.setState({ activeFeature: feature })
   }
 
-  loadTrackInPlayer(id) {
-    this.setState({ currentlyPlayingTrackId: id });
-  }
-
   sortTracksAscending(attribute) {
     let sortedTracks = this.state.relatedTracks.slice()
     sortedTracks.sort(function (a, b) {
@@ -189,10 +185,15 @@ class App extends Component {
   }
 
   render() {
-    const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + this.state.currentlyPlayingTrackId + '&theme=white'
-    return (
-      <div className={"App " + (this.state.currentlyPlayingTrackId && 'hasFooter')}>
+    let audioPlayerId;
+    if (this.props.audioPlayerId) {
+      audioPlayerId = this.props.audioPlayerId
+    }
+    
 
+    const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + audioPlayerId + '&theme=white'
+    return (
+      <div className={"App " + (audioPlayerId ? 'hasFooter' : '')}>
 
         <Search token={this.state.access_token}
           setActiveTrack={this.setActiveTrack}
@@ -202,8 +203,7 @@ class App extends Component {
         {(this.state.appMode !== 'search')
           ? <div className='top'>
             <TrackImage track={this.state.activeTrack} />
-            <Header track={this.state.activeTrack}
-              loadTrackInPlayer={this.loadTrackInPlayer} />
+            <Header track={this.state.activeTrack} />
           </div>
           : ''}
 
@@ -236,8 +236,7 @@ class App extends Component {
               ? <RelatedTracks relatedTracks={this.state.relatedTracks}
                 setActiveTrack={this.setActiveTrack}
                 activeFeature={this.state.activeFeature}
-                setActiveFeature={this.setActiveFeature}
-                loadTrackInPlayer={this.loadTrackInPlayer} />
+                setActiveFeature={this.setActiveFeature} />
               : ''}
           </div>
           : ''}
@@ -249,4 +248,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(store) {
+  return store
+}
+
+
+export const ConnectApp = connect(mapStateToProps)(App)
+//export default App

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers/reducer'
 import './index.css';
-import App from './App';
+import {ConnectApp} from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducer)
@@ -12,7 +12,7 @@ const unsubscribe = store.subscribe(() => console.log(store.getState()))
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ConnectApp />
     </Provider>, 
     document.getElementById('root')
 );

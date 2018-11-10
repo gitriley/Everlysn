@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BarGraphFeature from './barGraphFeature.js'
+import IconLoadTrackInPlayer from '../containers/IconLoadTrackInPlayer'
 import TextFeature from './textFeature.js'
-import AudioSVG from './icons/audioSVG.js'
 import SpotifySVG from './icons/spotifySVG.js'
 
 class RelatedTracks extends Component {
@@ -63,9 +63,8 @@ class RelatedTracks extends Component {
         return this.props.relatedTracks.map((track) => {
             return (
                 <div className='feature-row' key={track.id}>
-                    <div className='load-track_wrapper' onClick={() => this.props.loadTrackInPlayer(track.id)}>
-                        <AudioSVG />
-                    </div>
+                    <IconLoadTrackInPlayer 
+                      trackId={track.id}  />
                     <div className='external-link_wrapper'>
                         <a href={track.external_urls.spotify} target="_blank">
                             <SpotifySVG />

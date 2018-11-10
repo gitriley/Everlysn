@@ -2,7 +2,7 @@ import * as Spotify from './lib/fetchFromSpotify.js'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import {App} from './App'
 import mockSearchResults from '../test_data/searchResults'
 import mockTrack from '../test_data/track'
 import mockTrackFeatures from '../test_data/trackFeatures'
