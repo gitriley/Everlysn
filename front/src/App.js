@@ -15,7 +15,7 @@ import RelatedTracks from "./components/relatedTracks.js";
 import Header from "./components/header.js";
 import ControlPanel_RelTracks from "./components/controlPanel_RelatedTracks.js";
 import ControlPanel_TrackFeats from "./components/controlPanel_TrackFeatures.js";
-import FooterAudioPlayerContainer from "./containers/FooterAudioPlayerContainer.js";
+import FooterAudioPlayer from "./components/FooterAudioPlayer.js";
 
 export class App extends Component {
   // app modes: trackFeatures, relatedTracks, search
@@ -251,7 +251,7 @@ export class App extends Component {
           </div>
         )}
 
-        <FooterAudioPlayerContainer />
+        <FooterAudioPlayer />
       </div>
     );
   }
