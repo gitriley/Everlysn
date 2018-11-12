@@ -20,33 +20,23 @@ class FeatureDescription extends Component {
         this.props.featureSelectionMode ? this.submitQuery() : this.props.dispatch(toggleFeatureSelectionMode(true))
     }
 
-    renderCorrect() {
-        let featureSelectionMode = this.props.featureSelectionMode
-        if (this.props.featureSelectionMode) {
-            return (
-                <div className='feature__wrapper'>
-                    <p className='feature__header-info-text'>Choose features to customize your search:</p>
-                    <button className='rel-track__btn'
-                        onClick={this.onButtonClick}>
-                        {featureSelectionMode ? 'Submit Query' : 'Find Similar Tracks'}
-                    </button>
-                </div>)
-        } else if (!this.props.featureSelectionMode) {
-            return (
-                <div className='feature__wrapper'>
-                    <p className='feature__header-info-text'>Features for this track:</p>
-                    <button className='rel-track__btn'
-                        onClick={this.onButtonClick}>
-                        {featureSelectionMode ? 'Submit Query' : 'Find Similar Tracks'}
-                    </button>
-                </div>)
-        } 
-    }
 
     render() {
+        let featureSelectionMode = this.props.featureSelectionMode
+        let buttonText = featureSelectionMode ? 'Submit Query' : 'Find Similar Tracks'
+        let infoText = featureSelectionMode ? 
+            'Choose features to customize your search:' : 
+            'Features for this track:'
+
         return (
             <div className='feature__wrapper-outer'>
-                {this.renderCorrect()}
+                <div className='feature__wrapper'>
+                    <p className='feature__header-info-text'>{infoText}</p>
+                    <button className='rel-track__btn'
+                        onClick={this.onButtonClick}>
+                        {buttonText}
+                    </button>
+                </div>
             </div>
         )
     }
