@@ -36,6 +36,15 @@ import { combineReducers } from 'redux'
 //   }
 // }
 
+function featureSelectionMode(state = false, action) {
+    switch (action.type) {
+        case 'TOGGLE_FEATURE_SELECTION_MODE':
+            return action.featureSelectionMode
+        default:
+            return state
+    }
+}
+
 function audioPlayerId(state = null, action) {
     switch (action.type) {
         case 'LOAD_TRACK_IN_PLAYER':
@@ -45,8 +54,9 @@ function audioPlayerId(state = null, action) {
     }
 }
 
-const reducer = combineReducers({
-    audioPlayerId
+const rootReducer = combineReducers({
+    audioPlayerId,
+    featureSelectionMode
 })
 
-export default reducer
+export default rootReducer

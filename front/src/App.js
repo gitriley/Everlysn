@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toggleFeatureSelectionMode } from './actions'
 import logo from './logo.svg';
 import './App.css';
 // import FetchToken from './lib/fetchToken.js'
@@ -94,6 +95,7 @@ export class App extends Component {
 
   async updateToken() {
     const tokenObj = await Spotify.fetchToken()
+    console.log('tokenObj', tokenObj)
     this.setState({
       access_token: tokenObj.token,
       tokenInfo: {
@@ -114,11 +116,12 @@ export class App extends Component {
 
   async componentWillMount() {
     console.log('hi')
-    this.updateToken()
+    await this.updateToken()
   }
 
   enterFeatureSelectionMode() {
-    this.setState({ featureSelectionMode: true })
+    this.props.dispatch(toggleFeatureSelectionMode(true))
+    //this.setState({ featureSelectionMode: true })
   }
 
   buildRecommendationQueryString() {
@@ -151,7 +154,8 @@ export class App extends Component {
     this.setState({
       relatedTracks: await Spotify.fetchRelatedTracks(queryString, this.state.access_token),
     }, this.setAppMode('relatedTracks'))
-    this.setState({ featureSelectionMode: false })
+    this.props.dispatch(toggleFeatureSelectionMode(false))
+    //this.setState({ featureSelectionMode: false })
   }
 
   toggleQueryFeatures(feature) {
@@ -216,7 +220,7 @@ export class App extends Component {
                 mode={this.state.appMode}
                 setActiveFeature={this.setActiveFeature}
                 enterFeatureSelectionMode={this.enterFeatureSelectionMode}
-                featureSelectionMode={this.state.featureSelectionMode}
+                featureSelectionMode={this.props.featureSelectionMode}
                 findSimilarTracks={this.onFindSimilarTracks}
                 sortTracksAscending={this.sortTracksAscending}
                 sortTracksDescending={this.sortTracksDescending} />
@@ -228,7 +232,7 @@ export class App extends Component {
                 queryFeatures={this.state.queryFeatures}
                 toggleQueryFeatures={this.toggleQueryFeatures}
                 features={this.state.trackFeatures}
-                featureSelectionMode={this.state.featureSelectionMode} />
+                featureSelectionMode={this.props.featureSelectionMode} />
               : ''}
 
 
@@ -242,7 +246,7 @@ export class App extends Component {
           : ''}
 
 
-        <FooterAudioPlayerContainer/>
+        <FooterAudioPlayerContainer something={'yo yo'}/>
       </div>
     );
   }
