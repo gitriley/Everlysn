@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import BarGraphFeature from "./barGraphFeature.js";
-import TextFeature from "./textFeature.js";
 import ActiveTrackFeature from "./activeTrackFeature";
-import * as descriptions from "../featureDescriptions.js";
 
 class TrackFeatures extends Component {
   constructor(props) {
@@ -46,8 +43,6 @@ class TrackFeatures extends Component {
           featureVal={this.props.features[feature]}
           showFeatureDescription={this.showFeatureDescription}
           activeFeatureDescr={this.state.activeFeatureDescr}
-          checked={this.props.queryFeatures[feature]}
-          featureSelectionMode={this.props.featureSelectionMode}
         />
       );
     });

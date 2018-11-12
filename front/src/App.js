@@ -221,11 +221,8 @@ export class App extends Component {
             </div>
 
             <TrackFeatures
-              token={this.state.access_token}
-              trackId={this.state.activeTrackId}
               queryFeatures={this.props.store.queryFeatures}
               features={this.state.trackFeatures}
-              featureSelectionMode={this.props.store.featureSelectionMode}
             />
           </div>
         )}
@@ -235,7 +232,6 @@ export class App extends Component {
             <div className="feature-description">
               <ControlPanel_RelTracks
                 activeFeature={this.state.activeFeature}
-                mode={this.state.appMode}
                 setActiveFeature={this.setActiveFeature}
                 findSimilarTracks={this.onFindSimilarTracks}
                 sortTracksAscending={this.sortTracksAscending}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import BarGraphFeature from './barGraphFeature.js'
 import TextFeature from './textFeature.js'
 import FeatureCheckbox from './featureCheckbox.js'
@@ -84,4 +85,11 @@ class ActiveTrackFeature extends Component {
     }
 }
 
-export default ActiveTrackFeature;
+function mapStateToProps(store) {
+    return {
+      featureSelectionMode: store.featureSelectionMode
+    };
+  }
+  
+export default connect(mapStateToProps)(ActiveTrackFeature);
+  
