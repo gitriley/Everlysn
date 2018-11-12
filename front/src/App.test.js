@@ -157,7 +157,6 @@ test('Initial app-wide integration test', async () => {
   expect(wrapper.queryByTestId('acousticness-checkbox')).toBeNull()
   fireEvent.click(wrapper.getByText('Find Similar Tracks'))
 
-  wrapper.debug()
   expect(wrapper.queryByTestId('acousticness-checkbox')).toBeTruthy()
   expect(wrapper.queryByTestId('acousticness-checkbox').checked).toEqual(false)
 

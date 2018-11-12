@@ -77,7 +77,6 @@ class FeatureDescription extends Component {
                 <div className='feature__wrapper'>
                     <div className='feature__header-text'>
                         <p className='feature__header-info-text'>Similar Tracks:</p>
-                        {/* <p className='feature__header-info-track'>{this.props.track.name}:</p> */}
                     </div>
                     <div className='feature__select'>
                         <span className='feature__select-text'>feature:</span>
