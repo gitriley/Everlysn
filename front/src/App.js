@@ -246,7 +246,7 @@ export class App extends Component {
           : ''}
 
 
-        <FooterAudioPlayerContainer something={'yo yo'}/>
+        <FooterAudioPlayerContainer />
       </div>
     );
   }
