@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import InfoSVG from "./icons/infoSVG.js";
 
-class FeatureDescription extends Component {
+class ControlPanel_RelatedTracks extends Component {
   constructor(props) {
     super(props);
     this.setActiveFeature = this.setActiveFeature.bind(this);
@@ -109,4 +109,4 @@ function mapStateToProps(store) {
   };
 }
 
-export default connect(mapStateToProps)(FeatureDescription);
+export default connect(mapStateToProps)(ControlPanel_RelatedTracks);

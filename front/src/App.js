@@ -13,7 +13,6 @@ import TrackImage from "./components/trackImage.js";
 import TrackFeatures from "./components/trackFeatures.js";
 import RelatedTracks from "./components/relatedTracks.js";
 import Header from "./components/header.js";
-import ControlPanel from "./components/featureDescription.js";
 import ControlPanel_RelTracks from "./components/controlPanel_RelatedTracks.js";
 import ControlPanel_TrackFeats from "./components/controlPanel_TrackFeatures.js";
 import FooterAudioPlayerContainer from "./containers/FooterAudioPlayerContainer.js";
