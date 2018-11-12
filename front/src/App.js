@@ -13,7 +13,9 @@ import TrackImage from "./components/trackImage.js";
 import TrackFeatures from "./components/trackFeatures.js";
 import RelatedTracks from "./components/relatedTracks.js";
 import Header from "./components/header.js";
-import FeatureDescription from "./components/featureDescription.js";
+import ControlPanel from "./components/featureDescription.js";
+import ControlPanel_RelTracks from "./components/controlPanel_RelatedTracks.js";
+import ControlPanel_TrackFeats from "./components/controlPanel_TrackFeatures.js";
 import FooterAudioPlayerContainer from "./containers/FooterAudioPlayerContainer.js";
 
 export class App extends Component {
@@ -218,7 +220,7 @@ export class App extends Component {
         {this.state.appMode === "trackFeatures" && (
           <div className="feature-main_wrapper">
             <div className="feature-description">
-              <FeatureDescription
+              <ControlPanel_TrackFeats
                 activeFeature={this.state.activeFeature}
                 mode={this.state.appMode}
                 setActiveFeature={this.setActiveFeature}
@@ -241,7 +243,7 @@ export class App extends Component {
         {(this.state.appMode === "relatedTracks") && (
           <div className="feature-main_wrapper">
             <div className="feature-description">
-              <FeatureDescription
+              <ControlPanel_RelTracks
                 activeFeature={this.state.activeFeature}
                 mode={this.state.appMode}
                 setActiveFeature={this.setActiveFeature}
