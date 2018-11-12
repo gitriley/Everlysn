@@ -24,7 +24,6 @@ export class App extends Component {
     super(props);
     this.setActiveTrack = this.setActiveTrack.bind(this);
     this.setAppMode = this.setAppMode.bind(this);
-    this.enterFeatureSelectionMode = this.enterFeatureSelectionMode.bind(this);
     this.onFindSimilarTracks = this.onFindSimilarTracks.bind(this);
     this.setActiveFeature = this.setActiveFeature.bind(this);
     this.sortTracksAscending = this.sortTracksAscending.bind(this);
@@ -124,10 +123,7 @@ export class App extends Component {
     await this.updateToken();
   }
 
-  enterFeatureSelectionMode() {
-    this.props.dispatch(toggleFeatureSelectionMode(true));
-    //this.setState({ featureSelectionMode: true })
-  }
+  
 
   buildRecommendationQueryString() {
     const artists = this.state.activeTrack.artists;
@@ -221,12 +217,7 @@ export class App extends Component {
           <div className="feature-main_wrapper">
             <div className="feature-description">
               <ControlPanel_TrackFeats
-                activeFeature={this.state.activeFeature}
-                mode={this.state.appMode}
-                setActiveFeature={this.setActiveFeature}
                 findSimilarTracks={this.onFindSimilarTracks}
-                sortTracksAscending={this.sortTracksAscending}
-                sortTracksDescending={this.sortTracksDescending}
               />
             </div>
 
