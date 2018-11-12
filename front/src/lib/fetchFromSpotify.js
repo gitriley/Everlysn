@@ -13,7 +13,10 @@ export async function fetchToken() {
 
 export async function fetchSearchResults(searchTerms, token) {
     console.log('token', token)
-    console.log('Error, please refresh page')
+    if (!token) {
+        console.log('Error, please refresh page')
+    }
+    
     const url = `https://api.spotify.com/v1/search?q=${searchTerms}&type=track`
 
     const resp = await fetch(url,{

@@ -34,7 +34,7 @@ export class App extends Component {
   }
 
 
-
+  
   state = {
     activeTrackId: '',
     currentlyPlayingTrackId: '',
@@ -115,7 +115,6 @@ export class App extends Component {
   }
 
   async componentWillMount() {
-    console.log('hi')
     await this.updateToken()
   }
 
@@ -132,11 +131,11 @@ export class App extends Component {
     const artistsString = `${artist1String}${artist2String}${artist3String}`
     const trackString = `seed_tracks=${this.state.activeTrackId}`
 
-    const featuresToSearchBy = Object.keys(this.state.queryFeatures).filter((feature) => {
-      return this.state.queryFeatures[feature] === true
+    const featuresToSearchBy = Object.keys(this.props.store.queryFeatures).filter((feature) => {
+      return this.props.store.queryFeatures[feature] === true
     })
     let featuresStrings = featuresToSearchBy.map((feature) => {
-      if (this.state.queryFeatures[feature] === true) {
+      if (this.props.store.queryFeatures[feature] === true) {
         return `&${feature}=${this.state.trackFeatures[feature]}`;
       }
     })
@@ -159,8 +158,8 @@ export class App extends Component {
   }
 
   toggleQueryFeatures(feature) {
-    const newVal = !this.state.queryFeatures[feature]
-    let queryFeatures = Object.assign({}, this.state.queryFeatures);    //creating copy of object
+    const newVal = !this.props.store.queryFeatures[feature]
+    let queryFeatures = Object.assign({}, this.props.store.queryFeatures);    //creating copy of object
     queryFeatures[feature] = newVal;
     this.setState({ queryFeatures }, () => {
       // console.log(this.state);
@@ -189,9 +188,10 @@ export class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     let audioPlayerId;
-    if (this.props.audioPlayerId) {
-      audioPlayerId = this.props.audioPlayerId
+    if (this.props.store.audioPlayerId) {
+      audioPlayerId = this.props.store.audioPlayerId
     }
     
 
@@ -220,7 +220,7 @@ export class App extends Component {
                 mode={this.state.appMode}
                 setActiveFeature={this.setActiveFeature}
                 enterFeatureSelectionMode={this.enterFeatureSelectionMode}
-                featureSelectionMode={this.props.featureSelectionMode}
+                featureSelectionMode={this.props.store.featureSelectionMode}
                 findSimilarTracks={this.onFindSimilarTracks}
                 sortTracksAscending={this.sortTracksAscending}
                 sortTracksDescending={this.sortTracksDescending} />
@@ -229,10 +229,10 @@ export class App extends Component {
             {(this.state.appMode === 'trackFeatures')
               ? <TrackFeatures token={this.state.access_token}
                 trackId={this.state.activeTrackId}
-                queryFeatures={this.state.queryFeatures}
+                queryFeatures={this.props.store.queryFeatures}
                 toggleQueryFeatures={this.toggleQueryFeatures}
                 features={this.state.trackFeatures}
-                featureSelectionMode={this.props.featureSelectionMode} />
+                featureSelectionMode={this.props.store.featureSelectionMode} />
               : ''}
 
 
@@ -253,7 +253,7 @@ export class App extends Component {
 }
 
 function mapStateToProps(store) {
-  return store
+  return {store}
 }
 
 

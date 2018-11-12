@@ -36,6 +36,22 @@ import { combineReducers } from 'redux'
 //   }
 // }
 
+const defaultQueryFeatures = {
+    acousticness: false,
+    danceability: false,
+    energy: false,
+    instrumentalness: false,
+    key: false,
+    liveness: false,
+    loudness: false,
+    mode: false,
+    speechiness: false,
+    tempo: false,
+    time_signature: false,
+    valence: false
+  }
+
+
 function featureSelectionMode(state = false, action) {
     switch (action.type) {
         case 'TOGGLE_FEATURE_SELECTION_MODE':
@@ -54,9 +70,22 @@ function audioPlayerId(state = null, action) {
     }
 }
 
+function queryFeatures(state = defaultQueryFeatures, action) {
+    switch (action.type) {
+        case 'TOGGLE_QUERY_FEATURE':
+            const newVal = !state[action.feature]
+            let newQueryFeatures = Object.assign({}, state);    //creating copy of object
+            newQueryFeatures[action.feature] = newVal;
+            return newQueryFeatures
+        default: 
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     audioPlayerId,
-    featureSelectionMode
+    featureSelectionMode,
+    queryFeatures
 })
 
 export default rootReducer

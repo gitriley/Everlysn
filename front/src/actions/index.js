@@ -25,7 +25,7 @@ export const toggleFeatureSelectionMode = boolVal => ({
   featureSelectionMode: boolVal
 })
 
-export const toggleQueryFeatures = queryFeature => ({
+export const toggleQueryFeature = queryFeature => ({
   type: 'TOGGLE_QUERY_FEATURE',
   feature: queryFeature
 })

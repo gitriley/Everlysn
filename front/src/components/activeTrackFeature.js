@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BarGraphFeature from './barGraphFeature.js'
 import TextFeature from './textFeature.js'
+import FeatureCheckbox from './featureCheckbox.js'
 import * as descriptions from '../featureDescriptions.js'
 import InfoSVG from './icons/infoSVG.js'
 
@@ -66,11 +67,8 @@ class ActiveTrackFeature extends Component {
                 <span className="attribute"> {this.getDisplayText(feature)}: </span>
                 <div className='track-feature_checkbox-wrapper'>
                     {this.props.featureSelectionMode
-                        ? <input type='checkbox'
-                            className='track-feature_checkbox'
-                            data-testid={`${feature}-checkbox`}
-                            checked={this.props.checked}
-                            onChange={() => this.props.toggle(feature)} />
+                        ? 
+                            <FeatureCheckbox feature={feature}/>
                         : ''}
                 </div>
 
@@ -87,3 +85,10 @@ class ActiveTrackFeature extends Component {
 }
 
 export default ActiveTrackFeature;
+
+
+{/* <input type='checkbox'
+                            className='track-feature_checkbox'
+                            data-testid={`${feature}-checkbox`}
+                            checked={this.props.checked}
+                            onChange={() => this.props.toggle(feature)} /> */}

@@ -3,6 +3,7 @@ import * as Spotify from './lib/fetchFromSpotify.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {App} from './App'
+import {ConnectApp} from './App';
 import mockSearchResults from '../test_data/searchResults'
 import mockTrack from '../test_data/track'
 import mockTrackFeatures from '../test_data/trackFeatures'
@@ -55,7 +56,7 @@ it('renders without crashing', async () => {
   const div = document.createElement('div')
   await ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <ConnectApp />
     </Provider>, div
   )
   ReactDOM.unmountComponentAtNode(div)
@@ -67,7 +68,7 @@ test('<App /> calls updateToken() upon initialization', () => {
   spyOn(App.prototype, 'updateToken').and.callThrough()
   const wrapper = render(
     <Provider store={store}>
-      <App />
+      <ConnectApp />
     </Provider>
   )
   expect(Spotify.fetchToken).toHaveBeenCalledTimes(1)
@@ -87,7 +88,7 @@ test('Initial app-wide integration test', async () => {
  const store = createStore(reducer)
  const wrapper = render(
     <Provider store={store}>
-      <App />
+      <ConnectApp />
     </Provider>
   ) 
   await fireEvent.change(wrapper.container.getElementsByClassName('search-input')[0], {
@@ -147,7 +148,7 @@ test('Initial app-wide integration test', async () => {
   expect(wrapper.getByTestId('loudness-bar').style.width).toEqual('73.79%')
   expect(wrapper.getByTestId('tempo-bar').style.width).toEqual('48.59%')
 
-  // test that 'text; track features display the correct content
+  // test that 'text' track features display the correct content
   expect(wrapper.getByTestId('key-text').innerHTML).toEqual('A♯/B♭')
   expect(wrapper.getByTestId('time_signature-text').innerHTML).toEqual('4/4')
   expect(wrapper.getByTestId('mode-text').innerHTML).toEqual('Major')
@@ -155,6 +156,8 @@ test('Initial app-wide integration test', async () => {
   // test finding similar tracks works
   expect(wrapper.queryByTestId('acousticness-checkbox')).toBeNull()
   fireEvent.click(wrapper.getByText('Find Similar Tracks'))
+
+  wrapper.debug()
   expect(wrapper.queryByTestId('acousticness-checkbox')).toBeTruthy()
   expect(wrapper.queryByTestId('acousticness-checkbox').checked).toEqual(false)
 

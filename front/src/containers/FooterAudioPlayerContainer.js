@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 const FooterAudioPlayer = ({trackId}) => {
   const iframeURL = 'https://open.spotify.com/embed?uri=spotify:track:' + trackId + '&theme=white'
-  console.log('render audio player', trackId)
   if (!trackId) {
       return (null)
   }
@@ -18,7 +17,6 @@ const FooterAudioPlayer = ({trackId}) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log('container', state)
   return {
     trackId: state.audioPlayerId
   }
