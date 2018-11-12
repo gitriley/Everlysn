@@ -24,7 +24,6 @@ export class App extends Component {
     this.setActiveTrack = this.setActiveTrack.bind(this);
     this.setAppMode = this.setAppMode.bind(this);
     this.enterFeatureSelectionMode = this.enterFeatureSelectionMode.bind(this)
-    this.toggleQueryFeatures = this.toggleQueryFeatures.bind(this)
     this.onFindSimilarTracks = this.onFindSimilarTracks.bind(this)
     this.setActiveFeature = this.setActiveFeature.bind(this)
     this.sortTracksAscending = this.sortTracksAscending.bind(this)
@@ -157,16 +156,6 @@ export class App extends Component {
     //this.setState({ featureSelectionMode: false })
   }
 
-  toggleQueryFeatures(feature) {
-    const newVal = !this.props.store.queryFeatures[feature]
-    let queryFeatures = Object.assign({}, this.props.store.queryFeatures);    //creating copy of object
-    queryFeatures[feature] = newVal;
-    this.setState({ queryFeatures }, () => {
-      // console.log(this.state);
-    });
-
-  }
-
   setActiveFeature(feature) {
     this.setState({ activeFeature: feature })
   }
@@ -188,7 +177,6 @@ export class App extends Component {
   }
 
   render() {
-    console.log(this.props)
     let audioPlayerId;
     if (this.props.store.audioPlayerId) {
       audioPlayerId = this.props.store.audioPlayerId
@@ -230,7 +218,6 @@ export class App extends Component {
               ? <TrackFeatures token={this.state.access_token}
                 trackId={this.state.activeTrackId}
                 queryFeatures={this.props.store.queryFeatures}
-                toggleQueryFeatures={this.toggleQueryFeatures}
                 features={this.state.trackFeatures}
                 featureSelectionMode={this.props.store.featureSelectionMode} />
               : ''}

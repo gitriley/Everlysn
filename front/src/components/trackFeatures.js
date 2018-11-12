@@ -8,7 +8,6 @@ class TrackFeatures extends Component {
   constructor(props) {
     super(props);
     this.showFeatureDescription = this.showFeatureDescription.bind(this);
-    this.toggle = this.toggle.bind(this);
   }
   state = {
     trackFeatures: [
@@ -38,10 +37,6 @@ class TrackFeatures extends Component {
     }
   }
 
-  toggle(feature) {
-    this.props.toggleQueryFeatures(feature);
-  }
-
   RenderFeatures(features) {
     return features.map((feature, index) => {
       return (
@@ -51,7 +46,6 @@ class TrackFeatures extends Component {
           featureVal={this.props.features[feature]}
           showFeatureDescription={this.showFeatureDescription}
           activeFeatureDescr={this.state.activeFeatureDescr}
-          toggle={this.toggle}
           checked={this.props.queryFeatures[feature]}
           featureSelectionMode={this.props.featureSelectionMode}
         />

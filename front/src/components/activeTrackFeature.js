@@ -85,10 +85,3 @@ class ActiveTrackFeature extends Component {
 }
 
 export default ActiveTrackFeature;
-
-
-{/* <input type='checkbox'
-                            className='track-feature_checkbox'
-                            data-testid={`${feature}-checkbox`}
-                            checked={this.props.checked}
-                            onChange={() => this.props.toggle(feature)} /> */}
