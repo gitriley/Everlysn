@@ -178,7 +178,7 @@ export class App extends Component {
 
   render() {
     let audioPlayerId;
-    if (this.props.store.audioPlayerId) {
+    if (this.props.store) {
       audioPlayerId = this.props.store.audioPlayerId
     }
     
@@ -207,8 +207,6 @@ export class App extends Component {
                 activeFeature={this.state.activeFeature}
                 mode={this.state.appMode}
                 setActiveFeature={this.setActiveFeature}
-                enterFeatureSelectionMode={this.enterFeatureSelectionMode}
-                featureSelectionMode={this.props.store.featureSelectionMode}
                 findSimilarTracks={this.onFindSimilarTracks}
                 sortTracksAscending={this.sortTracksAscending}
                 sortTracksDescending={this.sortTracksDescending} />

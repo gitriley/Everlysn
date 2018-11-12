@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import * as descriptions from '../featureDescriptions.js'
+import { connect } from 'react-redux';
+import { toggleFeatureSelectionMode } from '../actions'
+
 import InfoSVG from './icons/infoSVG.js';
 
 class FeatureDescription extends Component {
@@ -22,16 +25,12 @@ class FeatureDescription extends Component {
         this.props.setActiveFeature(e.target.value)
     }
 
-    enterFeatureSelectionMode() {
-        this.props.enterFeatureSelectionMode(true)
-    }
-
     submitQuery() {
         this.props.findSimilarTracks()
     }
 
     onButtonClick() {
-        this.props.featureSelectionMode ? this.submitQuery() : this.enterFeatureSelectionMode()
+        this.props.featureSelectionMode ? this.submitQuery() : this.props.dispatch(toggleFeatureSelectionMode(true))
     }
 
     showFeatureDescription() {
@@ -127,6 +126,12 @@ class FeatureDescription extends Component {
     }
 }
 
-export default FeatureDescription;
+function mapStateToProps(store) {
+    return {
+        featureSelectionMode: store.featureSelectionMode
+    }
+}  
+
+export default connect(mapStateToProps)(FeatureDescription);
 
 
