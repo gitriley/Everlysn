@@ -97,7 +97,6 @@ export class App extends Component {
 
   async updateToken() {
     const tokenObj = await Spotify.fetchToken();
-    console.log("tokenObj", tokenObj);
     this.setState({
       access_token: tokenObj.token,
       tokenInfo: {

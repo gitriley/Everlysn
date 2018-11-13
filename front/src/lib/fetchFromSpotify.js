@@ -7,14 +7,12 @@ export async function fetchToken() {
     } catch(error) {
         console.log(error)
     }
-    console.log(tokenObj)
     return tokenObj
 }
 
 export async function fetchSearchResults(searchTerms, token) {
-    console.log('token', token)
     if (!token) {
-        console.log('Error, please refresh page')
+        console.log('Error: please refresh page')
     }
     
     const url = `https://api.spotify.com/v1/search?q=${searchTerms}&type=track`
@@ -44,8 +42,6 @@ export async function fetchTrack(trackId, token) {
         })
     })
     const trackData = await resp.json()
-    console.log('fetchTrack')
-    console.log(JSON.stringify(trackData))
     if (trackData.error) {
         return Error('error')
     } else {
@@ -62,8 +58,6 @@ export async function fetchTrackFeatures(trackId, token) {
         })
     })
     const trackFeatures = await resp.json()
-    console.log('fetchTrackFeatures')
-    console.log(JSON.stringify(trackFeatures))
     return trackFeatures
 }
 
@@ -100,8 +94,5 @@ export async function fetchRelatedTracks(queryString, token) {
         return newObj
     })
 
-    console.log('tracksWithFeatures')
-    //console.log(JSON.stringify(tracksWithFeatures))
-    console.log(tracksWithFeatures);
     return tracksWithFeatures
 }
