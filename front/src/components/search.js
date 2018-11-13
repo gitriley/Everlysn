@@ -30,7 +30,9 @@ class Search extends Component {
             this.props.setAppMode('search')
         }
 
-        // todo: make sure token is not expired
+        if (this.props.tokenNeedsRefreshed(this.props.tokenInfo)) {
+            await this.props.updateToken();
+        }
         const data = await Spotify.fetchSearchResults(this.state.searchTerms, this.props.token).catch((error) => {
             console.log('search error', error)
             this.setState({ error })

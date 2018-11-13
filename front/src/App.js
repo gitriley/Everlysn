@@ -202,6 +202,9 @@ export class App extends Component {
           setActiveTrack={this.setActiveTrack}
           mode={this.state.appMode}
           setAppMode={this.setAppMode}
+          tokenNeedsRefreshed={this.tokenNeedsRefreshed}
+          tokenInfo={this.state.tokenInfo}
+          updateToken={this.updateToken}
         />
 
         {this.state.appMode !== "search" && (
