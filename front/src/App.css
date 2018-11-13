@@ -361,7 +361,7 @@ body {
 
 .feature-description__wrapper {
   align-self: flex-end;
-  border: 1px solid var(--main-grey);
+  border: 1px solid var(--light-grey);
   border-radius: 6px;
   padding: 7px;
   position: absolute;
@@ -382,6 +382,18 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+.close-popover {
+  margin-left: auto;
+  cursor: pointer;
+  color: var(--main-grey);
+}
+
+.feature-description__top {
+  display: flex;
+}
+
+
 /* 
 .feature__select select {
   display: block;

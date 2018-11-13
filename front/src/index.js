@@ -9,16 +9,13 @@ import './index.css';
 import {ConnectApp} from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-if (process.env.NODE_ENV === 'development') {
-    let logger = composeWithDevTools(applyMiddleware(logger))
-} else {
-    let logger = null
-}
+
+const reduxLogger = composeWithDevTools(applyMiddleware(logger))
+
 
 const store = createStore(
     rootReducer, 
-    {},
-    logger
+    {}
 )
 // const unsubscribe = store.subscribe(() => console.log(store.getState()))
 

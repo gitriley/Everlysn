@@ -55,11 +55,15 @@ class ActiveTrackFeature extends Component {
             <div className="track-feature-row">
                 <div className='track-feature_info-wrapper'>
                     {this.props.activeFeatureDescr === feature
-                        ?
+                        &&
                         <div className='feature-description__wrapper'>
-                            <span className='feature-description__title'>{this.getDisplayText(feature)}</span>
+                            <div className='feature-description__top'>
+                                <span className='feature-description__title'>{this.getDisplayText(feature)}</span>
+                                <span className='close-popover'
+                                    onClick={() => this.props.showFeatureDescription(feature)}>X</span>
+                            </div>
                             <p className='feature-description__text'>{descriptions[feature]}</p>
-                        </div> : <div></div>}
+                        </div> }
 
                     <div onClick={() => this.props.showFeatureDescription(feature)}>
                         <InfoSVG />
