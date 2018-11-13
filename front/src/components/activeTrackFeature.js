@@ -72,9 +72,9 @@ class ActiveTrackFeature extends Component {
                 <span className="attribute"> {this.getDisplayText(feature)}: </span>
                 <div className='track-feature_checkbox-wrapper'>
                     {this.props.featureSelectionMode
-                        ? 
+                        && 
                             <FeatureCheckbox feature={feature}/>
-                        : ''}
+                        }
                 </div>
 
                 {this.representation(this.props.featureVal, feature)}

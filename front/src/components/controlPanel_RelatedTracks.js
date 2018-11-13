@@ -77,9 +77,17 @@ class ControlPanel_RelatedTracks extends Component {
               className="feature-description__wrapper"
               style={{ display: this.state.displayDescr }}
             >
-              <span className="feature-description__title">
-                {this.props.activeFeature}
-              </span>
+              <div className="feature-description__top">
+                <span className="feature-description__title">
+                  {this.props.activeFeature}
+                </span>
+                <span
+                  className="close-popover"
+                  onClick={this.showFeatureDescription}
+                >
+                  X
+                </span>
+              </div>
               <p className="feature-description__text">
                 {descriptions[this.props.activeFeature]}
               </p>
