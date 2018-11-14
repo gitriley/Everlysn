@@ -135,6 +135,7 @@ body {
   font-size: 16px;
   vertical-align: text-bottom;
   display: block;
+  cursor: pointer;
 }
 
 .feature-main_wrapper {
@@ -164,6 +165,7 @@ body {
   font-size: 16px;
   vertical-align: text-bottom;
   display: inline-block;
+  cursor: pointer;
 }
 .rel-track__btn:focus {
   outline:0;
@@ -415,6 +417,7 @@ body {
   margin-left: 10px;
   display: flex;
   height: 20px;
+  cursor: pointer;
 }
 
 /* .feature__header-text {
@@ -483,6 +486,7 @@ body {
 .svg__info {
   width: 15px;
   fill: var(--main-grey);
+  cursor: pointer;
 }
 .feature__select-inner {
   display: flex;
