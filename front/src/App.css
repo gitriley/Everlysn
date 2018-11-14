@@ -519,6 +519,7 @@ body {
 	.feature-main_wrapper {
     border: none;
     border-radius: 0px;
+    border-top: 1px solid var(--light-grey);
   }
   .feature-description {
     border-radius: 0px;
