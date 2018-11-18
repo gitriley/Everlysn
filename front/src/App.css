@@ -1,7 +1,13 @@
-#root {
+#root >.App.dayMode {
   --main-grey: #888686;
   --light-grey: #d6d6d6;
+  --primary-background: white;
+}
 
+#root >.App.nightMode {
+  --main-grey: #d2cece;
+  --light-grey: #d2cece;
+  --primary-background: #2f3c56;
 }
 
 
@@ -11,8 +17,12 @@ p {
 
 body {
   font-family: avenir;
+  background: var(--primary-background);
 }
 
+.App {
+  background: var(--primary-background);
+}
 
 .App.hasFooter {
   padding-bottom: 90px;
@@ -42,13 +52,14 @@ body {
   padding-right: 30px;
   width: 240px;
   border: 1px solid var(--light-grey);
+  background: var(--primary-background);
 }
 
 .search-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--primary-background);
   border-bottom: 1px solid #dedede;
   height: 50px;
   transition: .8s;
@@ -475,7 +486,7 @@ body {
   margin: 0 auto;
   justify-content: center;
   display: flex;
-  background: white;
+  background: var(--primary-background);
   border-top: 1px solid var(--light-grey);
 }
 
