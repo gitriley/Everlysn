@@ -1,7 +1,7 @@
 export async function fetchToken() {
-    //const resp = await fetch('http://localhost:3005/token')
     let tokenObj
     try {
+        //const resp = await fetch('http://localhost:3005/token')
         const resp = await fetch('https://shielded-waters-65196.herokuapp.com/token')
         tokenObj = await resp.json()
     } catch(error) {

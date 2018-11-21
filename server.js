@@ -73,7 +73,7 @@ app.get('/token', (mainreq, mainres) => {
             message = {
                 token: access_token,
                 expires_in: body['expires_in'],
-                token_age_minutes: tokenAgeInMinutes
+                token_age_minutes: 0
             }
             //message = JSON.stringify(message);
             console.log('refreshing token: ', message);
