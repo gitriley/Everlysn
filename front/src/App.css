@@ -138,7 +138,7 @@ body {
 .header__load-track-btn {
   width: 220px;
   height: 36px;
-  background: white;
+  background: var(--primary-background);
   color: var(--main-grey);
   border: 1px solid var(--light-grey);
   margin-top: 6px;
@@ -160,7 +160,7 @@ body {
 .track-wrapper {
   border-bottom: 1px solid #d2d2d2;
     padding: 8px;
-    color: #797979;
+    color: var(--main-grey);
     font-family: avenir;
     cursor: pointer;
 }
@@ -168,7 +168,7 @@ body {
 .rel-track__btn {
   width: 220px;
   height: 36px;
-  background: white;
+  background: var(--primary-background);
   color: var(--main-grey);
   border: 1px solid var(--light-grey);
   margin-top: 6px;

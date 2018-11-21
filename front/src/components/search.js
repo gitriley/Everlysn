@@ -98,7 +98,7 @@ class Search extends Component {
                     (error ? <div> error! <pre>{JSON.stringify(error, null, 2)}</pre></div>
                         :
                         <div className="searchResults">
-                            {searchResults.length === 0 ? <div className='loader'></div> : searchResults}
+                            {searchResults.length === 0 && searchResultsPresent ? <div className='loader'></div> : searchResults}
                         </div>
                     ) : ''}
                 
