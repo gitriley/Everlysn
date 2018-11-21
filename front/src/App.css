@@ -22,6 +22,7 @@ body {
 
 .App {
   background: var(--primary-background);
+  min-height: 100vh;
 }
 
 .App.hasFooter {
