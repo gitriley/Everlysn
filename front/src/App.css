@@ -274,7 +274,7 @@ body {
   width: 300px;
   left: 0px;
   top: 25px;
-  background: white;
+  background: var(--primary-background);
   z-index: 500;
 }
 
@@ -382,7 +382,7 @@ body {
   width: 300px;
   right: 0px;
   top: 25px;
-  background: white;
+  background: var(--primary-background);
 }
 
 
