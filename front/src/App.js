@@ -16,6 +16,7 @@ import Header from "./components/header.js";
 import ControlPanel_RelTracks from "./components/controlPanel_RelatedTracks.js";
 import ControlPanel_TrackFeats from "./components/controlPanel_TrackFeatures.js";
 import FooterAudioPlayer from "./components/FooterAudioPlayer.js";
+import MenuSVG from './components/icons/menuSVG.js'
 
 export class App extends Component {
   // app modes: trackFeatures, relatedTracks, search
@@ -197,6 +198,7 @@ export class App extends Component {
       "&theme=white";
     return (
       <div className={'App ' + (audioPlayerId ? "hasFooter" : "") + ' nightMode'}>
+      <MenuSVG/>
         <Search
           token={this.state.access_token}
           setActiveTrack={this.setActiveTrack}
@@ -206,7 +208,6 @@ export class App extends Component {
           tokenInfo={this.state.tokenInfo}
           updateToken={this.updateToken}
         />
-
         {this.state.appMode !== "search" && (
           <div className="top">
             <TrackImage track={this.state.activeTrack} />
