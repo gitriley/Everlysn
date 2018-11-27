@@ -2,12 +2,16 @@
   --main-grey: #888686;
   --light-grey: #d6d6d6;
   --primary-background: white;
+  --inverse-background: #283142;
+  --inverse-main: #d6d6d6;
 }
 
 #root >.App.nightMode {
   --main-grey: #d2cece;
   --light-grey: #d2cece;
   --primary-background: #283142;
+  --inverse-background: #d2cece;
+  --inverse-main: #283142;
 }
 
 
@@ -42,6 +46,37 @@ body {
 
 .App-intro {
   font-size: large;
+}
+
+.menu-parent {
+  /* margin-bottom: -50px; */
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.menu-button {
+  fill: var(--main-grey);
+  padding: 7px;
+}
+
+.menu {
+  color: var(--main-grey);
+  background: var(--primary-background);
+  border: 1px solid var(--light-grey);
+  width: 150px;
+  position: absolute;
+  right: 2px;
+  top: 42px;
+}
+.menu-item, .menu-subitem {
+  padding: 5px;
+  border: 1px solid var(--light-grey);
+}
+.menu-item:hover, .menu-subitem:hover {
+  padding: 5px;
+  background: var(--inverse-background);
+  color: var(--inverse-main);
 }
 
 .search-input {
@@ -707,3 +742,5 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+

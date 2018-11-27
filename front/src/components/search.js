@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchSVG from './icons/searchSVG';
+import MenuParent from './menuParent.js'
 import * as Spotify from '../lib/fetchFromSpotify.js'
 
 class Search extends Component {
@@ -77,6 +78,7 @@ class Search extends Component {
         const { searchTerms, error, searchResultsPresent, searchResults } = this.state;
         return (
             <div className='search'>
+                <MenuParent/>
                 <div className={'search-wrapper ' + (!searchResultsPresent && 'full')}>
                     <div className='search-inner'>
                         <p className={'search-prompt ' + (searchResultsPresent && 'bar')}>
