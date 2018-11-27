@@ -1,4 +1,4 @@
-#root >.App.dayMode {
+#root >.App.light {
   --main-grey: #888686;
   --light-grey: #d6d6d6;
   --primary-background: white;
@@ -6,7 +6,7 @@
   --inverse-main: #d6d6d6;
 }
 
-#root >.App.nightMode {
+#root >.App.dark {
   --main-grey: #d2cece;
   --light-grey: #d2cece;
   --primary-background: #283142;
