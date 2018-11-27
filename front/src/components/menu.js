@@ -11,7 +11,7 @@ class menu extends Component {
     render() {
         return (
             <div className='menu'>
-                <div className='menu-item'>Theme:</div>
+                <div className='menu-item_header'>Theme:</div>
 
                 <div className='menu-subitem'>   Light</div>
                 <div className='menu-subitem'>   Dark</div>

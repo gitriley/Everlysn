@@ -58,6 +58,7 @@ body {
 .menu-button {
   fill: var(--main-grey);
   padding: 7px;
+  cursor: pointer;
 }
 
 .menu {
@@ -69,14 +70,20 @@ body {
   right: 2px;
   top: 42px;
 }
-.menu-item, .menu-subitem {
+
+.menu > div:last-child {
+  border: none;
+}
+
+.menu-item, .menu-subitem, .menu-item_header {
   padding: 5px;
-  border: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--light-grey);
 }
 .menu-item:hover, .menu-subitem:hover {
   padding: 5px;
   background: var(--inverse-background);
   color: var(--inverse-main);
+  cursor: pointer;
 }
 
 .search-input {
