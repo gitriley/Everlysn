@@ -70,6 +70,7 @@ body {
   position: absolute;
   right: 2px;
   top: 42px;
+  transition: 0.8s;
 }
 
 .menu > div:last-child {
@@ -79,9 +80,13 @@ body {
 .menu-item, .menu-subitem, .menu-item_header {
   padding: 5px;
   border-bottom: 1px solid var(--light-grey);
+  transition: 0.8s;
+}
+
+.menu-subitem {
+  padding-left: 16px;
 }
 .menu-item:hover, .menu-subitem:hover {
-  padding: 5px;
   background: var(--inverse-background);
   color: var(--inverse-main);
   cursor: pointer;
