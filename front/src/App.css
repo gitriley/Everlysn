@@ -1,4 +1,4 @@
-#root >.App.light {
+.App.light {
   --main-grey: #888686;
   --light-grey: #d6d6d6;
   --primary-background: white;
@@ -6,7 +6,7 @@
   --inverse-main: #d6d6d6;
 }
 
-#root >.App.dark {
+.App.dark {
   --main-grey: #d2cece;
   --light-grey: #d2cece;
   --primary-background: #283142;
@@ -541,6 +541,7 @@ body {
   display: flex;
   background: var(--primary-background);
   border-top: 1px solid var(--light-grey);
+  transition: 0.8s;
 }
 
 .main .r {
@@ -599,6 +600,16 @@ body {
   }
   .top {
     padding: 0px 25px 0px 0px;
+  }
+}
+
+@media screen and (max-width: 800px) and (min-width: 711px) {
+  .search-wrapper {
+    justify-content: flex-start;
+  }
+
+  .search-input {
+    width: 220px;
   }
 }
 
@@ -746,6 +757,10 @@ body {
   }
   .header__track-title {
     font-size: 20px;
+  }
+  .search-input {
+    width: 220px;
+    margin-left: -50px;
   }
 }
 
