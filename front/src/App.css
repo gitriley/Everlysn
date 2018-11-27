@@ -27,6 +27,7 @@ body {
 .App {
   background: var(--primary-background);
   min-height: 100vh;
+  transition: .8s;
 }
 
 .App.hasFooter {
@@ -96,6 +97,7 @@ body {
   width: 240px;
   border: 1px solid var(--light-grey);
   background: var(--primary-background);
+  transition: 0.8s;
 }
 
 .search-wrapper {
@@ -190,6 +192,7 @@ body {
   vertical-align: text-bottom;
   display: block;
   cursor: pointer;
+  transition: 0.8s;
 }
 
 .feature-main_wrapper {
@@ -220,6 +223,7 @@ body {
   vertical-align: text-bottom;
   display: inline-block;
   cursor: pointer;
+  transition: 0.8s;
 }
 .rel-track__btn:focus {
   outline:0;
@@ -465,6 +469,7 @@ body {
   color: var(--main-grey);
   border: 1px solid var(--light-grey);
   background: white;
+  transition: 0.8s;
  }
 
 .feature__select-svg__wrapper {

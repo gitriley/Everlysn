@@ -9,8 +9,8 @@ function mapStateToProps(store) {
 }
 
 const selectThemeStyle = {
-    'font-weight': '700',
-    'text-decoration': 'underline'
+    'fontWeight': '700',
+    'textDecoration': 'underline'
 }
 
 

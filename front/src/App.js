@@ -196,7 +196,7 @@ export class App extends Component {
       audioPlayerId +
       "&theme=white";
     return (
-      <div className={'App ' + (audioPlayerId ? "hasFooter" : "") + this.props.store.theme}>
+      <div className={'App ' + (audioPlayerId ? "hasFooter " : "") + this.props.store.theme}>
         <Search
           token={this.state.access_token}
           setActiveTrack={this.setActiveTrack}
