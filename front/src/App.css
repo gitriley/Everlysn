@@ -468,7 +468,7 @@ body {
   display: block;
   color: var(--main-grey);
   border: 1px solid var(--light-grey);
-  background: white;
+  background: var(--primary-background);
   transition: 0.8s;
  }
 
@@ -547,6 +547,11 @@ body {
   fill: var(--main-grey);
   cursor: pointer;
 }
+
+.svg__info g {
+  fill: var(--primary-background);
+}
+
 .feature__select-inner {
   display: flex;
   position: relative;
