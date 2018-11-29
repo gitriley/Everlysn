@@ -1,8 +1,4 @@
-/*
- * action creators
- */
-
-
+// action creators
 export const toggleFeatureSelectionMode = boolVal => ({
   type: 'TOGGLE_FEATURE_SELECTION_MODE',
   featureSelectionMode: boolVal
